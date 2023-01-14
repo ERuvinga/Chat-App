@@ -16,15 +16,14 @@ const index = () => {
              <Nav/>
                 <form onSubmit={(e)=>{e.preventDefault}} className=" container mx-auto flex flex-col items-center justify-center">
                     <div className='ContainerForm'>
-                        <LoginRegistertitle title='Login' url='./profile.png' />
+                        <LoginRegistertitle title='Register' url='./profile.png' />
                         <InputText type= "input" name= "mail"  fieldContent= "e-mail" HandleChange= {HandleChange}/>
                         <InputText type= "password" name= "passWord"  fieldContent= "passWord" HandleChange= {HandleChange}/>
-                        <Button type='button' name='btn' fieldContent='Login' />
-
+                        <Button type='button' name='btn' fieldContent='Register' />
                         <p className=" text-center my-10 ">
-                            Connect to your account . Don`t have an account? {"      "}
+                            Have you an account?{"      "}
                             <span className="hover:opacity-[0.8] font-bold text-underline">
-                                <Link href={"/Register"}>Register here</Link>
+                                <Link href={"/Login"}>Please Login</Link>
                             </span>
                         </p>
                     </div>
