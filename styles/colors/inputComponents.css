@@ -16,18 +16,12 @@
     padding: 8px 5px;
     font-size: 0.8em;
     color: #2F2E41;
-    background-color: #F9F9FC;
     width: 100%;
-    border: 1px solid #979797;
-    border-radius: 6px;
+    border: .5px solid #979797;
+    border-radius: 10px;
 }
 
-.InputField:active{
-    color: #2F2E41;
-    background-color: white;
-    width: 100%;
-    border: 1px solid #979797;
-}
+
 
 .ButtonSubmit{
     display: block;

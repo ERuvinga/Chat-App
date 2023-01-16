@@ -1,0 +1,47 @@
+.list-users{
+
+    width: 28%;
+
+}
+
+.chat-contents{
+    width: 71%;
+}
+
+/*In component UserChat*/
+
+.Container-user{
+    width: 80%;
+    margin-top: 10px;
+}
+.Editprofil{
+    margin-right: 20px;
+    color:#8186A0;
+}
+
+
+.imgUser{
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 5px 20px 0px 5px;
+    border-radius: 50%;
+}
+
+.Names{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.NameUser{
+    font-weight: bold;
+    font-size: .9em;
+    color: #5843E4;
+}
+
+.descriptionUser{
+    font-size: .7em;
+    color: #8186A0;
+}

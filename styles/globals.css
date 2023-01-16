@@ -4,6 +4,7 @@
 @import './colors/index-navbar.css';
 @import './colors/login-register.css';
 @import './colors/inputComponents.css';
+@import './colors/chat.css';
 
 @font-face{
     font-family: 'comfoorta';
