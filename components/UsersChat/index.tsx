@@ -10,9 +10,9 @@ interface user{
 
 const index = (datas: user) => {
     return (
-        <div className='flex flex-row justify-between items-center'>    
-            <div className=' Container-user flex  justify-start items-center px-5'>
-                <img src={datas.picture ? datas.picture : 'profile.png' } className='border imgUser ' alt='user'/> 
+        <div className='flex flex-row justify-between Container-user items-center mt-3'>    
+            <div className=' w-5/6 flex justify-start items-center'>
+                <img src={datas.picture ? datas.picture : 'profile.png' } className='imgUser' alt='user'/> 
                 <p className='Names'>
                     <span className=' NameUser'>{datas.Name}</span>
                     <span className=' descriptionUser'>{datas.descriptions}</span>

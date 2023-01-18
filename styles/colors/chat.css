@@ -1,21 +1,20 @@
 .list-users{
-
     width: 28%;
-
 }
 
 .chat-contents{
-    width: 71%;
+    width: 72%;
 }
 
 /*In component UserChat*/
 
 .Container-user{
-    width: 80%;
-    margin-top: 10px;
+    width: 90%;
+    margin: auto;
 }
+
 .Editprofil{
-    margin-right: 20px;
+    margin: auto;
     color:#8186A0;
 }
 
@@ -24,8 +23,20 @@
     display: block;
     width: 60px;
     height: 60px;
-    margin: 5px 20px 0px 5px;
+    margin-right: 10px;
     border-radius: 50%;
+    border: #979797 solid 2px;
+}
+
+.SearchUser{
+    display: block;
+    width: 90%;
+    padding: 5px 10px;
+    margin: 0 auto;
+    font-size: 0.8em;
+    color: #979797;
+    border: .5px solid #979797;
+    border-radius: 18px;    
 }
 
 .Names{
@@ -45,3 +56,50 @@
     font-size: .7em;
     color: #8186A0;
 }
+
+
+
+/*News Messages*/
+
+.imgUserMessage{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.MessageContent{
+    margin-left: 8px;
+    width: 60%;
+}
+
+.UsersendMessage{
+    font-weight: bold;
+    font-size: .8em;
+    color: #5843E4;
+}
+
+
+.messages{
+    width: 95%;
+    height: 35px;
+    overflow: hidden;
+    font-size: .67em;
+    color: #8186A0;
+}
+
+.Date{
+    color: #979797;
+    font-size: .65em;
+}
+.numberMessages{
+    color: #fff;
+    background-color: #5843E4;
+    font-size: .65em;
+    padding: 0 7px;
+    border-radius: 50%;
+}
+
+
+
+
