@@ -60,6 +60,9 @@
 
 
 /*News Messages*/
+.ContainerMessage{
+    width: 100%;
+}
 
 .imgUserMessage{
     display: block;
@@ -82,7 +85,7 @@
 
 .messages{
     width: 95%;
-    height: 35px;
+    max-height: 35px;
     overflow: hidden;
     font-size: .67em;
     color: #8186A0;
@@ -95,8 +98,8 @@
 .numberMessages{
     color: #fff;
     background-color: #5843E4;
-    font-size: .65em;
-    padding: 0 7px;
+    font-size: .6em;
+    padding: 0 6px;
     border-radius: 50%;
 }
 

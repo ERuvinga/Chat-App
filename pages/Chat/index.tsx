@@ -16,7 +16,10 @@ const index = () => {
                     <div className='space-y-5'>
                         <ChatUSer Name='Elie Ruvinga' descriptions='Developper' picture='/4.jpeg'/>
                         <input name='searchUser' type='text' className='SearchUser' placeholder="Search user"/>
-                        <Messages name='Leaetitia Ng' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir'/>
+                        <Messages name='Papa jose' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir'/>
+                        <Messages name='Sophie Ng' picture='5.jpeg' contentMessage='salut'/>
+                        <Messages name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct"/>
+                        <Messages name='Rachel Ng' picture='' contentMessage="Courage "/>
                     </div>
                 </aside>
                 <section className=' h-screen chat-contents bg-[#fff] m'>
