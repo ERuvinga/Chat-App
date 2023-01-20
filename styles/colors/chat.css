@@ -1,9 +1,16 @@
 .list-users{
-    width: 28%;
+    width: 30%;
+}
+.description-users{
+    width: 30%;
 }
 
 .chat-contents{
-    width: 72%;
+    width: 65%;
+}
+
+.radius{
+    border-radius: 15px;
 }
 
 /*In component UserChat*/
@@ -35,7 +42,7 @@
     margin: 0 auto;
     font-size: 0.8em;
     color: #979797;
-    border: .5px solid #979797;
+    border: .01em solid #979797;
     border-radius: 18px;    
 }
 
@@ -104,5 +111,60 @@
 }
 
 
+/*Friend descriptions*/
 
 
+.chatAndCall{
+    width: 90%;
+    margin: auto;
+    max-height: 100px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.btn_chat, .btn_call{
+    font-size: 1.2em;
+    color: #5843E4;
+    padding: 11px;
+    border-radius: 50%;
+    background-color: #E2E3E9;
+}
+
+.line{
+    height: 80px;
+    width: 1px;
+    background-color: #E2E3E9;
+}
+
+.Editprofil{
+    margin: auto;
+    color:#8186A0;
+}
+
+
+.imgFriend{
+    display: block;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    border: #979797 solid 3px;
+}
+
+.descriptionFriends{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameFriend{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #5843E4;
+}
+
+.functionFriend{
+    font-size: .9em;
+    color: #8186A0;
+}
