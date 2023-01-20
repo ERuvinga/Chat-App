@@ -5,7 +5,7 @@ import DesciptionFriend from '../../components/CommonComponents/Friend'
 import HeadChat from '../../components/HeadChat'
 import Messages from '../../components/CommonComponents/NewMessages'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faVideoCamera, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faVideoCamera, faMessage, faUserFriends , faBaby, faAdd, faHeartCirclePlus, faHeartBroken, faHeart} from '@fortawesome/free-solid-svg-icons';
 
 
 const index = () => {
@@ -33,14 +33,23 @@ const index = () => {
                              <FontAwesomeIcon className= 'btn_chat' icon={faMessage}/>
                              <span className=' text-center text-[#8186A0] text-[.8em] mt-1'>Chat</span>
                         </span>
-                        <div className='line '>
+                        <div className='line'>
                         </div>
                         <span className='flex flex-col'>
                              <FontAwesomeIcon className='btn_call' icon={faVideoCamera}/>
                              <span className= ' text-center text-[#8186A0] text-[.8em] mt-1'>Video</span>
                         </span>
-                       
                     </div>
+                    <div className='border w-[90%] mx-auto space-y-2'>
+                        <span className=' flex justify-start items-baseline'>
+                             <FontAwesomeIcon className= 'ViewFriends' icon={faUserFriends}/>
+                             <span className=' text-center text-[#8186A0] text-[.9em]'>View Friends</span>
+                        </span>
+                        <span className=' flex justify-start items-baseline'>
+                             <FontAwesomeIcon className='addFavorite' icon={faHeartCirclePlus}/>
+                             <span className=' text-center text-[#8186A0] text-[.9em]'>Add to favorite</span>
+                        </span>
+                     </div>
                 </aside>
             </div>
         </>

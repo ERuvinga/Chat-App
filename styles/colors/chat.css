@@ -114,34 +114,6 @@
 /*Friend descriptions*/
 
 
-.chatAndCall{
-    width: 90%;
-    margin: auto;
-    max-height: 100px;
-
-    display: flex;
-    justify-content: center;
-}
-
-.btn_chat, .btn_call{
-    font-size: 1.2em;
-    color: #5843E4;
-    padding: 11px;
-    border-radius: 50%;
-    background-color: #E2E3E9;
-}
-
-.line{
-    height: 80px;
-    width: 1px;
-    background-color: #E2E3E9;
-}
-
-.Editprofil{
-    margin: auto;
-    color:#8186A0;
-}
-
 
 .imgFriend{
     display: block;
@@ -167,4 +139,34 @@
 .functionFriend{
     font-size: .9em;
     color: #8186A0;
+}
+
+.chatAndCall{
+    width: 90%;
+    margin: auto;
+    max-height: 100px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.btn_chat, .btn_call{
+    font-size: 1.2em;
+    color: #5843E4;
+    padding: 11px;
+    border-radius: 50%;
+    background-color: #E2E3E9;
+}
+
+.line{
+    height: 80px;
+    width: 1px;
+    background-color: #E2E3E9;
+}
+
+.ViewFriends, .addFavorite{
+    font-size: 1.1em;
+    margin-right: 6px;
+
+    color: #979797;
 }
