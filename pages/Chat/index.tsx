@@ -4,8 +4,9 @@ import ChatUSer from '../../components/UsersChat'
 import DesciptionFriend from '../../components/CommonComponents/Friend'
 import HeadChat from '../../components/HeadChat'
 import Messages from '../../components/CommonComponents/NewMessages'
+import BtnMessages from '../../components/CommonComponents/SendMessageBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faVideoCamera, faMessage, faUserFriends , faHeartCirclePlus} from '@fortawesome/free-solid-svg-icons';
+import {faVideoCamera, faMessage, faUserFriends , faHeartCirclePlus, faHeart, faFeatherPointed} from '@fortawesome/free-solid-svg-icons';
 
 const index = () => {
     return (
@@ -27,12 +28,11 @@ const index = () => {
                         <HeadChat name='Dianne Vanhorn' picture='/12.jpeg'/>
                     </div>
 
-                    <div className='border w-[95%] mx-auto Chat-Body'>
+                    <div className=' w-[95%] mx-auto Chat-Body'>
 
                     </div>
 
-                    <div className='border w-[95%] mx-auto Chat-Footer'>
-
+                    <div className=' w-[95%] mx-auto Chat-Footer'>
                     </div>
                 </section>
 
