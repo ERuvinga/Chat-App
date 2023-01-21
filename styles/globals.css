@@ -5,6 +5,7 @@
 @import './colors/login-register.css';
 @import './colors/inputComponents.css';
 @import './colors/chat.css';
+@import './contentChat.css';
 
 @font-face{
     font-family: 'comfoorta';

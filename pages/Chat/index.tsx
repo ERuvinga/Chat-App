@@ -5,8 +5,7 @@ import DesciptionFriend from '../../components/CommonComponents/Friend'
 import HeadChat from '../../components/HeadChat'
 import Messages from '../../components/CommonComponents/NewMessages'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faVideoCamera, faMessage, faUserFriends , faBaby, faAdd, faHeartCirclePlus, faHeartBroken, faHeart} from '@fortawesome/free-solid-svg-icons';
-
+import {faVideoCamera, faMessage, faUserFriends , faHeartCirclePlus} from '@fortawesome/free-solid-svg-icons';
 
 const index = () => {
     return (
@@ -23,7 +22,18 @@ const index = () => {
                         <Messages name='Rachel Ng' picture='' contentMessage="Courage "/>
                     </div>
                 </section>
-                <section className=' h-screen chat-contents bg-[#fff] m'>
+                <section className='border h-screen chat-contents bg-[#fff] space-y-1'>
+                    <div className='w-[95%] mx-auto border'>
+                        <HeadChat name='Dianne Vanhorn' picture='/12.jpeg'/>
+                    </div>
+
+                    <div className='border w-[95%] mx-auto Chat-Body'>
+
+                    </div>
+
+                    <div className='border w-[95%] mx-auto Chat-Footer'>
+
+                    </div>
                 </section>
 
                 <aside className='description-users h-screen flex justify-center items-center'>
