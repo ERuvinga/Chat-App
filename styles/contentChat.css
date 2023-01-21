@@ -1,7 +1,8 @@
 /* the style for a Message components from chat page*/
 
 .Chat-Header{
-    height: 7vh;
+    height: 10vh;
+    border-bottom: solid 1px #E2E3E9;
 }
 
 .imgChat{
@@ -18,9 +19,9 @@
 }
 
 .Chat-Body{
-    height: 82vh;
+    height: 76vh;
 }
 
 .Chat-Footer{
-    height:9vh;
+    height:12vh;
 }

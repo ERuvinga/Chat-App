@@ -22,8 +22,8 @@ const index = () => {
                         <Messages name='Rachel Ng' picture='' contentMessage="Courage "/>
                     </div>
                 </section>
-                <section className='border h-screen chat-contents bg-[#fff] space-y-1'>
-                    <div className='w-[95%] mx-auto border'>
+                <section className=' h-screen chat-contents bg-[#fff] space-y-1'>
+                    <div className='w-[95%] mx-auto Chat-Header flex items-center'>
                         <HeadChat name='Dianne Vanhorn' picture='/12.jpeg'/>
                     </div>
 
