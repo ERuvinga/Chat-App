@@ -32,7 +32,10 @@ const index = () => {
 
                     </div>
 
-                    <div className=' w-[95%] mx-auto Chat-Footer'>
+                    <div className='border w-[95%] mx-auto Chat-Footer flex justify-around items-center space-x-1'>
+                        <input name='message' type='text' className='InputMessage' placeholder="Hello ..."/>
+                        <input name='message' type='text' className='InputMessage' placeholder="Hello ..."/>
+                        <input name='message' type='text' className='InputMessage' placeholder="Hello ..."/>
                     </div>
                 </section>
 
