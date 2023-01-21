@@ -1,0 +1,27 @@
+/* the style for a Message components from chat page*/
+
+.Chat-Header{
+    height: 10vh;
+    border-bottom: solid 1px #E2E3E9;
+}
+
+.imgChat{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: #979797 solid 1px;
+}
+
+.NowUserchat{
+    color: #2F2E41;
+    font-weight: bolder;
+}
+
+.Chat-Body{
+    height: 76vh;
+}
+
+.Chat-Footer{
+    height:12vh;
+}

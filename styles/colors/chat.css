@@ -1,0 +1,171 @@
+.list-users{
+    width: 30%;
+}
+.description-users{
+    width: 30%;
+}
+
+.chat-contents{
+    width: 65%;
+}
+
+.radius{
+    border-radius: 15px;
+}
+
+/*In component UserChat*/
+
+.Container-user{
+    width: 90%;
+    margin: auto;
+}
+
+.Editprofil{
+    margin: auto;
+    color:#8186A0;
+}
+
+
+.imgUser{
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: #979797 solid 2px;
+}
+
+.SearchUser{
+    display: block;
+    width: 90%;
+    padding: 5px 10px;
+    margin: 0 auto;
+    font-size: 0.8em;
+    color: #979797;
+    border: .01em solid #979797;
+    border-radius: 18px;    
+}
+
+.Names{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.NameUser{
+    font-weight: bold;
+    font-size: .9em;
+    color: #5843E4;
+}
+
+.descriptionUser{
+    font-size: .7em;
+    color: #8186A0;
+}
+
+
+
+/*News Messages*/
+.ContainerMessage{
+    width: 100%;
+}
+
+.imgUserMessage{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.MessageContent{
+    margin-left: 8px;
+    width: 60%;
+}
+
+.UsersendMessage{
+    font-weight: bold;
+    font-size: .8em;
+    color: #5843E4;
+}
+
+
+.messages{
+    width: 95%;
+    max-height: 35px;
+    overflow: hidden;
+    font-size: .67em;
+    color: #8186A0;
+}
+
+.Date{
+    color: #979797;
+    font-size: .65em;
+}
+.numberMessages{
+    color: #fff;
+    background-color: #5843E4;
+    font-size: .6em;
+    padding: 0 6px;
+    border-radius: 50%;
+}
+
+
+/*Friend descriptions*/
+
+.imgFriend{
+    display: block;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    border: #979797 solid 3px;
+}
+
+.descriptionFriends{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameFriend{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #5843E4;
+}
+
+.functionFriend{
+    font-size: .9em;
+    color: #8186A0;
+}
+
+.chatAndCall{
+    width: 90%;
+    margin: auto;
+    max-height: 100px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.btn_chat, .btn_call{
+    font-size: 1.2em;
+    color: #5843E4;
+    padding: 11px;
+    border-radius: 50%;
+    background-color: #E2E3E9;
+}
+
+.line{
+    height: 80px;
+    width: 1px;
+    background-color: #E2E3E9;
+}
+
+.ViewFriends, .addFavorite{
+    font-size: 1.1em;
+    margin-left: 10%;
+    margin-right: 6px;
+
+    color: #979797;
+}
