@@ -6,7 +6,7 @@ import HeadChat from '../../components/HeadChat'
 import Messages from '../../components/CommonComponents/NewMessages'
 import BtnMessages from '../../components/CommonComponents/SendMessageBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faVideoCamera, faMessage, faUserFriends , faHeartCirclePlus, faHeart, faFeatherPointed} from '@fortawesome/free-solid-svg-icons';
+import {faVideoCamera, faMessage, faUserFriends , faHeartCirclePlus, faSmile, faBuildingColumns, faArrowLeft, faArrowCircleRight, faArrowsSpin} from '@fortawesome/free-solid-svg-icons';
 
 const index = () => {
     return (
@@ -32,10 +32,10 @@ const index = () => {
 
                     </div>
 
-                    <div className='border w-[95%] mx-auto Chat-Footer flex justify-around items-center space-x-1'>
-                        <input name='message' type='text' className='InputMessage' placeholder="Hello ..."/>
-                        <input name='message' type='text' className='InputMessage' placeholder="Hello ..."/>
-                        <input name='message' type='text' className='InputMessage' placeholder="Hello ..."/>
+                    <div className='w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-1'>
+                        <BtnMessages icone={faSmile}/>
+                        <input name='message' type='text' className='InputMessage' placeholder="Write something ..."/>
+                        <BtnMessages icone={faArrowsSpin}/>
                     </div>
                 </section>
 

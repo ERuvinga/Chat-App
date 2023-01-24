@@ -22,22 +22,27 @@
     height: 76vh;
 }
 
+
+.Chat-Footer{
+    height:12vh;
+    border-top: solid 1px #E2E3E9;
+}
+
 .InputMessage{
     display: block;
     width: 60%;
     padding: 5px 10px;
-    margin: 0 auto;
     font-size: 0.8em;
     color: #979797;
     border: 1px solid #979797;
     border-radius: 18px; 
 }
 
-.InputMessage:active{
-    border: none;
+.iconeBtns{
+    color: #979797;
+    font-size: 1.3em;
 }
 
-
-.Chat-Footer{
-    height:12vh;
+.btnMessages{
+    padding: 5px;
 }

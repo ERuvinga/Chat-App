@@ -6,8 +6,8 @@ interface dataIcone{
 }
 const index = (datas: dataIcone) => {
     return (
-        <div>
-            <FontAwesomeIcon icon={datas.icone}/>
+        <div className='btnMessages'>
+            <FontAwesomeIcon className='iconeBtns' icon={datas.icone}/>
         </div>
     );
 };
