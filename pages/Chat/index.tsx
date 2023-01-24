@@ -32,7 +32,7 @@ const index = () => {
 
                     </div>
 
-                    <div className='w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-1'>
+                    <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-2'>
                         <BtnMessages icone={faSmile}/>
                         <input name='message' type='text' className='InputMessage' placeholder="Write something ..."/>
                         <BtnMessages icone={faPaperclip}/>

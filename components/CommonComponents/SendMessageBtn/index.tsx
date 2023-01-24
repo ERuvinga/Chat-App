@@ -7,8 +7,8 @@ interface dataIcone{
 }
 const index = (datas: dataIcone) => {
     return (
-        <div className='btnMessages'>
-            <FontAwesomeIcon className='iconeBtns' icon={datas.icone}/>
+        <div className={datas.full ?'': 'p-1 '}>
+            <FontAwesomeIcon className={datas.full ? 'sendMessagebtn' : 'iconeBtns' } icon={datas.icone}/>
         </div>
     );
 };
