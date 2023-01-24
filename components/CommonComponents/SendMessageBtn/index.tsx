@@ -3,6 +3,7 @@ import React from 'react';
 
 interface dataIcone{
     icone: any
+    full?:boolean
 }
 const index = (datas: dataIcone) => {
     return (

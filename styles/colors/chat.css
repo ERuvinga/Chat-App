@@ -102,6 +102,13 @@
     color: #979797;
     font-size: .65em;
 }
+
+.MessageView{
+    color: #5843E4;
+    font-size: .8em;
+    padding: 0 3px;
+}
+
 .numberMessages{
     color: #fff;
     background-color: #5843E4;
