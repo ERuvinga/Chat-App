@@ -1,11 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fa0 } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 interface NewMessages{
     name: string,
     picture: string,
-    contentMessage: string
+    contentMessage: string,
+    checked: boolean
 }
 
 const index = ( datas: NewMessages) => {
@@ -19,7 +20,7 @@ const index = ( datas: NewMessages) => {
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32 AM</span>
-                    <span className='numberMessages'>1</span>
+                    {datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck}/> : <span className='numberMessages'>13</span> }
                 </div>
             </div>
         </div>

@@ -3,11 +3,12 @@ import React from 'react';
 
 interface dataIcone{
     icone: any
+    full?:boolean
 }
 const index = (datas: dataIcone) => {
     return (
-        <div>
-            <FontAwesomeIcon icon={datas.icone}/>
+        <div className={datas.full ?'': 'p-1 '}>
+            <FontAwesomeIcon className={datas.full ? 'sendMessagebtn' : 'iconeBtns' } icon={datas.icone}/>
         </div>
     );
 };

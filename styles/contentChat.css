@@ -22,6 +22,31 @@
     height: 76vh;
 }
 
+
 .Chat-Footer{
     height:12vh;
+    border-top: solid 1px #E2E3E9;
+}
+
+.InputMessage{
+    display: block;
+    width: 70%;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    color: #979797;
+    border: 1px solid #979797;
+    border-radius: 18px; 
+}
+
+.iconeBtns{
+    color: #979797;
+    font-size: 1.3em;
+}
+
+.sendMessagebtn{
+    color: #fff;
+    background-color: #5843E4;
+    padding: 8px;
+    font-size: 1.2em;
+    border-radius: 50%;   
 }
