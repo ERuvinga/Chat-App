@@ -1,18 +1,17 @@
-.InputText{
-    width: 60%;
+.InputText {
     display: flex;
     flex-direction: column;
     margin: auto;
     margin-bottom: 15px;
 }
 
-.LabelField{
+.LabelField {
     color: #2F2E41;
     font-size: 0.85em;
-    margin: 5px 10px ;
+    margin: 5px 10px;
 }
 
-.InputField{
+.InputField {
     padding: 8px 5px;
     font-size: 0.8em;
     color: #2F2E41;
@@ -23,7 +22,7 @@
 
 
 
-.ButtonSubmit{
+.ButtonSubmit {
     display: block;
     font-size: 1em;
     font-weight: bold;
@@ -31,7 +30,6 @@
     background-color: #2F2E41;
     padding: 8px 0;
 
-    width: 30%;
     margin: auto;
     margin-top: 20px;
 
@@ -40,7 +38,7 @@
     transition: all 0.5s;
 }
 
-.ButtonSubmit:hover{
-    transform: scale(1.05);
+.ButtonSubmit:hover {
+    transform: scale(1.02);
     opacity: .8;
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 
 interface textInput {
-    type : string,
-    name : string,
-    fieldContent : string,
+    type: string,
+    name: string,
+    fieldContent: string,
 }
 
-const index = (datas : textInput) => {
+const index = (datas: textInput) => {
     return (
-            <button name={datas.name}  id={datas.name} className='ButtonSubmit'>{datas.fieldContent}</button>
+        <button name={datas.name} id={datas.name} className='ButtonSubmit w-[90%]'>{datas.fieldContent}</button>
     );
 };
 
