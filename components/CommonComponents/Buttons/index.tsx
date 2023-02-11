@@ -8,7 +8,7 @@ interface textInput {
 
 const index = (datas: textInput) => {
     return (
-        <button name={datas.name} id={datas.name} className='ButtonSubmit w-[90%]'>{datas.fieldContent}</button>
+        <button name={datas.name} id={datas.name} className='w-[90%] ButtonSubmit '>{datas.fieldContent}</button>
     );
 };
 

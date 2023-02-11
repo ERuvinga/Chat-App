@@ -15,10 +15,10 @@ const index = () => {
     return (
         <>
             <Head />
-            < div className='containerG'>
+            <div className='containerG'>
                 <Nav />
                 <form onSubmit={(e) => { e.preventDefault }} className=" container mx-auto flex flex-col items-center justify-center">
-                    <div className='lg:w-[40%] '>
+                    <div className='w-[95%] md:w-[60%] lg:w-[40%]'>
                         <LoginRegistertitle title='Login' url='./profile.png' />
                         <InputText type="input" name="mail" fieldContent="e-mail" HandleChange={HandleChange} addLabel={true} />
                         <InputText type="password" name="passWord" fieldContent="passWord" HandleChange={HandleChange} addLabel={true} />
