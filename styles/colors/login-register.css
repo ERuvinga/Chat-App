@@ -1,9 +1,4 @@
-.ContainerForm{
-    width: 50%;
-    margin: auto;
-}
-
-.TitleLogReg{
+.TitleLogReg {
     display: block;
     text-align: center;
     font-weight: bold;
@@ -14,9 +9,9 @@
     margin-bottom: 5px;
 }
 
-.imgLogReg{
+.imgLogReg {
     display: block;
-    width:  60px;
+    width: 60px;
     height: 60px;
     margin: auto;
 }
