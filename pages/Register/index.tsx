@@ -6,11 +6,6 @@ import LoginRegistertitle from '../../components/LoginRegistertitle'
 import Head from '../../components/CommonComponents/Head'
 import Button from '../../components/CommonComponents/Buttons'
 
-const HandleChange = () => {
-
-}
-
-
 const index = () => {
     return (
         <>
@@ -20,9 +15,9 @@ const index = () => {
                 <form onSubmit={(e) => { e.preventDefault }} className=" container mx-auto flex flex-col items-center justify-center">
                     <div className='w-[95%] md:w-[60%] lg:w-[40%] '>
                         <LoginRegistertitle title='Register' url='./profile.png' />
-                        <InputText type="input" name="mail" fieldContent="e-mail" HandleChange={HandleChange} addLabel={true} />
-                        <InputText type="password" name="passWord" fieldContent="passWord" HandleChange={HandleChange} addLabel={true} />
-                        <InputText type="password" name="confirm passWord" fieldContent="confirm-passWord" HandleChange={HandleChange} addLabel={true} />
+                        <InputText type="input" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Register" />
+                        <InputText type="password" name="passWord" fieldContent="passWord" idField={1} addLabel={true} page="Register" />
+                        <InputText type="password" name="confirm passWord" fieldContent="confirm-passWord" idField={2} addLabel={true} page="Register" />
                         <Button type='button' name='btn' fieldContent='Register' />
                         <p className=" text-center my-10 mx-auto w-[90%]">
                             Have you an account?{"      "}
