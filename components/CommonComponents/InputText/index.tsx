@@ -10,6 +10,7 @@ interface textInput {
 }
 
 let emailOrPassword: number;
+
 let userDataLogin = {
     email: "",
     password: "",
@@ -27,11 +28,11 @@ export const sendLoginData = (e: any) => {
     fetch('http://127.0.0.1:4002/api', {
         method: "POST",
         headers: {
-            'Accept': 'application/json',
-            'Content': 'application/json'
+            "Accept": 'application/json',
+            "Content-type": 'application/json; charset=UTF-8'
         },
-
         body: JSON.stringify(userDataLogin)
+
     })
         .then(user => {
             if (user.ok) {
@@ -54,10 +55,10 @@ export const sendRegisterData = (e: any) => {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            'Content': 'application/json'
+            'Content-type': 'application/json;charset=UTF-8'
         },
 
-        body: JSON.stringify(userDataLogin)
+        body: JSON.stringify(userDataRegister)
     })
         .then(user => {
             if (user.ok) {
@@ -77,15 +78,15 @@ const Index = (datas: textInput) => {
     return (
         <div className='InputText w-[90%] '>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
-            {datas.page == "login" ?
-
+            {datas.page === "Login" ?
                 <input
                     name={datas.name}
                     type={datas.type}
                     id={datas.name}
                     className='InputField'
                     onChange={(event: any) => {
-                        emailOrPassword = datas.idField ? 1 : 0 // verify a field that generate this event 
+                        emailOrPassword = datas.idField ? 1 : 0; // verify a field that generate this event 
+                        console.log(emailOrPassword);
                         switch (emailOrPassword) {
                             case 0:
                                 userDataLogin.email = event.target.value;
@@ -102,6 +103,7 @@ const Index = (datas: textInput) => {
                     id={datas.name}
                     className='InputField'
                     onChange={(event: any) => {
+
                         switch (datas.idField) { // verify a field that generate this event 
                             case 0:
                                 emailOrPassword = 0;
