@@ -25,53 +25,65 @@ let userDataRegister = {
 
 export const sendLoginData = (e: any) => {
     e.preventDefault();
-    fetch('http://127.0.0.1:4002/api', {
-        method: "POST",
-        headers: {
-            "Accept": 'application/json',
-            "Content-type": 'application/json; charset=UTF-8'
-        },
-        body: JSON.stringify(userDataLogin)
 
-    })
-        .then(user => {
-            if (user.ok) {
-                user.json()
-                    .then(datas => {
-                        console.log(datas);
-                    })
-            }
+    if (userDataLogin.email === "" || userDataLogin.password === "")
+        console.error('invalid user datas');
+
+    else {
+        fetch('http://127.0.0.1:4002/api', {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-type": 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(userDataLogin)
 
         })
+            .then(user => {
+                if (user.ok) {
+                    user.json()
+                        .then(datas => {
+                            console.log(datas);
+                        })
+                }
 
-        .catch(error => {
-            console.log(error);
-        });
+            })
+
+            .catch(error => {
+                console.log(error);
+            });
+    }
 }
 
 export const sendRegisterData = (e: any) => {
     e.preventDefault();
-    fetch('http://127.0.0.1:4002/api', {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json;charset=UTF-8'
-        },
 
-        body: JSON.stringify(userDataRegister)
-    })
-        .then(user => {
-            if (user.ok) {
-                user.json()
-                    .then(datas => {
-                        console.log(datas);
-                    })
-            }
+    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "")
+        console.error("invalid user datas");
+
+    else {
+        fetch('http://127.0.0.1:4002/api', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json;charset=UTF-8'
+            },
+
+            body: JSON.stringify(userDataRegister)
         })
+            .then(user => {
+                if (user.ok) {
+                    user.json()
+                        .then(datas => {
+                            console.log(datas);
+                        })
+                }
+            })
 
-        .catch(error => {
-            console.log(error);
-        });
+            .catch(error => {
+                console.log(error);
+            });
+    }
 }
 
 const Index = (datas: textInput) => {
@@ -86,7 +98,6 @@ const Index = (datas: textInput) => {
                     className='InputField'
                     onChange={(event: any) => {
                         emailOrPassword = datas.idField ? 1 : 0; // verify a field that generate this event 
-                        console.log(emailOrPassword);
                         switch (emailOrPassword) {
                             case 0:
                                 userDataLogin.email = event.target.value;
