@@ -6,23 +6,20 @@ import LoginRegistertitle from '../../components/LoginRegistertitle'
 import Button from '../../components/CommonComponents/Buttons'
 import Head from '../../components/CommonComponents/Head'
 
-const HandleChange = () => {
 
-}
+const Login = () => {
 
-
-const index = () => {
     return (
         <>
             <Head />
             <div className='containerG'>
                 <Nav />
-                <form onSubmit={(e) => { e.preventDefault }} className=" container mx-auto flex flex-col items-center justify-center">
+                <form method='post' onSubmit={e => e.preventDefault} className=" container mx-auto flex flex-col items-center justify-center">
                     <div className='w-[95%] md:w-[60%] lg:w-[40%]'>
                         <LoginRegistertitle title='Login' url='./profile.png' />
-                        <InputText type="input" name="mail" fieldContent="e-mail" HandleChange={HandleChange} addLabel={true} />
-                        <InputText type="password" name="passWord" fieldContent="passWord" HandleChange={HandleChange} addLabel={true} />
-                        <Button type='button' name='btn' fieldContent='Login' />
+                        <InputText type="email" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Login" />
+                        <InputText type="password" name="passWord" fieldContent="password" idField={1} addLabel={true} page="Login" />
+                        <Button name='btn' fieldContent='Login' />
 
                         <p className=" text-center my-10 mx-auto w-[90%] ">
                             Connect to your account . Don`t have an account? {"      "}
@@ -37,4 +34,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Login; 
