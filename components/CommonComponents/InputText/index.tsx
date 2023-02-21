@@ -70,7 +70,7 @@ export const sendRegisterData = (e: any) => {
 
     else {
         if (userDataRegister.password !== userDataRegister.confirmPassword) {
-            //router.push("/");
+            router.push("/");
             return false;
         }
         fetch('http://127.0.0.1:4002/api/Auth/register', {
