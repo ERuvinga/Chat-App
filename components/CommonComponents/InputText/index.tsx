@@ -31,7 +31,7 @@ export const sendLoginData = (e: any) => {
 
     if (userDataLogin.email === "" || userDataLogin.password === "") {
         console.error('invalid user datas');
-        router.push('/');
+        router.push('/Login');
     }
 
     else {
@@ -65,35 +65,38 @@ export const sendRegisterData = (e: any) => {
 
     if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
         console.error("invalid user datas");
-        router.push('/');
+        router.push('/Register');
     }
 
     else {
         if (userDataRegister.password !== userDataRegister.confirmPassword) {
-            router.push("/");
-            return false;
+            console.error("invalid user datas");
         }
-        fetch('http://127.0.0.1:4002/api/Auth/register', {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json;charset=UTF-8'
-            },
 
-            body: JSON.stringify(userDataRegister)
-        })
-            .then(user => {
-                if (user.ok) {
-                    user.json()
-                        .then(datas => {
-                            console.info(datas.message);
-                        })
-                }
+        else {
+            fetch('http://127.0.0.1:4002/api/Auth/register', {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json;charset=UTF-8'
+                },
+
+                body: JSON.stringify(userDataRegister)
             })
+                .then(user => {
+                    if (user.ok) {
+                        user.json()
+                            .then(datas => {
+                                router.push("/Login"); // whene create a new user succed you are redirect to Login page
+                                console.info(datas.message);
+                            })
+                    }
+                })
 
-            .catch(error => {
-                console.log(error);
-            });
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     }
 }
 
