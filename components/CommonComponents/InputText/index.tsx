@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface textInput {
     type: string,
@@ -9,8 +10,10 @@ interface textInput {
     idField: number // value in field (email and password)
 }
 
-let emailOrPassword: number;
+const remoteApi = 'https://funny-daifuku-d525e2.netlify.app/'
 
+let emailOrPassword: number;
+let router: any;
 let userDataLogin = {
     email: "",
     password: "",
@@ -30,7 +33,7 @@ export const sendLoginData = (e: any) => {
         console.error('invalid user datas');
 
     else {
-        fetch('http://127.0.0.1:4002/api', {
+        fetch('http://127.0.0.1:4002/api/Auth/login', {
             method: "POST",
             headers: {
                 "Accept": 'application/json',
@@ -43,7 +46,7 @@ export const sendLoginData = (e: any) => {
                 if (user.ok) {
                     user.json()
                         .then(datas => {
-                            console.log(datas);
+                            console.info(datas.message);
                         })
                 }
 
@@ -62,7 +65,7 @@ export const sendRegisterData = (e: any) => {
         console.error("invalid user datas");
 
     else {
-        fetch('http://127.0.0.1:4002/api', {
+        fetch('http://127.0.0.1:4002/api/Auth/register', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -75,7 +78,7 @@ export const sendRegisterData = (e: any) => {
                 if (user.ok) {
                     user.json()
                         .then(datas => {
-                            console.log(datas);
+                            console.info(datas.message);
                         })
                 }
             })
@@ -87,6 +90,7 @@ export const sendRegisterData = (e: any) => {
 }
 
 const Index = (datas: textInput) => {
+    let router = useRouter(); // define a router methode
     return (
         <div className='InputText w-[90%] '>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
