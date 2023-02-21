@@ -29,8 +29,10 @@ let userDataRegister = {
 export const sendLoginData = (e: any) => {
     e.preventDefault();
 
-    if (userDataLogin.email === "" || userDataLogin.password === "")
+    if (userDataLogin.email === "" || userDataLogin.password === "") {
         console.error('invalid user datas');
+        router.push('/');
+    }
 
     else {
         fetch('http://127.0.0.1:4002/api/Auth/login', {
@@ -61,10 +63,16 @@ export const sendLoginData = (e: any) => {
 export const sendRegisterData = (e: any) => {
     e.preventDefault();
 
-    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "")
+    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
         console.error("invalid user datas");
+        router.push('/');
+    }
 
     else {
+        if (userDataRegister.password !== userDataRegister.confirmPassword) {
+            //router.push("/");
+            return false;
+        }
         fetch('http://127.0.0.1:4002/api/Auth/register', {
             method: "POST",
             headers: {
@@ -90,7 +98,7 @@ export const sendRegisterData = (e: any) => {
 }
 
 const Index = (datas: textInput) => {
-    let router = useRouter(); // define a router methode
+    router = useRouter(); // define a router methode
     return (
         <div className='InputText w-[90%] '>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
