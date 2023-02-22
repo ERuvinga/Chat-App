@@ -7,6 +7,8 @@ interface textInput {
     fieldContent: string,
 }
 
+let router: any;
+
 const index = (datas: textInput) => {
     return (
         <button name={datas.name} id={datas.name} className='w-[90%] ButtonSubmit' onClick={datas.fieldContent == "Login" ? sendLoginData : sendRegisterData}>{datas.fieldContent}</button>

@@ -15,3 +15,13 @@
     height: 60px;
     margin: auto;
 }
+
+.ErrorLog {
+    background-color: #efefef;
+    padding: 2px 10px;
+    margin: 5px auto;
+}
+
+.HiddenErrorLog {
+    display: none;
+}
