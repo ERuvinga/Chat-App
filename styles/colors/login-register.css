@@ -16,10 +16,22 @@
     margin: auto;
 }
 
+@keyframes lodError {
+    from {
+        margin: 0;
+    }
+
+    to {
+        margin: 0 5%;
+    }
+
+}
+
 .ErrorLog {
     background-color: #efefef;
     padding: 2px 10px;
-    margin: 5px auto;
+    margin: 5px 5%;
+    animation: lodError .8s ease-in;
 }
 
 .HiddenErrorLog {

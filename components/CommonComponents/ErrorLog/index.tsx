@@ -7,6 +7,6 @@ interface ErrorContent {
 
 const ErrorLog = (dataError: ErrorContent) => {
     const [Error, setError] = useState("");
-    return <div className="text-[#f00] text-center w-[90%] ErrorLog "> #{dataError.data}</div>
+    return <div className="text-[#f00] text-left w-[50%] ErrorLog "> #{dataError.data}</div>
 }
 export default ErrorLog
