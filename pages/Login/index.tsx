@@ -19,10 +19,10 @@ const Login = () => {
                 <ContextError>
                     <form method='post' onSubmit={e => e.preventDefault} className=" container mx-auto flex flex-col items-center justify-center">
                         <div className=' w-[95%] md:w-[60%] lg:w-[40%]'>
+                            <ErrorLog />
                             <LoginRegistertitle title='Login' url='./profile.png' />
                             <InputText type="email" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Login" />
                             <InputText type="password" name="passWord" fieldContent="password" idField={1} addLabel={true} page="Login" />
-                            <ErrorLog />
                             <Button name='btn' fieldContent='Login' />
 
                             <p className=" text-center my-10 mx-auto w-[90%] ">

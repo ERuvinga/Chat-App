@@ -32,7 +32,10 @@ export const sendLoginData = (e: any) => {
 
     if (userDataLogin.email === "" || userDataLogin.password === "") {
         console.error('invalid user datas');
-        router.push('/Login');
+        ErrorData.setData({
+            stateError: true,
+            MessageError: 'Invalid data of User'
+        });
     }
 
     else {
@@ -66,12 +69,20 @@ export const sendRegisterData = (e: any) => {
 
     if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
         console.error("invalid user datas");
-        router.push('/Register');
+        ErrorData.setData({
+            stateError: true,
+            MessageError: 'Invalid user datas'
+        })
+        router.push("/Login");
     }
 
     else {
         if (userDataRegister.password !== userDataRegister.confirmPassword) {
             console.error("invalid user datas");
+            ErrorData.setData({
+                stateError: true,
+                MessageError: 'passWord/confirmPassword unwise'
+            })
         }
 
         else {
@@ -104,8 +115,6 @@ export const sendRegisterData = (e: any) => {
 const Index = (datas: textInput) => {
     router = useRouter(); // define a router methode
     ErrorData = useContext(ErrorLogContext);
-    if (ErrorData)
-        console.log(ErrorData.data)
 
     return (
         <div className='InputText w-[90%] '>
