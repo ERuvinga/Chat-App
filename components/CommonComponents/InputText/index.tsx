@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { ErrorLogContext } from '../../Context/LogdataContext';
 
 interface textInput {
     type: string,
@@ -103,6 +104,9 @@ export const sendRegisterData = (e: any) => {
 
 const Index = (datas: textInput) => {
     router = useRouter(); // define a router methode
+    let ErrorData = useContext(ErrorLogContext);
+    console.log(ErrorData)
+
     return (
         <div className='InputText w-[90%] '>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
