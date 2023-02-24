@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface textInput {
     type: string,
@@ -9,7 +10,10 @@ interface textInput {
     idField: number // value in field (email and password)
 }
 
+const remoteApi = 'https://funny-daifuku-d525e2.netlify.app/'
+
 let emailOrPassword: number;
+let router: any;
 
 let userDataLogin = {
     email: "",
@@ -26,11 +30,13 @@ let userDataRegister = {
 export const sendLoginData = (e: any) => {
     e.preventDefault();
 
-    if (userDataLogin.email === "" || userDataLogin.password === "")
+    if (userDataLogin.email === "" || userDataLogin.password === "") {
         console.error('invalid user datas');
+        router.push('/Login');
+    }
 
     else {
-        fetch('http://127.0.0.1:4002/api', {
+        fetch('http://127.0.0.1:4002/api/Auth/login', {
             method: "POST",
             headers: {
                 "Accept": 'application/json',
@@ -43,7 +49,7 @@ export const sendLoginData = (e: any) => {
                 if (user.ok) {
                     user.json()
                         .then(datas => {
-                            console.log(datas);
+                            console.info(datas.message);
                         })
                 }
 
@@ -58,35 +64,45 @@ export const sendLoginData = (e: any) => {
 export const sendRegisterData = (e: any) => {
     e.preventDefault();
 
-    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "")
+    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
         console.error("invalid user datas");
+        router.push('/Register');
+    }
 
     else {
-        fetch('http://127.0.0.1:4002/api', {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json;charset=UTF-8'
-            },
+        if (userDataRegister.password !== userDataRegister.confirmPassword) {
+            console.error("invalid user datas");
+        }
 
-            body: JSON.stringify(userDataRegister)
-        })
-            .then(user => {
-                if (user.ok) {
-                    user.json()
-                        .then(datas => {
-                            console.log(datas);
-                        })
-                }
+        else {
+            fetch('http://127.0.0.1:4002/api/Auth/register', {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json;charset=UTF-8'
+                },
+
+                body: JSON.stringify(userDataRegister)
             })
+                .then(user => {
+                    if (user.ok) {
+                        user.json()
+                            .then(datas => {
+                                router.push("/Login"); // whene create a new user succed you are redirect to Login page
+                                console.info(datas.message);
+                            })
+                    }
+                })
 
-            .catch(error => {
-                console.log(error);
-            });
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     }
 }
 
 const Index = (datas: textInput) => {
+    router = useRouter(); // define a router methode
     return (
         <div className='InputText w-[90%] '>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
