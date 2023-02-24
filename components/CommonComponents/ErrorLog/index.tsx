@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { ErrorLogContext } from "../../Context/LogdataContext";
 
-interface ErrorContent {
-    data: String,
-    source: String,
-    statePage: boolean
-}
-
-const ErrorLog = (dataError: ErrorContent) => {
-    return <div className={dataError.statePage ? "text-[#f00] text-left max-w-[50%] ErrorLog" : "text-[#f00] text-left w-[50%] HiddenErrorLog"}> #{dataError.data}</div>
+const ErrorLog = () => {
+    let errorDatas: any;
+    errorDatas = useContext(ErrorLogContext);
+    if (!errorDatas) {
+        return null
+    }
+    console.log(errorDatas);
+    return <div className={(errorDatas.data.stateError) ? "text-[#f00] text-left max-w-[50%] ErrorLog" : "text-[#f00] text-left w-[50%] HiddenErrorLog"}> # {errorDatas.data.MessageError}</div>
 }
 export default ErrorLog

@@ -21,7 +21,7 @@ const index = () => {
                             <InputText type="input" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Register" />
                             <InputText type="password" name="passWord" fieldContent="passWord" idField={1} addLabel={true} page="Register" />
                             <InputText type="password" name="confirm passWord" fieldContent="confirm-passWord" idField={2} addLabel={true} page="Register" />
-                            <ErrorLog data='Invalide datas' source='/Register page' statePage={false} />
+                            <ErrorLog />
                             <Button type='button' name='btn' fieldContent='Register' />
 
                             <p className=" text-center my-10 mx-auto w-[90%]">

@@ -22,7 +22,7 @@ const Login = () => {
                             <LoginRegistertitle title='Login' url='./profile.png' />
                             <InputText type="email" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Login" />
                             <InputText type="password" name="passWord" fieldContent="password" idField={1} addLabel={true} page="Login" />
-                            <ErrorLog data='invalid data user' source='/Login' statePage={true} />
+                            <ErrorLog />
                             <Button name='btn' fieldContent='Login' />
 
                             <p className=" text-center my-10 mx-auto w-[90%] ">

@@ -11,10 +11,9 @@ interface textInput {
     idField: number // value in field (email and password)
 }
 
-const remoteApi = 'https://funny-daifuku-d525e2.netlify.app/'
-
 let emailOrPassword: number;
 let router: any;
+let ErrorData: any;
 
 let userDataLogin = {
     email: "",
@@ -104,8 +103,9 @@ export const sendRegisterData = (e: any) => {
 
 const Index = (datas: textInput) => {
     router = useRouter(); // define a router methode
-    let ErrorData = useContext(ErrorLogContext);
-    console.log(ErrorData)
+    ErrorData = useContext(ErrorLogContext);
+    if (ErrorData)
+        console.log(ErrorData.data)
 
     return (
         <div className='InputText w-[90%] '>
