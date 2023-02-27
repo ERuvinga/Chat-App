@@ -6,17 +6,18 @@
 @import './colors/inputComponents.css';
 @import './colors/chat.css';
 @import './contentChat.css';
+@import './loading.css';
 
-@font-face{
+@font-face {
     font-family: 'comfoorta';
-    src:url('./fonts/Comfortaa_Regular.ttf');
+    src: url('./fonts/Comfortaa_Regular.ttf');
 }
 
-body{
+body {
     font-family: 'comfoorta', sans-serif;
     height: 100vh;
 }
 
-.border{
-    border:  solid black 1px;
+.border {
+    border: solid black 1px;
 }
