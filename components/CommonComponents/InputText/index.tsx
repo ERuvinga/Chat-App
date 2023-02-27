@@ -53,6 +53,16 @@ export const sendLoginData = (e: any) => {
                     user.json()
                         .then(datas => {
                             console.info(datas.message);
+                            router.push('/Chat');
+                        })
+                }
+                else {
+                    user.json()
+                        .then(datas => {
+                            ErrorData.setData({
+                                stateError: true,
+                                MessageError: datas.message
+                            });
                         })
                 }
 
@@ -73,7 +83,6 @@ export const sendRegisterData = (e: any) => {
             stateError: true,
             MessageError: 'Invalid user datas'
         })
-        router.push("/Login");
     }
 
     else {
