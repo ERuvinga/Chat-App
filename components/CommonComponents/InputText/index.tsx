@@ -8,13 +8,14 @@ interface textInput {
     fieldContent: string,
     addLabel: boolean,
     page: string,
-    action: any;
     idField: number // value in field (email and password)
 }
+
 
 let emailOrPassword: number;
 let router: any;
 let ErrorData: any;
+let dataOfContext: any;
 
 let userDataLogin = {
     email: "",
@@ -31,6 +32,7 @@ let userDataRegister = {
 const Index = (datas: textInput) => {
     router = useRouter(); // define a router methode
     ErrorData = useContext(ContextUser);
+    dataOfContext = useContext(ContextUser);
 
     // initialise data send from login
     userDataLogin.email = '';
@@ -113,6 +115,7 @@ export const sendLoginData = (e: any) => {
     }
 
     else {
+        dataOfContext.setLaoding(true);
         fetch('http://127.0.0.1:4002/api/Auth/login', {
             method: "POST",
             headers: {
@@ -133,6 +136,7 @@ export const sendLoginData = (e: any) => {
                 else {
                     user.json()
                         .then(datas => {
+                            dataOfContext.setLaoding(false);
                             ErrorData.setData({
                                 stateError: true,
                                 MessageError: datas.message
