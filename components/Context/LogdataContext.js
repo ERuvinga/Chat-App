@@ -1,11 +1,11 @@
 import React from "react";
 import { createContext, useState } from "react";
 
-export const ErrorLogContext = createContext(null);
+export const ContextUser = createContext(null);
 
 function ErrorLog({ children }) {
     const [data, setData] = useState({ stateError: false, MessageError: 'Error' });
-    return <ErrorLogContext.Provider value={{ data, setData }}>{children}</ErrorLogContext.Provider>
+    return <ContextUser.Provider value={{ data, setData }}>{children}</ContextUser.Provider>
 }
 
 export default ErrorLog;

@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
-import { ErrorLogContext } from '../../Context/LogdataContext';
+import { ContextUser } from '../../Context/LogdataContext';
 
 interface textInput {
     type: string,
     name: string,
     fieldContent: string,
     addLabel: boolean,
-    page: string
+    page: string,
+    action: any;
     idField: number // value in field (email and password)
 }
 
@@ -27,103 +28,18 @@ let userDataRegister = {
 }
 
 
-export const sendLoginData = (e: any) => {
-    e.preventDefault();
-
-    if (userDataLogin.email === "" || userDataLogin.password === "") {
-        console.error('invalid user datas');
-        ErrorData.setData({
-            stateError: true,
-            MessageError: 'Invalid data of User'
-        });
-    }
-
-    else {
-        fetch('http://127.0.0.1:4002/api/Auth/login', {
-            method: "POST",
-            headers: {
-                "Accept": 'application/json',
-                "Content-type": 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(userDataLogin)
-
-        })
-            .then(user => {
-                if (user.ok) {
-                    user.json()
-                        .then(datas => {
-                            console.info(datas.message);
-                            router.push('/Chat');
-                        })
-                }
-                else {
-                    user.json()
-                        .then(datas => {
-                            ErrorData.setData({
-                                stateError: true,
-                                MessageError: datas.message
-                            });
-                        })
-                }
-
-            })
-
-            .catch(error => {
-                console.log(error);
-            });
-    }
-}
-
-export const sendRegisterData = (e: any) => {
-    e.preventDefault();
-
-    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
-        console.error("invalid user datas");
-        ErrorData.setData({
-            stateError: true,
-            MessageError: 'Invalid user datas'
-        })
-    }
-
-    else {
-        if (userDataRegister.password !== userDataRegister.confirmPassword) {
-            console.error("invalid user datas");
-            ErrorData.setData({
-                stateError: true,
-                MessageError: 'passWord/confirmPassword unwise'
-            })
-        }
-
-        else {
-            fetch('http://127.0.0.1:4002/api/Auth/register', {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json;charset=UTF-8'
-                },
-
-                body: JSON.stringify(userDataRegister)
-            })
-                .then(user => {
-                    if (user.ok) {
-                        user.json()
-                            .then(datas => {
-                                router.push("/Login"); // whene create a new user succed you are redirect to Login page
-                                console.info(datas.message);
-                            })
-                    }
-                })
-
-                .catch(error => {
-                    console.log(error);
-                });
-        }
-    }
-}
-
 const Index = (datas: textInput) => {
     router = useRouter(); // define a router methode
-    ErrorData = useContext(ErrorLogContext);
+    ErrorData = useContext(ContextUser);
+
+    // initialise data send from login
+    userDataLogin.email = '';
+    userDataLogin.password = '';
+
+    //initialise data send from register
+    userDataRegister.confirmPassword = '';
+    userDataRegister.email = '';
+    userDataRegister.password = '';
 
     return (
         <div className='InputText w-[90%] '>
@@ -183,3 +99,100 @@ const Index = (datas: textInput) => {
 };
 
 export default Index;
+
+
+export const sendLoginData = (e: any) => {
+    e.preventDefault();
+
+    if (userDataLogin.email === "" || userDataLogin.password === "") {
+        console.error('invalid user datas');
+        ErrorData.setData({
+            stateError: true,
+            MessageError: 'Invalid data of User'
+        });
+    }
+
+    else {
+        fetch('http://127.0.0.1:4002/api/Auth/login', {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-type": 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(userDataLogin)
+
+        })
+            .then(user => {
+                if (user.ok) {
+                    user.json()
+                        .then(datas => {
+                            console.info(datas.message);
+                            router.push('/Chat');
+                        })
+                }
+                else {
+                    user.json()
+                        .then(datas => {
+                            ErrorData.setData({
+                                stateError: true,
+                                MessageError: datas.message
+                            });
+                        });
+                }
+
+            })
+
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+
+}
+
+export const sendRegisterData = (e: any) => {
+    e.preventDefault();
+
+    if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
+        console.error("invalid user datas");
+        ErrorData.setData({
+            stateError: true,
+            MessageError: 'Invalid user datas'
+        })
+    }
+
+    else {
+        if (userDataRegister.password !== userDataRegister.confirmPassword) {
+            console.error("invalid user datas");
+            ErrorData.setData({
+                stateError: true,
+                MessageError: 'passWord/confirmPassword unwise'
+            })
+        }
+
+        else {
+            fetch('http://127.0.0.1:4002/api/Auth/register', {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json;charset=UTF-8'
+                },
+
+                body: JSON.stringify(userDataRegister)
+            })
+                .then(user => {
+                    if (user.ok) {
+                        user.json()
+                            .then(datas => {
+                                router.push("/Login"); // whene create a new user succed you are redirect to Login page
+                                console.info(datas.message);
+                            })
+                    }
+                })
+
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
+}

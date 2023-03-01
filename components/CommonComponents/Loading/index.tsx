@@ -1,11 +1,9 @@
 import React from "react";
-import Head from "../../components/CommonComponents/Head";
-import LoadingComponent from '../../components/CommonComponents/LoadinComponent';
+import LoadingComponent from '../LoadinComponent';
 
 const loading = () => {
     return (
         <>
-            <Head />
             <div className=" flex flex-col justify-center space-y-5 mx-auto w-[95%] md:w-[60%] lg:w-[40%] h-screen ">
                 <div className="">
                     <LoadingComponent />
