@@ -107,7 +107,6 @@ export const sendLoginData = (e: any) => {
     e.preventDefault();
 
     if (userDataLogin.email === "" || userDataLogin.password === "") {
-        console.error('invalid user datas');
         ErrorData.setData({
             stateError: true,
             MessageError: 'Invalid data of User'
@@ -128,7 +127,7 @@ export const sendLoginData = (e: any) => {
             .then(user => {
                 if (user.ok) {
                     user.json()
-                        .then(datas => {
+                        .then(datas => { // if user ok, redierct this on index page of chat
                             console.info(datas.message);
                             router.push('/Chat');
                         })
@@ -136,7 +135,7 @@ export const sendLoginData = (e: any) => {
                 else {
                     user.json()
                         .then(datas => {
-                            dataOfContext.setLaoding(false);
+                            dataOfContext.setLaoding(false); // if error, rerender a login form
                             ErrorData.setData({
                                 stateError: true,
                                 MessageError: datas.message
@@ -158,7 +157,6 @@ export const sendRegisterData = (e: any) => {
     e.preventDefault();
 
     if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
-        console.error("invalid user datas");
         ErrorData.setData({
             stateError: true,
             MessageError: 'Invalid user datas'
@@ -167,7 +165,6 @@ export const sendRegisterData = (e: any) => {
 
     else {
         if (userDataRegister.password !== userDataRegister.confirmPassword) {
-            console.error("invalid user datas");
             ErrorData.setData({
                 stateError: true,
                 MessageError: 'passWord/confirmPassword unwise'
@@ -175,6 +172,7 @@ export const sendRegisterData = (e: any) => {
         }
 
         else {
+            dataOfContext.setLaoding(true);
             fetch('http://127.0.0.1:4002/api/Auth/register', {
                 method: "POST",
                 headers: {
