@@ -6,26 +6,26 @@ import HeadChat from '../../components/HeadChat'
 import Messages from '../../components/CommonComponents/NewMessages'
 import BtnMessages from '../../components/CommonComponents/SendMessageBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faCheck, faArrowLeft, faArrowCircleRight, faArrowsSpin, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
 const index = () => {
     return (
         <>
             <Head />
-            <div className=' container mx-auto radius h-screen bg-[#F9F9FC] flex flex-row justify-between '>
-                <section className=' list-users h-screen space-y-5'>
+            <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
+                <section className='w-[97%] list-users sm:w-[40%] h-screen space-y-5'>
                     <div className='space-y-5'>
-                        <ChatUSer Name='Elie Ruvinga' descriptions='Developper' picture='/4.jpeg' />
+                        <ChatUSer Name='Elie Ruvinga' descriptions='Developper' picture='' />
                         <input name='searchUser' type='text' className='SearchUser' placeholder="Search user" />
                         <Messages name='Mio legat' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir' checked={false} />
-                        <Messages name='Sophie Ng' picture='5.jpeg' contentMessage='salut' checked={true} />
+                        <Messages name='Sophie Ng' picture='' contentMessage='salut' checked={true} />
                         <Messages name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" checked={false} />
                         <Messages name='Rachel Ng' picture='' contentMessage="Courage " checked={true} />
                     </div>
                 </section>
-                <section className=' h-screen chat-contents bg-[#fff] space-y-1'>
+                <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>
                     <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                        <HeadChat name='Dianne Vanhorn' picture='/12.jpeg' />
+                        <HeadChat name='Dianne Vanhorn' picture='' />
                     </div>
 
                     <div className=' w-[95%] mx-auto Chat-Body'>
@@ -40,9 +40,9 @@ const index = () => {
                     </div>
                 </section>
 
-                <aside className='description-users h-screen flex justify-center items-center '>
+                <aside className='hidden md:flex justify-center items-center description-users h-screen '>
                     <section className='space-y-4 w-[100%]' >
-                        <DesciptionFriend name='Dianne Vanhorn' function='Junior Developper' picture='/12.jpeg' />
+                        <DesciptionFriend name='Dianne Vanhorn' function='Junior Developper' picture='' />
                         <div className=" chatAndCall flex justify-around items-center">
                             <span className=' flex flex-col'>
                                 <FontAwesomeIcon className='btn_chat' icon={faMessage} />

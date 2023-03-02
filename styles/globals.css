@@ -1,10 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './colors/index-navbar.css';
-@import './colors/login-register.css';
-@import './colors/inputComponents.css';
-@import './colors/chat.css';
+@import './index-navbar.css';
+@import './login-register.css';
+@import './inputComponents.css';
+@import './chat.css';
 @import './contentChat.css';
 @import './loading.css';
 
@@ -16,6 +16,7 @@
 body {
     font-family: 'comfoorta', sans-serif;
     height: 100vh;
+    margin: 0 15px;
 }
 
 .border {
