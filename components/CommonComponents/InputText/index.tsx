@@ -113,6 +113,13 @@ export const sendLoginData = (e: any) => {
         });
     }
 
+    else if (userDataLogin.email.match(/@/)) {
+        ErrorData.setData({
+            stateError: true,
+            MessageError: 'Invalid email of User'
+        });
+    }
+
     else {
         dataOfContext.setLaoding(true);
         fetch('http://127.0.0.1:4002/api/Auth/login', {
