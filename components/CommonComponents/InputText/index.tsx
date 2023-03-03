@@ -28,12 +28,7 @@ let userDataRegister = {
     confirmPassword: ""
 }
 
-
-const Index = (datas: textInput) => {
-    router = useRouter(); // define a router methode
-    ErrorData = useContext(ContextUser);
-    dataOfContext = useContext(ContextUser);
-
+const resetDataofForm = () => {
     // initialise data send from login
     userDataLogin.email = '';
     userDataLogin.password = '';
@@ -42,6 +37,31 @@ const Index = (datas: textInput) => {
     userDataRegister.confirmPassword = '';
     userDataRegister.email = '';
     userDataRegister.password = '';
+}
+
+
+const Index = (datas: textInput) => {
+    router = useRouter(); // define a router methode
+    ErrorData = useContext(ContextUser);
+    dataOfContext = useContext(ContextUser);
+
+
+    const handleChange = (data: String) => {
+        if (data.match(/@[a-zA-Z0-9]{5,}.com$/)) {
+            dataOfContext.setDisablebtn(false);
+            ErrorData.setData({
+                stateError: false,
+                MessageError: ''
+            });
+        }
+        else {
+            dataOfContext.setDisablebtn(true);
+            ErrorData.setData({
+                stateError: true,
+                MessageError: 'Invalid email of User'
+            });
+        }
+    }
 
     return (
         <div className='InputText w-[90%] '>
@@ -57,11 +77,13 @@ const Index = (datas: textInput) => {
                         switch (emailOrPassword) {
                             case 0:
                                 userDataLogin.email = event.target.value;
+                                handleChange(event.target.value);
                                 break;
                             case 1:
                                 userDataLogin.password = event.target.value;
                                 break;
                         }
+
                     }} /> :
 
                 <input
@@ -113,13 +135,6 @@ export const sendLoginData = (e: any) => {
         });
     }
 
-    else if (userDataLogin.email.match(/@/)) {
-        ErrorData.setData({
-            stateError: true,
-            MessageError: 'Invalid email of User'
-        });
-    }
-
     else {
         dataOfContext.setLaoding(true);
         fetch('http://127.0.0.1:4002/api/Auth/login', {
@@ -161,8 +176,8 @@ export const sendLoginData = (e: any) => {
                 console.log(error);
             });
     }
-
-
+    // after sending data, reset values in field
+    resetDataofForm();
 }
 
 export const sendRegisterData = (e: any) => {

@@ -28,7 +28,7 @@
     font-weight: bold;
     color: #F9F9FC;
     background-color: #2F2E41;
-    opacity: .8;
+    opacity: .7;
     padding: 8px 0;
 
     margin: auto;
@@ -39,6 +39,10 @@
     transition: all 0.5s;
 }
 
-.ButtonSubmit:hover {
+.falseDisble {
     opacity: 1;
+}
+
+.HoverBtn:hover {
+    transform: scale(1.01);
 }
