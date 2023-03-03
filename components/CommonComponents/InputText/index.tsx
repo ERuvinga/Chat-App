@@ -28,15 +28,14 @@ let userDataRegister = {
     confirmPassword: ""
 }
 
-const resetDataofForm = () => {
+const resetDataofLoginForm = () => {
     // initialise data send from login
     userDataLogin.email = '';
     userDataLogin.password = '';
 
-    //initialise data send from register
-    userDataRegister.confirmPassword = '';
-    userDataRegister.email = '';
-    userDataRegister.password = '';
+    // disabled button whene refresh a login and register components
+    dataOfContext.setDisablebtn(true);
+
 }
 
 
@@ -47,7 +46,7 @@ const Index = (datas: textInput) => {
 
 
     const handleChange = (data: String) => {
-        if (data.match(/@[a-zA-Z0-9]{5,}.com$/)) {
+        if (data.match(/@[a-zA-Z0-9]{5,}(.com$)/)) {
             dataOfContext.setDisablebtn(false);
             ErrorData.setData({
                 stateError: false,
@@ -108,6 +107,7 @@ const Index = (datas: textInput) => {
                         switch (emailOrPassword) { // find and save value a available in field switched
                             case 0:
                                 userDataRegister.email = event.target.value;
+                                handleChange(event.target.value);
                                 break;
                             case 1:
                                 userDataRegister.password = event.target.value;
@@ -177,7 +177,7 @@ export const sendLoginData = (e: any) => {
             });
     }
     // after sending data, reset values in field
-    resetDataofForm();
+    resetDataofLoginForm();
 }
 
 export const sendRegisterData = (e: any) => {
@@ -186,7 +186,7 @@ export const sendRegisterData = (e: any) => {
     if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
         ErrorData.setData({
             stateError: true,
-            MessageError: 'Invalid user datas'
+            MessageError: 'Invalid datas of user'
         })
     }
 
