@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { ContextUser } from '../../Context/LogdataContext';
 
+
 interface textInput {
     type: string,
     name: string,
