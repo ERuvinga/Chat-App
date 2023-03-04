@@ -21,8 +21,11 @@ const WithAuth = (Localtoken: any, setPage: any) => {
                     if (!user.userId) { // if not user find, redirect to login page
                         Router.push('/Login');
                     }
-                    console.log(user);
-                    //setPage(false);
+                    else {
+                        console.log(user);
+                        setPage(false);
+                    }
+
                 })
 
         })
