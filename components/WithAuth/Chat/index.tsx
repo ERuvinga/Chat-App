@@ -1,14 +1,15 @@
 import React from 'react';
-import Head from '../../components/CommonComponents/Head';
-import ChatUSer from '../../components/UsersChat'
-import DesciptionFriend from '../../components/CommonComponents/Friend'
-import HeadChat from '../../components/HeadChat'
-import Messages from '../../components/CommonComponents/NewMessages'
-import BtnMessages from '../../components/CommonComponents/SendMessageBtn'
+import { NextPage } from 'next';
+import Head from '../../../components/CommonComponents/Head';
+import ChatUSer from '../../../components/UsersChat'
+import DesciptionFriend from '../../../components/CommonComponents/Friend'
+import HeadChat from '../../../components/HeadChat'
+import Messages from '../../../components/CommonComponents/NewMessages'
+import BtnMessages from '../../../components/CommonComponents/SendMessageBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
-const index = () => {
+const index: NextPage = () => {
     return (
         <>
             <Head />
