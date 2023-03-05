@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { sendLoginData, sendRegisterData } from '../../../components/CommonComponents/InputText';
+import { ContextUser } from '../../Context/LogdataContext';
 
 interface textInput {
     type?: string,
@@ -7,12 +8,13 @@ interface textInput {
     fieldContent: string,
 }
 
-let router: any;
+let Btn: any;
 
-const index = (datas: textInput) => {
+const Button = (datas: textInput) => {
+    Btn = useContext(ContextUser);
     return (
-        <button name={datas.name} id={datas.name} className='w-[90%] ButtonSubmit' onClick={datas.fieldContent == "Login" ? sendLoginData : sendRegisterData}>{datas.fieldContent}</button>
+        <button disabled={Btn.disableBtn} name={datas.name} id={datas.name} className={Btn.disableBtn ? 'w-[90%] ButtonSubmit ' : 'w-[90%] ButtonSubmit falseDisble HoverBtn'} onClick={datas.fieldContent == "Login" ? sendLoginData : sendRegisterData}>{datas.fieldContent}</button>
     );
 };
 
-export default index
+export default Button

@@ -16,22 +16,27 @@
     margin: auto;
 }
 
-@keyframes lodError {
+/*message error */
+
+@keyframes loadError {
     from {
         margin: 0;
+        text-align: left;
     }
 
     to {
         margin: 0 5%;
+        text-align: center;
     }
 
 }
 
 .ErrorLog {
     background-color: #efefef;
-    padding: 2px 10px;
-    margin: 5px 5%;
-    animation: lodError .8s ease-in;
+    font-size: smaller;
+    padding: 2px 20px;
+    margin: 3px 5%;
+    animation: loadError 1s ease-in-out;
 }
 
 .HiddenErrorLog {

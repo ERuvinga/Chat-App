@@ -1,0 +1,20 @@
+@keyframes loadingAnim {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loadingComponent {
+    border: solid 6px #5843E4;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    padding: 15px;
+    margin: auto;
+    height: 0;
+    width: 0;
+    animation: loadingAnim .8s linear infinite;
+}

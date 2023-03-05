@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import { ContextUser } from "../../Context/LogdataContext";
 
-interface ErrorContent {
-    data: String,
-    source: String
-}
+const ErrorLog = () => {
+    let errorDatas: any;
+    errorDatas = useContext(ContextUser);
 
-const ErrorLog = (dataError: ErrorContent) => {
-    const [Error, setError] = useState("");
-    return <div className="text-[#f00] text-left w-[50%] ErrorLog "> #{dataError.data}</div>
+    return <span className={(errorDatas.data.stateError) ? "text-[#f00]  ErrorLog" : " HiddenErrorLog"}> # {errorDatas.data.MessageError}</span>
 }
 export default ErrorLog

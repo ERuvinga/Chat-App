@@ -28,16 +28,21 @@
     font-weight: bold;
     color: #F9F9FC;
     background-color: #2F2E41;
+    opacity: .7;
     padding: 8px 0;
 
     margin: auto;
-    margin-top: 20px;
+    margin-top: 25px;
 
     border: 1px solid #979797;
     border-radius: 6px;
     transition: all 0.5s;
 }
 
-.ButtonSubmit:hover {
-    opacity: .8;
+.falseDisble {
+    opacity: 1;
+}
+
+.HoverBtn:hover {
+    transform: scale(1.01);
 }
