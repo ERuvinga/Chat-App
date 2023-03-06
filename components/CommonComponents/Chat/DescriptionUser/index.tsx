@@ -40,7 +40,11 @@ const index = (datas: friendDesciption) => {
                         </div>
                     </>
                     :
-                    <>
+                    <div className=' w-[90%] flex flex-col space-y-3'>
+                        <div className='flex justify-center items-center space-x-2'>
+                            <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
+                            <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
+                        </div>
                         <div className=" chatAndCall flex justify-around items-center">
                             <span className=' flex flex-col'>
                                 <FontAwesomeIcon className='btn_chat' icon={faMessage} />
@@ -63,7 +67,7 @@ const index = (datas: friendDesciption) => {
                                 <span className=' text-center text-[#8186A0] text-[.9em]'>Add to favorite</span>
                             </span>
                         </div>
-                    </>
+                    </div>
                 }
             </div>
         </>

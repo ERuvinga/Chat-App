@@ -14,6 +14,8 @@ interface dataUser {
 
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
+    const [toogleDescription, setToogleDescription] = useState(false); // chage a users description
+
     useEffect(() => {
 
     }, []);
@@ -26,10 +28,8 @@ const Index = (User: dataUser) => {
                     <div className='space-y-5'>
                         <ChatUSer Name={user.name} descriptions={user.email} picture={user.picture} />
                         <input name='searchUser' type='text' className='SearchUser' placeholder="Search user" />
-                        <Friends name='Mio legat' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir' checked={false} />
-                        <Friends name='Sophie Ng' picture='' contentMessage='salut' checked={true} />
-                        <Friends name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" checked={false} />
-                        <Friends name='Rachel Ng' picture='' contentMessage="Courage " checked={true} />
+                        <Friends name='Sophie Ng' picture='' contentMessage='salut' noReadMessage={3} checked={false} />
+                        <Friends name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" noReadMessage={11} checked={false} />
                     </div>
                 </section>
                 <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>
@@ -51,7 +51,7 @@ const Index = (User: dataUser) => {
 
                 <aside className='hidden md:flex justify-center items-center description-users h-screen '>
                     <section className='w-[100%]' >
-                        <DesciptionFriend idUser={true} name={user.name} function={user.email} picture={user.picture} />
+                        <DesciptionFriend idUser={toogleDescription} name={user.name} function={user.email} picture={user.picture} />
                     </section>
                 </aside>
             </div>
