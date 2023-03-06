@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { sendLoginData, sendRegisterData } from '../../../components/CommonComponents/InputText';
-import { ContextUser } from '../../Context/LogdataContext';
+import { sendLoginData, sendRegisterData } from '../../InputText';
+import { ContextUser } from '../../../Context/LogdataContext';
 
 interface textInput {
     type?: string,

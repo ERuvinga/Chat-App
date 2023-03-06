@@ -5,7 +5,7 @@ import Loading from "../../components/CommonComponents/Loading";
 
 
 
-const WithAuth = (Localtoken: any, setPage: any) => {
+const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
     fetch(`${process.env.API_LINK}/api/Auth`, {
         method: "POST",
@@ -24,6 +24,7 @@ const WithAuth = (Localtoken: any, setPage: any) => {
                     else {
                         console.log(user);
                         setPage(false);
+                        setData(user);
                     }
 
                 })
@@ -37,12 +38,14 @@ const WithAuth = (Localtoken: any, setPage: any) => {
 
 const IndexWithAuth = () => {
     const [statePage, setStatePage] = useState(true);
+    const [datasOfUser, setDatasOfUser] = useState({});
+
     useEffect(() => {
-        WithAuth(localStorage.getItem('Token'), setStatePage);
+        WithAuth(localStorage.getItem('Token'), setStatePage, setDatasOfUser);
     }, []);
 
     if (!statePage) { // withAuth is a function check if user is login
-        return <ChatApp />;
+        return <ChatApp Datas={datasOfUser} />;
     }
     return <Loading />;
 };

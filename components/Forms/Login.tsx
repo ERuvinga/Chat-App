@@ -4,7 +4,7 @@ import Link from 'next/link';
 // module creates
 import InputText from '../../components/CommonComponents/InputText';
 import LoginRegistertitle from '../../components/LoginRegistertitle';
-import Button from '../../components/CommonComponents/Buttons';
+import Button from '../CommonComponents/Chat/Buttons';
 import Loading from '../../components/CommonComponents/Loading';
 import ErrorLog from '../../components/CommonComponents/ErrorLog';
 import { ContextUser } from '../../components/Context/LogdataContext';

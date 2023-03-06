@@ -1,27 +1,35 @@
-import React from 'react';
-import { NextPage } from 'next';
+import React, { useEffect, useState } from 'react';
 import Head from '../../../components/CommonComponents/Head';
 import ChatUSer from '../../../components/UsersChat'
-import DesciptionFriend from '../../../components/CommonComponents/Friend'
+import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
 import HeadChat from '../../../components/HeadChat'
-import Messages from '../../../components/CommonComponents/NewMessages'
-import BtnMessages from '../../../components/CommonComponents/SendMessageBtn'
+import Friends from '../../CommonComponents/Chat/FriendMessages'
+import BtnMessages from '../../CommonComponents/Chat/SendMessageBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faPaperPlane, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
 
-const index: NextPage = () => {
+interface dataUser {
+    Datas: any
+}
+
+const Index = (User: dataUser) => {
+    const [user, setUser] = useState(User.Datas);
+    useEffect(() => {
+
+    }, []);
+
     return (
         <>
             <Head />
             <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
                 <section className='w-[97%] list-users sm:w-[40%] h-screen space-y-5'>
                     <div className='space-y-5'>
-                        <ChatUSer Name='Elie Ruvinga' descriptions='Developper' picture='' />
+                        <ChatUSer Name={user.name} descriptions={user.email} picture={user.picture} />
                         <input name='searchUser' type='text' className='SearchUser' placeholder="Search user" />
-                        <Messages name='Mio legat' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir' checked={false} />
-                        <Messages name='Sophie Ng' picture='' contentMessage='salut' checked={true} />
-                        <Messages name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" checked={false} />
-                        <Messages name='Rachel Ng' picture='' contentMessage="Courage " checked={true} />
+                        <Friends name='Mio legat' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir' checked={false} />
+                        <Friends name='Sophie Ng' picture='' contentMessage='salut' checked={true} />
+                        <Friends name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" checked={false} />
+                        <Friends name='Rachel Ng' picture='' contentMessage="Courage " checked={true} />
                     </div>
                 </section>
                 <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>
@@ -42,30 +50,8 @@ const index: NextPage = () => {
                 </section>
 
                 <aside className='hidden md:flex justify-center items-center description-users h-screen '>
-                    <section className='space-y-4 w-[100%]' >
-                        <DesciptionFriend name='Dianne Vanhorn' function='Junior Developper' picture='' />
-                        <div className=" chatAndCall flex justify-around items-center">
-                            <span className=' flex flex-col'>
-                                <FontAwesomeIcon className='btn_chat' icon={faMessage} />
-                                <span className=' text-center text-[#8186A0] text-[.8em] mt-1'>Chat</span>
-                            </span>
-                            <div className='line'>
-                            </div>
-                            <span className='flex flex-col'>
-                                <FontAwesomeIcon className='btn_call' icon={faVideoCamera} />
-                                <span className='text-center text-[#8186A0] text-[.8em] mt-1'>Video</span>
-                            </span>
-                        </div>
-                        <div className=' w-[90%] mx-auto space-y-2'>
-                            <span className=' flex justify-start items-baseline'>
-                                <FontAwesomeIcon className='ViewFriends' icon={faUserFriends} />
-                                <span className=' text-center text-[#8186A0] text-[.9em]'>View Friends</span>
-                            </span>
-                            <span className=' flex justify-start items-baseline'>
-                                <FontAwesomeIcon className='addFavorite' icon={faHeartCirclePlus} />
-                                <span className=' text-center text-[#8186A0] text-[.9em]'>Add to favorite</span>
-                            </span>
-                        </div>
+                    <section className='w-[100%]' >
+                        <DesciptionFriend idUser={true} name={user.name} function={user.email} picture={user.picture} />
                     </section>
                 </aside>
             </div>
@@ -73,4 +59,4 @@ const index: NextPage = () => {
     );
 };
 
-export default index;
+export default Index;
