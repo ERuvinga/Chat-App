@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Head from '../../../components/CommonComponents/Head';
 import UserChat from '../../CommonComponents/Chat/UsersChat'
 import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
-import Friends from '../../CommonComponents/Chat/FriendMessages'
 import Message from '../../CommonComponents/Chat/MessagesBloc';
+import ListFriend from '../../CommonComponents/Chat/ListFriends';
 
 interface dataUser {
     Datas: any
@@ -25,8 +25,7 @@ const Index = (User: dataUser) => {
                     <div className='space-y-5'>
                         <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
                         <input name='searchUser' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
-                        <Friends name='Sophie Ng' picture='' contentMessage='salut' noReadMessage={3} checked={false} />
-                        <Friends name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" noReadMessage={11} checked={false} />
+                        <ListFriend />
                     </div>
                 </section>
                 <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>

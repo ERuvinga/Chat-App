@@ -1,4 +1,4 @@
-import HeadChat from '../../../../components/HeadChat'
+import HeadChat from '../HeadChat'
 import BtnMessages from '../../../CommonComponents/Chat/SendMessageBtn'
 import { faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
