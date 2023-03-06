@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Head from '../../../components/CommonComponents/Head';
 import ChatUSer from '../../../components/UsersChat'
 import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
-import HeadChat from '../../../components/HeadChat'
 import Friends from '../../CommonComponents/Chat/FriendMessages'
-import BtnMessages from '../../CommonComponents/Chat/SendMessageBtn'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faPaperPlane, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
+import Message from '../../CommonComponents/Chat/MessagesBloc';
 
 interface dataUser {
     Datas: any
@@ -33,20 +30,7 @@ const Index = (User: dataUser) => {
                     </div>
                 </section>
                 <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>
-                    <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                        <HeadChat name='Dianne Vanhorn' picture='' />
-                    </div>
-
-                    <div className=' w-[95%] mx-auto Chat-Body'>
-
-                    </div>
-
-                    <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-2'>
-                        <BtnMessages icone={faSmile} />
-                        <BtnMessages icone={faPaperclip} />
-                        <input name='message' type='text' className='InputMessage' placeholder="Write something ..." />
-                        <BtnMessages icone={faPaperPlane} full={true} />
-                    </div>
+                    <Message indexPage={false} />
                 </section>
 
                 <aside className='hidden md:flex justify-center items-center description-users h-screen '>
