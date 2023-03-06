@@ -1,16 +1,18 @@
 import HeadChat from '../../../../components/HeadChat'
 import BtnMessages from '../../../CommonComponents/Chat/SendMessageBtn'
 import { faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 interface statePage {
     indexPage: boolean
 }
 
 const Message = (UserState: statePage) => {
+    const [indexPage, setPage] = useState(UserState.indexPage);
     return (
         <>
             {
-                UserState.indexPage ?
+                !indexPage ?
                     <>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
                             <HeadChat name='Dianne Vanhorn' picture='' />

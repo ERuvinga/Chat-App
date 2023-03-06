@@ -18,7 +18,6 @@ const index = (datas: user) => {
                     <span className=' descriptionUser'>{datas.descriptions}</span>
                 </p>
             </div>
-            <FontAwesomeIcon icon={faUserEdit} className='Editprofil' />
         </div>
     );
 };

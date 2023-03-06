@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsToDot, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsToDot, faCheck, faPlusCircle, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 
 interface NewMessages {
     name: string,
@@ -21,7 +21,7 @@ const index = (datas: NewMessages) => {
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32 AM</span>
-                    {datas.checked ? <FontAwesomeIcon className='border MessageView' icon={faCheck} /> : <span className={(datas.noReadMessage < 10) ? 'numberMessages' : ''}>{(datas.noReadMessage > 9) ? <FontAwesomeIcon className=' text-[.85em] text-[#5843E4]' icon={faArrowsToDot} /> : datas.noReadMessage}</span>}
+                    {datas.checked ? <FontAwesomeIcon className='border MessageView' icon={faCheck} /> : <span className={(datas.noReadMessage < 10) ? 'numberMessages' : ''}>{(datas.noReadMessage > 9) ? <FontAwesomeIcon className=' text-[.85em] text-[#5843E4]' icon={faPlusCircle} /> : datas.noReadMessage}</span>}
                 </div>
             </div>
         </div>
