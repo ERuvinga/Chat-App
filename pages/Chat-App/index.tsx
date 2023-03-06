@@ -7,7 +7,7 @@ import Loading from "../../components/CommonComponents/Loading";
 
 const WithAuth = (Localtoken: any, setPage: any) => {
 
-    fetch("http://127.0.0.1:4002/api/Auth", {
+    fetch(`${process.env.API_LINK}/api/Auth`, {
         method: "POST",
         headers: {
             "Accept": 'application/json',
@@ -37,7 +37,6 @@ const WithAuth = (Localtoken: any, setPage: any) => {
 
 const IndexWithAuth = () => {
     const [statePage, setStatePage] = useState(true);
-    let page: any;
     useEffect(() => {
         WithAuth(localStorage.getItem('Token'), setStatePage);
     }, []);

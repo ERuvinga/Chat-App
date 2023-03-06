@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { ContextUser } from '../../Context/LogdataContext';
 
-
 interface textInput {
     type: string,
     name: string,
@@ -138,7 +137,7 @@ export const sendLoginData = (e: any) => {
 
     else {
         dataOfContext.setLaoding(true);
-        fetch('http://127.0.0.1:4002/api/Auth/login', {
+        fetch(`${process.env.API_LINK}/api/Auth/login`, {
             method: "POST",
             headers: {
                 "Accept": 'application/json',
@@ -200,7 +199,7 @@ export const sendRegisterData = (e: any) => {
 
         else {
             dataOfContext.setLaoding(true);
-            fetch('http://127.0.0.1:4002/api/Auth/register', {
+            fetch(`${process.env.API_LINK}/api/Auth/register`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
