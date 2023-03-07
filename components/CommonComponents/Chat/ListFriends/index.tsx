@@ -35,7 +35,7 @@ const ListFriend = (OwenrUser: OwenUser) => {
         <span>
             {
                 dataUsers.map((value, index) =>
-                    (value.email != OwenrUser.email) ? <Friends name={value.email} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null
+                    (value.email != OwenrUser.email) ? <Friends name={value.email} indexUser={index} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null
                 )
             }
         </span>

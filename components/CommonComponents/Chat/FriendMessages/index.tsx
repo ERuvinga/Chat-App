@@ -8,7 +8,8 @@ interface NewMessages {
     picture: string,
     contentMessage: string,
     checked: boolean,
-    noReadMessage: number
+    noReadMessage: number,
+    indexUser: number
 }
 
 let ChatContxt: object | any;
@@ -17,8 +18,13 @@ const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
 
     return (
-        <div className='flex flex-row justify-between Container-user items-center my-6' onClick={() => ChatContxt.setTooglePage(false)}>
-            <div className='ContainerMessage flex justify-between items-center '>
+        <div className='flex flex-row justify-between Container-user items-center my-6'
+            onClick={() => {
+                ChatContxt.setTooglePage(false);
+                ChatContxt.setSelectedUser(datas.indexUser);
+            }
+            } >
+            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerMessageSelected flex justify-between items-center' : 'ContainerMessage flex justify-between items-center'}>
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' imgUserMessage ' alt='user' />
                 <p className='MessageContent flex flex-col justify-center'>
                     <span className='UsersendMessage'>{datas.name}</span>

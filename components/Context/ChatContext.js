@@ -4,7 +4,8 @@ export const contextChat = createContext(null);
 
 const ChatProviderContext = ({ children }) => {
     const [tooglePage, setTooglePage] = useState(true);
-    return <contextChat.Provider value={{ tooglePage, setTooglePage }}>{children}</contextChat.Provider>
+    const [selectedUser, setSelectedUser] = useState(0);
+    return <contextChat.Provider value={{ tooglePage, setTooglePage, selectedUser, setSelectedUser }}>{children}</contextChat.Provider>
 };
 
 export default ChatProviderContext;
