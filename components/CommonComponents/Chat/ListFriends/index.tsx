@@ -5,7 +5,6 @@ import Loading from "../../Loading";
 
 interface OwenUser {
     email: String,
-    actionsEvent: any
 }
 
 const ListFriend = (OwenrUser: OwenUser) => {
@@ -33,7 +32,7 @@ const ListFriend = (OwenrUser: OwenUser) => {
     }
 
     return (
-        <span onClick={() => OwenrUser.actionsEvent(false)}>
+        <span>
             {
                 dataUsers.map((value, index) =>
                     (value.email != OwenrUser.email) ? <Friends name={value.email} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null

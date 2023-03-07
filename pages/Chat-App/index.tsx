@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import ChatApp from '../../components/WithAuth/Chat'
 import Loading from "../../components/CommonComponents/Loading";
+import ChatProvider from '../../components/Context/ChatContext'
 
 const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
@@ -42,7 +43,7 @@ const IndexWithAuth = () => {
     }, []);
 
     if (!statePage) { // withAuth is a function check if user is login
-        return <ChatApp Datas={datasOfUser} />;
+        return (<ChatProvider><ChatApp Datas={datasOfUser} /></ChatProvider>)
     }
     return <Loading />;
 };
