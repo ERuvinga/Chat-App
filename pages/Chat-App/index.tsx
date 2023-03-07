@@ -3,8 +3,6 @@ import Router from "next/router";
 import ChatApp from '../../components/WithAuth/Chat'
 import Loading from "../../components/CommonComponents/Loading";
 
-
-
 const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
     fetch(`${process.env.API_LINK}/api/Auth`, {
@@ -22,7 +20,6 @@ const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
                         Router.push('/Login');
                     }
                     else {
-                        console.log(user);
                         setPage(false);
                         setData(user);
                     }

@@ -1,19 +1,22 @@
 // list of users of message,
 import { useEffect, useState } from "react";
-import Friends from '../../../CommonComponents/Chat/FriendMessages'
+import Friends from '../FriendMessages';
 import Loading from "../../Loading";
 
-const ListFriend = () => {
-    const [dataUsers, setDataUser] = useState([]);
-    const [LoadinPage, setLoadingPage] = useState(true);
+interface OwenUser {
+    email: String
+}
 
+const ListFriend = (IdUser: OwenUser) => {
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '' }]);
+    const [LoadinPage, setLoadingPage] = useState(true);
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/Auth`)
             .then(datafetching => {
                 if (datafetching.ok) {
                     datafetching.json()
-                        .then(users => {
-                            setDataUser(users);
+                        .then(Users => {
+                            setDataUser(Users.users);
                             setLoadingPage(false);
                         })
                 }
@@ -27,7 +30,15 @@ const ListFriend = () => {
         return <Loading />
     }
 
-    return <Friends name='Sophie Ng' picture='' contentMessage='salut' noReadMessage={3} checked={false} />
+    return (
+        <span>
+            {
+                dataUsers.map((value, index) =>
+                    (value.email != IdUser.email) ? <Friends name={value.email} picture="" contentMessage="Salut" checked={true} noReadMessage={2} key={index} /> : null
+                )
+            }
+        </span>
+    )
 
 };
 

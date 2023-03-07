@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Head from '../../../components/CommonComponents/Head';
 import UserChat from '../../CommonComponents/Chat/UsersChat'
 import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
@@ -12,11 +12,6 @@ interface dataUser {
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
     const [toogleDescription, setToogleDescription] = useState(true); // chage a users description
-
-    useEffect(() => {
-        console.log(User);
-    }, []);
-
     return (
         <>
             <Head />
@@ -25,7 +20,7 @@ const Index = (User: dataUser) => {
                     <div className='space-y-5'>
                         <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
                         <input name='searchUser' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
-                        <ListFriend />
+                        <ListFriend email={User.Datas.email} />
                     </div>
                 </section>
                 <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>
