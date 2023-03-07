@@ -65,13 +65,15 @@
 
 .ContainerMessage:hover {
     cursor: pointer;
-    transform: scaleX(1.03);
+    transform: scaleX(1.018);
     background-color: #fff;
 }
 
 .ContainerMessageSelected {
+    border-radius: 22px 0 0 22px;
+    width: 100%;
     transition: all .6s ease-in-out;
-    transform: scaleX(1.05);
+    transform: scaleX(1.03);
     background-color: #fff;
 
 }
