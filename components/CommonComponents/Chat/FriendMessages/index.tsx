@@ -12,7 +12,7 @@ interface NewMessages {
 
 const index = (datas: NewMessages) => {
     return (
-        <div className='flex flex-row tify-between Container-user items-center my-6'>
+        <div className='border flex flex-row tify-between hover:bg-[#fff] Container-user items-center my-6' onClick={() => console.log('Click user')}>
             <div className='ContainerMessage flex justify-between items-center '>
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' imgUserMessage ' alt='user' />
                 <p className='MessageContent flex flex-col justify-center'>

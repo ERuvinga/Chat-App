@@ -4,12 +4,14 @@ import Friends from '../FriendMessages';
 import Loading from "../../Loading";
 
 interface OwenUser {
-    email: String
+    email: String,
+    actionsEvent: any
 }
 
-const ListFriend = (IdUser: OwenUser) => {
+const ListFriend = (OwenrUser: OwenUser) => {
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '' }]);
     const [LoadinPage, setLoadingPage] = useState(true);
+
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/Auth`)
             .then(datafetching => {
@@ -31,10 +33,10 @@ const ListFriend = (IdUser: OwenUser) => {
     }
 
     return (
-        <span>
+        <span onClick={() => OwenrUser.actionsEvent(false)}>
             {
                 dataUsers.map((value, index) =>
-                    (value.email != IdUser.email) ? <Friends name={value.email} picture="" contentMessage="Salut" checked={true} noReadMessage={2} key={index} /> : null
+                    (value.email != OwenrUser.email) ? <Friends name={value.email} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null
                 )
             }
         </span>
