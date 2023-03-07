@@ -9,6 +9,8 @@ interface NewMessages {
     contentMessage: string,
     checked: boolean,
     noReadMessage: number,
+    //
+    _idUser: any
     indexUser: number
 }
 
@@ -22,6 +24,7 @@ const Index = (datas: NewMessages) => {
             onClick={() => {
                 ChatContxt.setTooglePage(false);
                 ChatContxt.setSelectedUser(datas.indexUser);
+                ChatContxt.set_idOtherUser(datas._idUser);
             }
             } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerMessageSelected flex justify-between items-center' : 'ContainerMessage flex justify-between items-center'}>

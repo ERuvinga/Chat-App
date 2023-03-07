@@ -4,9 +4,13 @@ import { faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-
 
 import { useContext } from 'react';
 import { contextChat } from '../../../Context/ChatContext';
+
+interface datas {
+    OtherUser: any
+}
 let ChatContext: any;
 
-const Message = () => {
+const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
     return (
         <>
@@ -14,7 +18,7 @@ const Message = () => {
                 !ChatContext.tooglePage ?
                     <>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                            <HeadChat name='Dianne Vanhorn' picture='' />
+                            <HeadChat name="{datasOfUser.OtherUser.name}" picture="{datasOfUser.OtherUser.picture}" />
                         </div>
                         <div className=' w-[95%] mx-auto Chat-Body'>
 

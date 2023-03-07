@@ -8,7 +8,7 @@ interface OwenUser {
 }
 
 const ListFriend = (OwenrUser: OwenUser) => {
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '' }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
     const [LoadinPage, setLoadingPage] = useState(true);
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const ListFriend = (OwenrUser: OwenUser) => {
         <span>
             {
                 dataUsers.map((value, index) =>
-                    (value.email != OwenrUser.email) ? <Friends name={value.email} indexUser={index} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null
+                    (value.email != OwenrUser.email) ? <Friends name={value.email} _idUser={value._id} indexUser={index} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null
                 )
             }
         </span>
