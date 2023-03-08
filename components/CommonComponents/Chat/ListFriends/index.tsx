@@ -12,7 +12,7 @@ const ListFriend = (OwenrUser: OwenUser) => {
     const [LoadinPage, setLoadingPage] = useState(true);
 
     useEffect(() => {
-        fetch(`${process.env.API_LINK}/api/Auth`)
+        fetch(`${process.env.API_LINK}/api/user`)
             .then(datafetching => {
                 if (datafetching.ok) {
                     datafetching.json()
@@ -35,7 +35,7 @@ const ListFriend = (OwenrUser: OwenUser) => {
         <span>
             {
                 dataUsers.map((value, index) =>
-                    (value.email != OwenrUser.email) ? <Friends name={value.email} _idUser={value._id} indexUser={index} picture="" contentMessage="Salut les gars" checked={true} noReadMessage={2} key={index} /> : null
+                    (value.email != OwenrUser.email) ? <Friends name={value.email} _idUser={value._id} indexUser={index} picture="" contentMessage="Salut les gars" checked={false} noReadMessage={2} key={index} /> : null
                 )
             }
         </span>

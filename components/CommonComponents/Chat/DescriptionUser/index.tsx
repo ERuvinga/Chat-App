@@ -7,7 +7,7 @@ interface friendDesciption {
     picture: string,
     name: string,
     function: string
-    idUser: boolean
+    me: boolean
 }
 
 const index = (datas: friendDesciption) => {
@@ -20,7 +20,7 @@ const index = (datas: friendDesciption) => {
                     <span className=' nameFriend'>{datas.name != '' ? datas.name : '~'}</span>
                     <span className=' functionFriend'>{datas.function}</span>
                 </p>
-                {datas.idUser ?
+                {datas.me ?
                     <>
                         <div className=' flex flex-col w-[90%] mx-auto space-y-6 '>
                             <div className='flex justify-center items-center space-x-2'>

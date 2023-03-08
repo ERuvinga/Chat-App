@@ -79,6 +79,10 @@
 
 }
 
+.ContainerMessageSelected:hover {
+    cursor: pointer;
+}
+
 .imgUserMessage {
     display: block;
     width: 50px;

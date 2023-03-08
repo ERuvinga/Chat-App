@@ -18,7 +18,7 @@ const Message = (datasOfUser: datas) => {
                 !ChatContext.tooglePage ?
                     <>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                            <HeadChat name="{datasOfUser.OtherUser.name}" picture="{datasOfUser.OtherUser.picture}" />
+                            <HeadChat name={datasOfUser.OtherUser.email} picture={datasOfUser.OtherUser.picture} />
                         </div>
                         <div className=' w-[95%] mx-auto Chat-Body'>
 
