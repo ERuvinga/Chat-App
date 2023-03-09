@@ -12,7 +12,13 @@ const ListFriend = (OwenrUser: OwenUser) => {
     const [LoadinPage, setLoadingPage] = useState(true);
 
     useEffect(() => {
-        fetch(`${process.env.API_LINK}/api/user`)
+        fetch(`${process.env.API_LINK}/api/user`, {
+            headers: {
+                "Accept": 'application/json',
+                "Content-type": 'application/json; charset=UTF-8',
+                "Autorization": `Bearer ${localStorage.getItem('Token')}`
+            }
+        })
             .then(datafetching => {
                 if (datafetching.ok) {
                     datafetching.json()

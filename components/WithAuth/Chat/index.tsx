@@ -24,7 +24,13 @@ const Index = (User: dataUser) => {
 
     useEffect(() => {
         if (ContexChat._idOtherUser !== 0) {
-            fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`)
+            fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
+                headers: {
+                    "Accept": 'application/json',
+                    "Content-type": 'application/json; charset=UTF-8',
+                    "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                }
+            })
                 .then(dataUser => {
                     if (dataUser.ok) {
                         dataUser.json()
