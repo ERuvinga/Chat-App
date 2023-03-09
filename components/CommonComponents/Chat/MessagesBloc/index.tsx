@@ -8,10 +8,12 @@ import { contextChat } from '../../../Context/ChatContext';
 interface datas {
     OtherUser: any
 }
+
 let ChatContext: any;
 
 const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
+    //console.error(datasOfUser.OtherUser.email);
     return (
         <>
             {

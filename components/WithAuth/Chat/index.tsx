@@ -18,6 +18,7 @@ let otherUser: any;
 
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
+    const [chatWithUser, setChatWithUser] = useState(null);
     const [LoadingComp, setLoadingComp] = useState(true);
     ContexChat = useContext(contextChat);
 
@@ -28,10 +29,9 @@ const Index = (User: dataUser) => {
                     if (dataUser.ok) {
                         dataUser.json()
                             .then(dataOtherUser => {
-                                otherUser = dataOtherUser.datas;
                                 setLoadingComp(false);
-
-                                console.log(otherUser);
+                                otherUser = dataOtherUser.datas;
+                                setChatWithUser(dataOtherUser.datas)
                             })
                     }
                 })
@@ -58,7 +58,7 @@ const Index = (User: dataUser) => {
                             </div>
                         </section>
                         <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
-                            <Message OtherUser={otherUser} />
+                            <Message OtherUser={chatWithUser} />
                         </section>
 
                         <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
