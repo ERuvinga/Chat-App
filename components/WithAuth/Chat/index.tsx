@@ -22,7 +22,7 @@ const Index = (User: dataUser) => {
     ContexChat = useContext(contextChat);
 
     useEffect(() => {
-        if (ContexChat._idOtherUser != null) {
+        if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`)
                 .then(dataUser => {
                     if (dataUser.ok) {
