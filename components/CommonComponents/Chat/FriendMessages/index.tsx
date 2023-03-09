@@ -27,7 +27,7 @@ const Index = (datas: NewMessages) => {
                 ChatContxt.set_idOtherUser(datas._idUser);
             }
             } >
-            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerMessageSelected flex justify-between items-center' : 'ContainerMessage flex justify-between items-center'}>
+            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between items-center' : 'ContainerMessage flex justify-between items-center'}>
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' imgUserMessage ' alt='user' />
                 <p className='MessageContent flex flex-col justify-center'>
                     <span className='UsersendMessage'>{datas.name}</span>
