@@ -4,6 +4,7 @@ import { contextChat } from '../../../Context/ChatContext';
 
 interface dataIcone {
     icone: any
+    _idOtherUser?: any,
     full?: boolean
 }
 
@@ -18,6 +19,7 @@ const Index = (datas: dataIcone) => {
                 icon={datas.icone}
                 onClick={datas.full ? () => {
                     console.log(ChatContext.messaContent);
+                    console.log(datas._idOtherUser);
                 } : () => null} />
         </div>
     );

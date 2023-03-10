@@ -13,7 +13,7 @@ let ChatContext: any;
 
 const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
-    //console.error(datasOfUser.OtherUser.email);
+    console
     return (
         <>
             {
@@ -43,7 +43,7 @@ const Message = (datasOfUser: datas) => {
                     onChange={(event) => {
                         ChatContext.setMessageContent(event.target.value);
                     }} />
-                <BtnMessages icone={faPaperPlane} full={true} />
+                <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? datasOfUser.OtherUser._id : null} />
             </div>
         </>
     )
