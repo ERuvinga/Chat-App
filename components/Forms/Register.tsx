@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { ContextUser } from "../Context/LogdataContext";
 import Loading from '../../components/CommonComponents/Loading';
-import Button from '../../components/CommonComponents/Buttons'
+import Button from '../CommonComponents/Chat/Buttons'
 import ErrorLog from '../../components/CommonComponents/ErrorLog';
 import LoginRegistertitle from '../../components/LoginRegistertitle'
 import InputText from '../../components/CommonComponents/InputText'

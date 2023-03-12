@@ -1,11 +1,11 @@
 /* the style for a Message components from chat page*/
 
-.Chat-Header{
+.Chat-Header {
     height: 10vh;
     border-bottom: solid 1px #E2E3E9;
 }
 
-.imgChat{
+.imgChat {
     width: 40px;
     height: 40px;
     margin-right: 10px;
@@ -13,40 +13,47 @@
     border: #979797 solid 1px;
 }
 
-.NowUserchat{
-    color: #2F2E41;
+.NowUserchat {
     font-weight: bolder;
 }
 
-.Chat-Body{
+.Chat-Body {
     height: 76vh;
 }
 
 
-.Chat-Footer{
-    height:12vh;
+.Chat-Footer {
+    height: 12vh;
     border-top: solid 1px #E2E3E9;
 }
 
-.InputMessage{
+.InputMessage {
     display: block;
     width: 70%;
     padding: 5px 10px;
     font-size: 0.8em;
     color: #979797;
     border: 1px solid #979797;
-    border-radius: 18px; 
+    border-radius: 18px;
 }
 
-.iconeBtns{
+
+
+.iconeBtns {
     color: #979797;
     font-size: 1.3em;
+    transition: all .5s;
 }
 
-.sendMessagebtn{
+.iconeBtns:hover {
+    color: #5843E4;
+    transform: scale(1.04);
+}
+
+.sendMessagebtn {
     color: #fff;
     background-color: #5843E4;
     padding: 8px;
     font-size: 1.2em;
-    border-radius: 50%;   
+    border-radius: 50%;
 }

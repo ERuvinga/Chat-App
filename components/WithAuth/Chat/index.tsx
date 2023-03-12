@@ -1,76 +1,85 @@
-import React from 'react';
-import { NextPage } from 'next';
-import Head from '../../../components/CommonComponents/Head';
-import ChatUSer from '../../../components/UsersChat'
-import DesciptionFriend from '../../../components/CommonComponents/Friend'
-import HeadChat from '../../../components/HeadChat'
-import Messages from '../../../components/CommonComponents/NewMessages'
-import BtnMessages from '../../../components/CommonComponents/SendMessageBtn'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideoCamera, faMessage, faUserFriends, faHeartCirclePlus, faSmile, faPaperPlane, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useContext, useEffect } from 'react';
+import { contextChat } from '../../Context/ChatContext';
 
-const index: NextPage = () => {
+import Head from '../../../components/CommonComponents/Head';
+import UserChat from '../../CommonComponents/Chat/UsersChat'
+import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
+import Message from '../../CommonComponents/Chat/MessagesBloc';
+import ListFriend from '../../CommonComponents/Chat/ListFriends';
+import Loading from '../../CommonComponents/Loading';
+
+
+interface dataUser {
+    Datas: any
+}
+
+let ContexChat: any;
+let otherUser: any;
+
+const Index = (User: dataUser) => {
+    const [user, setUser] = useState(User.Datas);
+    const [chatWithUser, setChatWithUser] = useState(null);
+    const [LoadingComp, setLoadingComp] = useState(true);
+    ContexChat = useContext(contextChat);
+
+    useEffect(() => {
+        if (ContexChat._idOtherUser !== 0) {
+            fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
+                headers: {
+                    "Accept": 'application/json',
+                    "Content-type": 'application/json; charset=UTF-8',
+                    "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                }
+            })
+                .then(dataUser => {
+                    if (dataUser.ok) {
+                        dataUser.json()
+                            .then(dataOtherUser => {
+                                setLoadingComp(false);
+                                otherUser = dataOtherUser.datas;
+                                setChatWithUser(dataOtherUser.datas)
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.error(error)
+                }
+                );
+        }
+    }, [ContexChat.selectedUser]);
+
+
     return (
         <>
             <Head />
-            <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
-                <section className='w-[97%] list-users sm:w-[40%] h-screen space-y-5'>
-                    <div className='space-y-5'>
-                        <ChatUSer Name='Elie Ruvinga' descriptions='Developper' picture='' />
-                        <input name='searchUser' type='text' className='SearchUser' placeholder="Search user" />
-                        <Messages name='Mio legat' picture='' contentMessage='bonjour Elie Nous sommes etudiant a la meme universite et nous allons reussir' checked={false} />
-                        <Messages name='Sophie Ng' picture='' contentMessage='salut' checked={true} />
-                        <Messages name='Leaetitia Ng' picture='' contentMessage="Non c'est pas correct" checked={false} />
-                        <Messages name='Rachel Ng' picture='' contentMessage="Courage " checked={true} />
-                    </div>
-                </section>
-                <section className='hidden sm:block h-screen chat-contents bg-[#fff] space-y-1'>
-                    <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                        <HeadChat name='Dianne Vanhorn' picture='' />
-                    </div>
+            {
+                (!ContexChat.tooglePage && LoadingComp) ? <Loading /> :
 
-                    <div className=' w-[95%] mx-auto Chat-Body'>
-
-                    </div>
-
-                    <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-2'>
-                        <BtnMessages icone={faSmile} />
-                        <BtnMessages icone={faPaperclip} />
-                        <input name='message' type='text' className='InputMessage' placeholder="Write something ..." />
-                        <BtnMessages icone={faPaperPlane} full={true} />
-                    </div>
-                </section>
-
-                <aside className='hidden md:flex justify-center items-center description-users h-screen '>
-                    <section className='space-y-4 w-[100%]' >
-                        <DesciptionFriend name='Dianne Vanhorn' function='Junior Developper' picture='' />
-                        <div className=" chatAndCall flex justify-around items-center">
-                            <span className=' flex flex-col'>
-                                <FontAwesomeIcon className='btn_chat' icon={faMessage} />
-                                <span className=' text-center text-[#8186A0] text-[.8em] mt-1'>Chat</span>
-                            </span>
-                            <div className='line'>
+                    <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
+                        <section className='w-[97%] list-users sm:w-[25%] h-screen space-y-5'>
+                            <div className='space-y-5'>
+                                <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
+                                <input name='searchUser' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
+                                <ListFriend email={User.Datas.email} />
                             </div>
-                            <span className='flex flex-col'>
-                                <FontAwesomeIcon className='btn_call' icon={faVideoCamera} />
-                                <span className='text-center text-[#8186A0] text-[.8em] mt-1'>Video</span>
-                            </span>
-                        </div>
-                        <div className=' w-[90%] mx-auto space-y-2'>
-                            <span className=' flex justify-start items-baseline'>
-                                <FontAwesomeIcon className='ViewFriends' icon={faUserFriends} />
-                                <span className=' text-center text-[#8186A0] text-[.9em]'>View Friends</span>
-                            </span>
-                            <span className=' flex justify-start items-baseline'>
-                                <FontAwesomeIcon className='addFavorite' icon={faHeartCirclePlus} />
-                                <span className=' text-center text-[#8186A0] text-[.9em]'>Add to favorite</span>
-                            </span>
-                        </div>
-                    </section>
-                </aside>
-            </div>
+                        </section>
+                        <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
+                            <Message OtherUser={chatWithUser} />
+                        </section>
+
+                        <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
+                            <section className='w-[100%]' >
+                                {
+                                    ContexChat.tooglePage ?
+                                        <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
+                                        :
+                                        <DesciptionFriend me={ContexChat.tooglePage} name={otherUser.name} function={otherUser.email} picture={otherUser.picture} />
+                                }
+                            </section>
+                        </aside>
+                    </div>
+            }
         </>
     );
-};
-
-export default index;
+}
+export default Index

@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingComponent from '../LoadinComponent';
+import LoadingComponent from '../Chat/LoadinComponent';
 
 const loading = () => {
     return (

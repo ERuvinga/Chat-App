@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import ChatApp from '../../components/WithAuth/Chat'
 import Loading from "../../components/CommonComponents/Loading";
+import ChatProvider from '../../components/Context/ChatContext'
 
+const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
-
-const WithAuth = (Localtoken: any, setPage: any) => {
-
-    fetch("http://127.0.0.1:4002/api/Auth", {
+    fetch(`${process.env.API_LINK}/api/Auth`, {
         method: "POST",
         headers: {
             "Accept": 'application/json',
@@ -22,8 +21,8 @@ const WithAuth = (Localtoken: any, setPage: any) => {
                         Router.push('/Login');
                     }
                     else {
-                        console.log(user);
                         setPage(false);
+                        setData(user);
                     }
 
                 })
@@ -37,13 +36,14 @@ const WithAuth = (Localtoken: any, setPage: any) => {
 
 const IndexWithAuth = () => {
     const [statePage, setStatePage] = useState(true);
-    let page: any;
+    const [datasOfUser, setDatasOfUser] = useState({});
+
     useEffect(() => {
-        WithAuth(localStorage.getItem('Token'), setStatePage);
+        WithAuth(localStorage.getItem('Token'), setStatePage, setDatasOfUser);
     }, []);
 
     if (!statePage) { // withAuth is a function check if user is login
-        return <ChatApp />;
+        return (<ChatProvider><ChatApp Datas={datasOfUser} /></ChatProvider>)
     }
     return <Loading />;
 };

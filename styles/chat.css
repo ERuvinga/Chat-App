@@ -1,11 +1,3 @@
-.description-users {
-    width: 30%;
-}
-
-.chat-contents {
-    width: 60%;
-}
-
 .radius {
     border-radius: 15px;
 }
@@ -16,6 +8,8 @@
     width: 90%;
     margin: auto;
 }
+
+
 
 .Editprofil {
     margin: auto;
@@ -34,7 +28,6 @@
 
 .SearchUser {
     display: block;
-    width: 90%;
     padding: 5px 10px;
     margin: 0 auto;
     font-size: 0.8em;
@@ -65,7 +58,29 @@
 
 /*News Messages*/
 .ContainerMessage {
+    border-radius: 30px 0 0 30px;
     width: 100%;
+    transition: transform .6s ease-in-out;
+}
+
+.ContainerMessage:hover {
+    cursor: pointer;
+    transform: scaleX(1.018);
+    background-color: #fff;
+}
+
+.ContainerUserSelected {
+    padding: 5px;
+    border-radius: 40px 40px 40px 40px;
+    width: 100%;
+    transform: scaleX(1.03);
+    background-color: #fff;
+    box-shadow: #5843E4 .5px 0px 5px;
+    transition: all .4s ease-in-out;
+}
+
+.ContainerMessageSelected:hover {
+    cursor: pointer;
 }
 
 .imgUserMessage {
