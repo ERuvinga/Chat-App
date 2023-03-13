@@ -18,8 +18,33 @@ const Index = (datas: dataIcone) => {
             <FontAwesomeIcon className={datas.full ? 'sendMessagebtn' : 'iconeBtns'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-                    console.log(ChatContext.messaContent);
-                    console.log(datas._idOtherUser);
+
+                    const dataOfMessage = {
+                        members: {
+                            owner: '',
+                            otherUser: datas._idOtherUser
+                        },
+                        messages: {
+                            message: ChatContext.messaContent,
+                            type: 'text',
+                            Hour: 0
+                        }
+                    }
+                    if (ChatContext.messaContent !== '') {
+                        fetch(`${process.env.API_LINK}/api/conversations/news`, {
+                            method: "POST",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-type': 'application/json;charset=UTF-8'
+                            },
+
+                            body: JSON.stringify({ dataOfMessage })
+                        })
+                            .then((response) => {
+
+                            })
+                            .catch((error) => console.log(error))
+                    }
                 } : () => null} />
         </div>
     );
