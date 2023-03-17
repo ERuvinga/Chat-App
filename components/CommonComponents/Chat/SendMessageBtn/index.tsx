@@ -27,21 +27,22 @@ const Index = (datas: dataIcone) => {
                         messages: {
                             message: ChatContext.messaContent,
                             type: 'text',
-                            Hour: 0
                         }
                     }
                     if (ChatContext.messaContent !== '') {
-                        fetch(`${process.env.API_LINK}/api/conversations/news`, {
+                        console.log(ChatContext.messaContent)
+                        fetch(`${process.env.API_LINK}/api/conversations/newMessage`, {
                             method: "POST",
                             headers: {
                                 'Accept': 'application/json',
-                                'Content-type': 'application/json;charset=UTF-8'
+                                'Content-type': 'application/json;charset=UTF-8',
+                                "Autorization": `Bearer ${localStorage.getItem('Token')}`
                             },
 
                             body: JSON.stringify({ dataOfMessage })
                         })
                             .then((response) => {
-
+                                console.log(response);
                             })
                             .catch((error) => console.log(error))
                     }
