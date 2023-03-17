@@ -18,11 +18,11 @@ const Index = (datas: dataIcone) => {
             <FontAwesomeIcon className={datas.full ? 'sendMessagebtn' : 'iconeBtns'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-
                     const dataOfMessage = {
                         messages: {
                             message: ChatContext.messaContent,
                             type: 'text',
+                            hour: Date.now()
                         }
                     }
                     if (ChatContext.messaContent !== '') {
