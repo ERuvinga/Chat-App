@@ -1,8 +1,9 @@
 import HeadChat from '../HeadChat'
 import BtnMessages from '../../../CommonComponents/Chat/SendMessageBtn'
+import MessageComponent from '../MessageCompoonents';
 import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { contextChat } from '../../../Context/ChatContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,11 +15,6 @@ let ChatContext: any;
 
 const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
-
-    useEffect(() => {
-
-    }, []);
-
     return (
         <>
             {
@@ -28,10 +24,16 @@ const Message = (datasOfUser: datas) => {
                             <HeadChat name={datasOfUser.OtherUser.email} picture={datasOfUser.OtherUser.picture} />
                         </div>
                         <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center Chat-Body'>
-                            <div className='flex flex-col justify-center items-center space-y-2'>
-                                <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
-                                <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
-                            </div>
+                            {
+                                ((ChatContext.messaContent === null) || (ChatContext.messaContent.length === 0)) ?
+                                    <div className='flex flex-col justify-center items-center space-y-2'>
+                                        <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
+                                        <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
+                                    </div>
+                                    :
+                                    <MessageComponent messageContent="Salut tout le monde" />
+                            }
+
                         </div>
 
                         <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-2'>

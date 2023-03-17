@@ -41,6 +41,8 @@ const Index = (datas: NewMessages) => {
                             response.json()
                                 .then(conversation => {
                                     ChatContxt.set_idConversation(conversation._idConv);
+                                    ChatContxt.setMessageContent(conversation.messages);
+                                    console.log(ChatContxt.messaContent);
                                 })
                         }
                     })
