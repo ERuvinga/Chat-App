@@ -20,10 +20,6 @@ const Index = (datas: dataIcone) => {
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
 
                     const dataOfMessage = {
-                        members: {
-                            owner: '',
-                            otherUser: datas._idOtherUser
-                        },
                         messages: {
                             message: ChatContext.messaContent,
                             type: 'text',
@@ -31,11 +27,11 @@ const Index = (datas: dataIcone) => {
                     }
                     if (ChatContext.messaContent !== '') {
                         console.log(ChatContext.messaContent)
-                        fetch(`${process.env.API_LINK}/api/conversations/newMessage`, {
-                            method: "POST",
+                        fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
+                            method: "PUT",
                             headers: {
                                 'Accept': 'application/json',
-                                'Content-type': 'application/json;charset=UTF-8',
+                                'Content-type': 'application/json; charset=UTF-8',
                                 "Autorization": `Bearer ${localStorage.getItem('Token')}`
                             },
 

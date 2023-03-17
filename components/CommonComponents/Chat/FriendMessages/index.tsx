@@ -18,14 +18,14 @@ let ChatContxt: object | any;
 
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
-
     return (
         <div className='flex flex-row justify-between Container-user items-center my-6'
             onClick={() => {
                 ChatContxt.setTooglePage(false);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
-                //check conversation
+
+                //check conversation _id
                 fetch(`${process.env.API_LINK}/api/conversations`, {
                     method: "POST",
                     headers: {
@@ -40,7 +40,7 @@ const Index = (datas: NewMessages) => {
                         if (response.ok) {
                             response.json()
                                 .then(conversation => {
-                                    console.log(conversation);
+                                    ChatContxt.set_idConversation(conversation._idConv);
                                 })
                         }
                     })
