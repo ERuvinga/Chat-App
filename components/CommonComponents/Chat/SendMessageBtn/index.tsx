@@ -20,13 +20,13 @@ const Index = (datas: dataIcone) => {
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
                     const dataOfMessage = {
                         messages: {
-                            message: ChatContext.messaContent,
+                            message: ChatContext.messageSender,
                             type: 'text',
                             hour: Date.now()
                         }
                     }
-                    if (ChatContext.messaContent !== '') {
-                        console.log(ChatContext.messaContent)
+                    if (ChatContext.messageSender !== '') {
+                        console.log(ChatContext.messageSender)
                         fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
                             headers: {

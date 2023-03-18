@@ -18,8 +18,8 @@ const Message = (datasOfUser: datas) => {
     const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '' }]);
 
     useEffect(() => {
-        setMessagesDatas(ChatContext.messaContent);
-    }, [ChatContext.messaContent])
+        setMessagesDatas(ChatContext.messageContent);
+    }, [ChatContext.messageContent])
 
     return (
         <>
@@ -32,7 +32,7 @@ const Message = (datasOfUser: datas) => {
                         <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center'>
                             {
                                 ChatContext.loadingMessages ? <LoadingComponent /> :
-                                    ((ChatContext.messaContent.length === 0) ?
+                                    ((ChatContext.messageContent.length === 0) ?
                                         <div className='flex flex-col justify-center items-center space-y-2'>
                                             <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
                                             <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
@@ -55,7 +55,7 @@ const Message = (datasOfUser: datas) => {
                             <input name='message' type='text' className='InputMessage'
                                 placeholder="Write something ..."
                                 onChange={(event) => {
-                                    ChatContext.setMessageContent(event.target.value);
+                                    ChatContext.setMessageSender(event.target.value);
                                 }} />
                             <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? datasOfUser.OtherUser._id : null} />
                         </div>

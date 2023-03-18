@@ -69,12 +69,12 @@
     padding: 5px 10px;
 
     width: max-content;
-    max-width: 50%;
+    max-width: 40%;
 }
 
 .OwnerUser {
     width: max-content;
-    max-width: 50%;
+    max-width: 40%;
     /*Text*/
     padding: 5px 10px;
     color: #fff;

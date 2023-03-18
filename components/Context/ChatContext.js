@@ -5,7 +5,8 @@ export const contextChat = createContext(null);
 const ChatProviderContext = ({ children }) => {
     //messages
     const [loadingMessages, setLoadingMessage] = useState(true); //state of loading messages in database
-    const [messaContent, setMessageContent] = useState([]); // state content all messages in one conversation
+    const [messageSender, setMessageSender] = useState(''); // state content all messages in one conversation
+    const [messageContent, setMessageContent] = useState([]); // state content all messages in one conversation
     const [_idConversation, set_idConversation] = useState(0); // state save a id of one Conversation
     //page
     const [tooglePage, setTooglePage] = useState(true); // state of pages
@@ -16,12 +17,15 @@ const ChatProviderContext = ({ children }) => {
     return <contextChat.Provider
         value={{
             _idOwnerUser, set_idOwnerUser,
-            tooglePage, setTooglePage,
-            selectedUser, setSelectedUser,
             _idOtherUser, set_idOtherUser,
-            messaContent, setMessageContent,
+            selectedUser, setSelectedUser,
+            tooglePage, setTooglePage,
+
             _idConversation, set_idConversation,
+            messageSender, setMessageSender,
+            messageContent, setMessageContent,
             loadingMessages, setLoadingMessage
+
         }}>{children}</contextChat.Provider>
 };
 
