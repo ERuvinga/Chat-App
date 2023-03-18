@@ -23,10 +23,10 @@ const Index = (User: dataUser) => {
     const [LoadingComp, setLoadingComp] = useState(true);
     ContexChat = useContext(contextChat);
 
-    // Update OwnerUser
-    ContexChat.set_idOwnerUser(User._id)
+    // save OwnerUser _id
 
     useEffect(() => {
+        ContexChat.set_idOwnerUser(User._id)
         if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
                 headers: {
