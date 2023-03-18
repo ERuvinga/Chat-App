@@ -86,9 +86,11 @@
 .otherUser {
     border-radius: 10px 10px 10px 0;
     background-color: #F9F9FC;
+    box-shadow: 0px 0px 3px #E2E3E9;
     color: #8186A0;
     padding: 5px 10px;
 
+    text-align: justify;
     width: max-content;
     max-width: 40%;
 }
@@ -97,6 +99,7 @@
     width: max-content;
     max-width: 40%;
     /*Text*/
+    text-align: justify;
     padding: 5px 10px;
     margin: 0 10px;
     color: #fff;
