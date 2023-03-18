@@ -15,6 +15,12 @@ let ChatContext: any;
 
 const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
+    const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '' }]);
+
+    useEffect(() => {
+        setMessagesDatas(ChatContext.messaContent);
+    }, [ChatContext.messaContent])
+
     return (
         <>
             {
@@ -25,13 +31,18 @@ const Message = (datasOfUser: datas) => {
                         </div>
                         <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center Chat-Body'>
                             {
-                                ((ChatContext.messaContent === null) || (ChatContext.messaContent.length === 0)) ?
+                                (ChatContext.messaContent.length === 0) ?
                                     <div className='flex flex-col justify-center items-center space-y-2'>
                                         <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
                                         <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
                                     </div>
                                     :
-                                    <MessageComponent messageContent="Salut tout le monde" />
+                                    <div>
+                                        {
+                                            messagesDatas.map((value, index) => <MessageComponent messageContent={value.message} SenderId={value.senderId} key={index} />)
+                                        }
+                                    </div>
+
                             }
 
                         </div>
