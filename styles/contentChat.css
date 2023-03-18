@@ -58,10 +58,21 @@
 .containerMessage {
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 20px 0;
 }
 
-.otherUser {}
+.otherUser {
+    border-radius: 6px 6px 6px 0;
+    background-color: #F9F9FC;
+}
 
-.OwnerUser {}
+.OwnerUser {
+    display: inline-block;
+    width: max-content;
+    max-width: 50%;
+
+    color: #fff;
+    background-color: #5843E4;
+    border-radius: 6px 6px 0px 6px;
+}

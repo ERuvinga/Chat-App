@@ -44,7 +44,7 @@ const Index = (datas: NewMessages) => {
                                     ChatContxt.set_idConversation(conversation._idConv);
                                     ChatContxt.setMessageContent(conversation.messages);
                                     ChatContxt.setLoadingMessage(false);
-                                    console.log(ChatContxt.messaContent);
+                                    console.log(conversation);
                                 })
                         }
                     })

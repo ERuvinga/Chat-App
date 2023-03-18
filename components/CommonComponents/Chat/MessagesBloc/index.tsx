@@ -38,7 +38,7 @@ const Message = (datasOfUser: datas) => {
                                             <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
                                         </div>
                                         :
-                                        <div className=' containerMessage flex flex-col space-y-4'>
+                                        <div className='containerMessage flex flex-col space-y-4'>
                                             {
                                                 messagesDatas.map((value, index) => <MessageComponent messageContent={value.message} SenderId={value.senderId} key={index} />)
                                             }
