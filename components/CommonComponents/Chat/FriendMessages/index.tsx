@@ -24,6 +24,7 @@ const Index = (datas: NewMessages) => {
                 ChatContxt.setTooglePage(false);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
+                ChatContxt.setLoadingMessage(true);
 
                 //check conversation _id
                 fetch(`${process.env.API_LINK}/api/conversations`, {
@@ -42,6 +43,7 @@ const Index = (datas: NewMessages) => {
                                 .then(conversation => {
                                     ChatContxt.set_idConversation(conversation._idConv);
                                     ChatContxt.setMessageContent(conversation.messages);
+                                    ChatContxt.setLoadingMessage(false);
                                     console.log(ChatContxt.messaContent);
                                 })
                         }

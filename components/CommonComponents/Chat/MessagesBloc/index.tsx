@@ -1,12 +1,12 @@
+import { useContext, useEffect, useState } from 'react';
 import HeadChat from '../HeadChat'
 import BtnMessages from '../../../CommonComponents/Chat/SendMessageBtn'
 import MessageComponent from '../MessageCompoonents';
-import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
-
-import { useContext, useEffect, useState } from 'react';
+import LoadingComponent from '../LoadinComponent';
 import { contextChat } from '../../../Context/ChatContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
 interface datas {
     OtherUser: any
 }
@@ -29,21 +29,23 @@ const Message = (datasOfUser: datas) => {
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
                             <HeadChat name={datasOfUser.OtherUser.email} picture={datasOfUser.OtherUser.picture} />
                         </div>
-                        <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center Chat-Body'>
+                        <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center'>
                             {
-                                (ChatContext.messaContent.length === 0) ?
-                                    <div className='flex flex-col justify-center items-center space-y-2'>
-                                        <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
-                                        <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
-                                    </div>
-                                    :
-                                    <div>
-                                        {
-                                            messagesDatas.map((value, index) => <MessageComponent messageContent={value.message} SenderId={value.senderId} key={index} />)
-                                        }
-                                    </div>
-
+                                ChatContext.loadingMessages ? <LoadingComponent /> :
+                                    ((ChatContext.messaContent.length === 0) ?
+                                        <div className='flex flex-col justify-center items-center space-y-2'>
+                                            <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
+                                            <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
+                                        </div>
+                                        :
+                                        <div className=' containerMessage flex flex-col space-y-4'>
+                                            {
+                                                messagesDatas.map((value, index) => <MessageComponent messageContent={value.message} SenderId={value.senderId} key={index} />)
+                                            }
+                                        </div>
+                                    )
                             }
+
 
                         </div>
 

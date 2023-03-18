@@ -3,12 +3,26 @@ import { createContext, useState } from "react";
 export const contextChat = createContext(null);
 
 const ChatProviderContext = ({ children }) => {
-    const [messaContent, setMessageContent] = useState([]);
-    const [_idConversation, set_idConversation] = useState(0);
-    const [tooglePage, setTooglePage] = useState(true);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [_idOtherUser, set_idOtherUser] = useState(0);
-    return <contextChat.Provider value={{ tooglePage, setTooglePage, selectedUser, setSelectedUser, _idOtherUser, set_idOtherUser, messaContent, setMessageContent, _idConversation, set_idConversation }}>{children}</contextChat.Provider>
+    //messages
+    const [loadingMessages, setLoadingMessage] = useState(true); //state of loading messages in database
+    const [messaContent, setMessageContent] = useState([]); // state content all messages in one conversation
+    const [_idConversation, set_idConversation] = useState(0); // state save a id of one Conversation
+    //page
+    const [tooglePage, setTooglePage] = useState(true); // state of pages
+    //Users
+    const [_idOwnerUser, set_idOwnerUser] = useState();
+    const [selectedUser, setSelectedUser] = useState(null); //state of user selected for conversation
+    const [_idOtherUser, set_idOtherUser] = useState(0); //save a id of an other user
+    return <contextChat.Provider
+        value={{
+            _idOwnerUser, set_idOwnerUser,
+            tooglePage, setTooglePage,
+            selectedUser, setSelectedUser,
+            _idOtherUser, set_idOtherUser,
+            messaContent, setMessageContent,
+            _idConversation, set_idConversation,
+            loadingMessages, setLoadingMessage
+        }}>{children}</contextChat.Provider>
 };
 
 export default ChatProviderContext;

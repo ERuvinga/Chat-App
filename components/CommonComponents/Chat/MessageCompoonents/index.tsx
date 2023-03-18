@@ -8,7 +8,7 @@ interface contentMessage {
 const MessageComponent = (datas: contentMessage) => {
     return (
         <>
-            <div className="border ">{datas.messageContent}</div>
+            <div className="border p-1 text-[.9em] font-normal">{datas.messageContent}</div>
         </>
     )
 }
