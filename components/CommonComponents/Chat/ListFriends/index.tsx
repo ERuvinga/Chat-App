@@ -38,13 +38,13 @@ const ListFriend = (OwenrUser: OwenUser) => {
     }
 
     return (
-        <span>
+        <div className=" ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
                     <Friends name={value.email} _idUser={value._id} indexUser={index} picture={value.picture} contentMessage="Salut à vous!" checked={false} noReadMessage={2} key={index} />
                 )
             }
-        </span>
+        </div>
     )
 
 };

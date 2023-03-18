@@ -60,10 +60,13 @@ const Index = (User: dataUser) => {
                 (!ContexChat.tooglePage && LoadingComp) ? <Loading /> :
 
                     <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
-                        <section className='w-[97%] list-users sm:w-[25%] h-screen space-y-5'>
-                            <div className='space-y-5'>
-                                <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
-                                <input name='searchUser' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
+                        <section className='w-[97%] list-users sm:w-[25%] h-screen'>
+                            <div className='flex flex-col  justify-center'>
+                                <div className='min-h-[10vh] relative '>
+                                    <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
+                                    <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
+                                </div>
+                                <span className='Line mt-4'></span>
                                 <ListFriend email={User.Datas.email} />
                             </div>
                         </section>

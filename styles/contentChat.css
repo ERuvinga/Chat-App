@@ -13,10 +13,6 @@
     border: #979797 solid 1px;
 }
 
-.NowUserchat {
-    font-weight: bolder;
-}
-
 
 .Chat-Footer {
     height: 12vh;
@@ -54,6 +50,37 @@
     border-radius: 50%;
 }
 
+/* scrolling list Friends */
+
+.ListFriendContainer {
+    overflow-y: auto;
+    max-width: 98%;
+    min-height: 50vh;
+    max-height: 70vh;
+}
+
+.ListFriendContainer::-webkit-scrollbar {
+    width: 4px;
+    background-color: #F9F9FC;
+}
+
+.ListFriendContainer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #E2E3E9;
+}
+
+.ListFriendContainer::-webkit-scrollbar-button {
+    height: 5px;
+    border-radius: 10px;
+    background-color: #8186A0;
+}
+
+.Line {
+    width: 98%;
+    margin: auto;
+    border-top: #E2E3E9 solid 1px;
+}
+
 /*Designed any messages */
 .containerMessage {
     scrollbar-width: thin;
@@ -63,10 +90,7 @@
     padding: 10px 0px;
 }
 
-
-
 .containerMessage::-webkit-scrollbar {
-    display: inline-block;
     width: 4px;
     background-color: #fff;
     border-radius: 10px;
@@ -80,7 +104,7 @@
 .containerMessage::-webkit-scrollbar-button {
     height: 5px;
     border-radius: 10px;
-    background-color: #E2E3E9;
+    background-color: #8186A0;
 }
 
 .otherUser {
