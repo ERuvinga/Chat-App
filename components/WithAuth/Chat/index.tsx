@@ -20,7 +20,6 @@ let otherUser: { name: '', email: '', picture: '' };
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
     const [chatWithUser, setChatWithUser] = useState(null);
-    const [LoadingComp, setLoadingComp] = useState(true);
     ContexChat = useContext(contextChat);
 
 
@@ -42,7 +41,7 @@ const Index = (User: dataUser) => {
                             .then(dataOtherUser => {
                                 otherUser = dataOtherUser.datas;
                                 setChatWithUser(dataOtherUser.datas);
-                                setLoadingComp(false);
+                                ContexChat.setTooglePage(false);
                             })
                     }
                 })
@@ -58,34 +57,32 @@ const Index = (User: dataUser) => {
         <>
             <Head />
             {
-                (!ContexChat.tooglePage && LoadingComp) ? <Loading /> :
-
-                    <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
-                        <section className='w-[97%] list-users sm:w-[25%] h-screen'>
-                            <div className='flex flex-col  justify-center'>
-                                <div className='min-h-[10vh] relative '>
-                                    <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
-                                    <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
-                                </div>
-                                <span className='Line mt-4'></span>
-                                <ListFriend email={User.Datas.email} />
+                <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
+                    <section className='w-[97%] list-users sm:w-[25%] h-screen'>
+                        <div className='flex flex-col  justify-center'>
+                            <div className='min-h-[10vh] relative '>
+                                <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
+                                <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
                             </div>
-                        </section>
-                        <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
-                            <Message OtherUser={chatWithUser} />
-                        </section>
+                            <span className='Line mt-4'></span>
+                            <ListFriend email={User.Datas.email} />
+                        </div>
+                    </section>
+                    <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
+                        <Message OtherUser={chatWithUser} />
+                    </section>
 
-                        <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
-                            <section className='w-[100%]' >
-                                {
-                                    ContexChat.tooglePage ?
-                                        <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
-                                        :
-                                        <DesciptionFriend me={ContexChat.tooglePage} name={otherUser.name} function={otherUser.email} picture={otherUser.picture} />
-                                }
-                            </section>
-                        </aside>
-                    </div>
+                    <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
+                        <section className='w-[100%]' >
+                            {
+                                ContexChat.tooglePage ?
+                                    <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
+                                    :
+                                    <DesciptionFriend me={ContexChat.tooglePage} name={otherUser.name} function={otherUser.email} picture={otherUser.picture} />
+                            }
+                        </section>
+                    </aside>
+                </div>
             }
         </>
     );
