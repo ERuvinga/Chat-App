@@ -10,7 +10,8 @@ import Loading from '../../CommonComponents/Loading';
 
 
 interface dataUser {
-    Datas: any
+    Datas: any,
+    _id: String
 }
 
 let ContexChat: any;
@@ -21,6 +22,9 @@ const Index = (User: dataUser) => {
     const [chatWithUser, setChatWithUser] = useState(null);
     const [LoadingComp, setLoadingComp] = useState(true);
     ContexChat = useContext(contextChat);
+
+    // Update OwnerUser
+    ContexChat.set_idOwnerUser(User._id)
 
     useEffect(() => {
         if (ContexChat._idOtherUser !== 0) {
