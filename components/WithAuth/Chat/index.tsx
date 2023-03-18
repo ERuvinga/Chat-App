@@ -15,7 +15,7 @@ interface dataUser {
 }
 
 let ContexChat: any;
-let otherUser: any;
+let otherUser: { name: '', email: '', picture: '' };
 
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);

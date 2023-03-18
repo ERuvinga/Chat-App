@@ -54,6 +54,34 @@
     color: #8186A0;
 }
 
+.viewProfilButon {
+    padding: 5px 10px;
+    background-color: #5843E4;
+    transition: all .3s ease-in-out;
+    color: #fff;
+
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px #E2E3E9;
+}
+
+.viewProfilButon:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.OtherBtns {
+    padding: 5px 10px;
+    box-shadow: 0px 0px 3px #E2E3E9;
+    border-radius: 3px;
+    transition: all .3s ease-in-out;
+}
+
+.OtherBtns:hover {
+    background-color: #5843E4;
+    color: #fff;
+    cursor: pointer;
+}
+
 
 
 /*News Messages*/
@@ -180,13 +208,4 @@
     height: 80px;
     width: 1px;
     background-color: #E2E3E9;
-}
-
-.ViewFriends,
-.addFavorite {
-    font-size: 1.1em;
-    margin-left: 10%;
-    margin-right: 6px;
-
-    color: #979797;
 }
