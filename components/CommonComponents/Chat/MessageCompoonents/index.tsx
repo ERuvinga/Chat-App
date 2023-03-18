@@ -9,9 +9,8 @@ let ChatContext: any;
 
 const MessageComponent = (datas: contentMessage) => {
     ChatContext = useContext(contextChat);
-    console.log(`${ChatContext._idOwnerUser}, ${datas.SenderId}`);
     return (
-        <span className={(ChatContext._idOwnerUser === datas.SenderId) ? " OwnerUser p-1 text-[.74em] font-normal" : "border otherUser p-1 text-[.74em] font-normal"}>{datas.messageContent}</span>
+        <span className={(ChatContext._idOwnerUser === datas.SenderId) ? " OwnerUser self-end text-[.74em] font-normal" : " otherUser text-[.74em] font-normal"}>{datas.messageContent}</span>
     )
 }
 
