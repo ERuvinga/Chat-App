@@ -32,7 +32,7 @@ const Message = (datasOfUser: datas) => {
                         <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center'>
                             {
                                 ChatContext.loadingMessages ? <LoadingComponent /> :
-                                    ((ChatContext.messageContent.length === 0) ?
+                                    ((ChatContext.messageContent.length <= 0) ?
                                         <div className='flex flex-col justify-center items-center space-y-2'>
                                             <p className='text-[#8186A0] text-2xl font-bold'>No message, Write SomeThing... </p>
                                             <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />

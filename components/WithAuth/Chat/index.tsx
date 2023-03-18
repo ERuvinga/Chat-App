@@ -23,10 +23,11 @@ const Index = (User: dataUser) => {
     const [LoadingComp, setLoadingComp] = useState(true);
     ContexChat = useContext(contextChat);
 
-    // save OwnerUser _id
 
     useEffect(() => {
+        // saving OwnerUser _id
         ContexChat.set_idOwnerUser(User._id)
+
         if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
                 headers: {
@@ -39,14 +40,14 @@ const Index = (User: dataUser) => {
                     if (dataUser.ok) {
                         dataUser.json()
                             .then(dataOtherUser => {
-                                setLoadingComp(false);
                                 otherUser = dataOtherUser.datas;
-                                setChatWithUser(dataOtherUser.datas)
+                                setChatWithUser(dataOtherUser.datas);
+                                setLoadingComp(false);
                             })
                     }
                 })
                 .catch(error => {
-                    console.error(error)
+                    console.error(error);
                 }
                 );
         }

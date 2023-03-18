@@ -22,8 +22,8 @@ const index = (datas: friendDesciption) => {
                 </p>
                 {datas.me ?
                     <>
-                        <div className=' flex flex-col w-[90%] mx-auto space-y-6 '>
-                            <div className='flex justify-center items-center space-x-2'>
+                        <div className='flex flex-col items-center w-[90%] mx-auto space-y-6 '>
+                            <div className='flex  justify-center items-center space-x-2'>
                                 <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
                                 <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
                             </div>
