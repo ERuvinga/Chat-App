@@ -24,6 +24,7 @@ const Index = (datas: NewMessages) => {
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
                 ChatContxt.setLoadingMessage(true);
+                ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment
 
                 //check conversation _id
                 fetch(`${process.env.API_LINK}/api/conversations`, {

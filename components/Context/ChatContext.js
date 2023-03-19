@@ -10,12 +10,14 @@ const ChatProviderContext = ({ children }) => {
     const [_idConversation, set_idConversation] = useState(0); // state save a id of one Conversation
     //page
     const [tooglePage, setTooglePage] = useState(true); // state of pages
+    const [InputMessage, setInputMessage] = useState(null); // state content a texteare Element
     //Users
     const [_idOwnerUser, set_idOwnerUser] = useState();
     const [selectedUser, setSelectedUser] = useState(null); //state of user selected for conversation
     const [_idOtherUser, set_idOtherUser] = useState(0); //save a id of an other user
     return <contextChat.Provider
         value={{
+            InputMessage, setInputMessage,
             _idOwnerUser, set_idOwnerUser,
             _idOtherUser, set_idOtherUser,
             selectedUser, setSelectedUser,

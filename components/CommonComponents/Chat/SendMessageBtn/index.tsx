@@ -25,23 +25,28 @@ const Index = (datas: dataIcone) => {
                             hour: Date.now()
                         }
                     }
-                    if (ChatContext.messageSender !== '') {
-                        console.log(ChatContext.messageSender)
-                        fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
-                            method: "PUT",
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-type': 'application/json; charset=UTF-8',
-                                "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                            },
 
-                            body: JSON.stringify({ dataOfMessage })
-                        })
-                            .then((response) => {
-                                console.log(response);
-                            })
-                            .catch((error) => console.log(error))
+
+                    if (ChatContext.messageSender !== '') {
+                        ChatContext.InputMessage.value = ''; // delete content in texteare
+                        console.log(ChatContext.messageSender)
+
+                        // fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
+                        //     method: "PUT",
+                        //     headers: {
+                        //         'Accept': 'application/json',
+                        //         'Content-type': 'application/json; charset=UTF-8',
+                        //         "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                        //     },
+
+                        //     body: JSON.stringify({ dataOfMessage })
+                        // })
+                        //     .then((response) => {
+                        //         console.log(response);
+                        //     })
+                        //     .catch((error) => console.log(error))
                     }
+
                 } : () => null} />
         </div>
     );

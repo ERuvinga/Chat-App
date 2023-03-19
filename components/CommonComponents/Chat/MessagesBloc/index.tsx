@@ -52,12 +52,13 @@ const Message = (datasOfUser: datas) => {
                         <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
                             <BtnMessages icone={faSmile} />
                             <BtnMessages icone={faPaperclip} />
-                            <textarea name='message'
+                            <textarea name='message' id='ContentMessage'
                                 rows={1}
                                 className='InputMessage'
                                 placeholder="write something ..."
                                 onChange={(event) => {
                                     ChatContext.setMessageSender(event.target.value);
+                                    ChatContext.setInputMessage(event.target); //save a Input element
                                 }} />
                             <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? datasOfUser.OtherUser._id : null} />
                         </div>
