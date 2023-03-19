@@ -15,7 +15,7 @@ const Index = (datas: dataIcone) => {
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
-            <FontAwesomeIcon className={datas.full ? 'sendMessagebtn' : 'iconeBtns'}
+            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn' : 'p-2 iconeBtns'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
                     const dataOfMessage = {

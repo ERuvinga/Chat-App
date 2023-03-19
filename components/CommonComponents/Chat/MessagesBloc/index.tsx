@@ -49,13 +49,13 @@ const Message = (datasOfUser: datas) => {
 
                         </div>
 
-                        <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-2'>
+                        <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
                             <BtnMessages icone={faSmile} />
                             <BtnMessages icone={faPaperclip} />
                             <textarea name='message'
-                                rows={3}
+                                rows={1}
                                 className='InputMessage'
-                                placeholder="Write something ..."
+                                placeholder="write something ..."
                                 onChange={(event) => {
                                     ChatContext.setMessageSender(event.target.value);
                                 }} />

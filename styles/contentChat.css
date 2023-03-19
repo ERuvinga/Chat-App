@@ -20,6 +20,16 @@
 }
 
 /* design a textArea */
+textarea {
+    border: none;
+    text-align: justify;
+    border-radius: 20px;
+}
+
+textarea:focus {
+    outline: solid 1px #E2E3E9;
+}
+
 textarea::-webkit-scrollbar {
     background-color: #F9F9FC;
     width: 5px;
@@ -38,34 +48,44 @@ textarea::-webkit-scrollbar-button {
 }
 
 .InputMessage {
-    width: 70%;
     resize: none;
+    width: 50%;
     padding: 5px;
     font-size: 0.75em;
-    color: #979797;
-    border-bottom: 1px solid #979797;
+    color: #8186A0;
+    height: fit-content;
 }
 
-
-
+/*boutons*/
 .iconeBtns {
-    color: #979797;
-    font-size: 1.3em;
+    color: #8186A0;
+    font-size: .9em;
     transition: all .5s;
+    box-shadow: 0 0 5px #E2E3E9;
+    border-radius: 50%;
 }
 
 .iconeBtns:hover {
-    color: #5843E4;
+    background-color: #5843E4;
+    color: #F9F9FC;
     transform: scale(1.04);
 }
 
 .sendMessagebtn {
-    color: #fff;
-    background-color: #5843E4;
-    padding: 8px;
-    font-size: 1.2em;
+    color: #8186A0;
+    font-size: .9em;
+    transition: all .6s;
+
+    box-shadow: 0 0 5px #E2E3E9;
     border-radius: 50%;
 }
+
+.sendMessagebtn:hover {
+    color: #F9F9FC;
+    background-color: #5843E4;
+    transform: scale(1.1);
+}
+
 
 /* scrolling list Friends */
 
