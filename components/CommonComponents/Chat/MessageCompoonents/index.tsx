@@ -10,7 +10,7 @@ let ChatContext: any;
 const MessageComponent = (datas: contentMessage) => {
     ChatContext = useContext(contextChat);
     return (
-        <span className={(ChatContext._idOwnerUser === datas.SenderId) ? " OwnerUser self-end text-[.74em] font-normal" : " otherUser text-[.74em] font-normal"}>{datas.messageContent}</span>
+        <span className={(ChatContext._idOwnerUser === datas.SenderId) ? " OwnerUser text-[.74em] self-end" : " otherUser text-[.74em]"}>{datas.messageContent}</span>
     )
 }
 

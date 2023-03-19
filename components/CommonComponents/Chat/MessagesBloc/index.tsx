@@ -38,7 +38,7 @@ const Message = (datasOfUser: datas) => {
                                             <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
                                         </div>
                                         :
-                                        <div className=' containerMessage flex flex-col space-y-4'>
+                                        <div className='containerMessage flex flex-col space-y-4'>
                                             {
                                                 messagesDatas.map((value, index) => <MessageComponent messageContent={value.message} SenderId={value.senderId} key={index} />)
                                             }
@@ -52,7 +52,9 @@ const Message = (datasOfUser: datas) => {
                         <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-2'>
                             <BtnMessages icone={faSmile} />
                             <BtnMessages icone={faPaperclip} />
-                            <input name='message' type='text' className='InputMessage'
+                            <textarea name='message'
+                                rows={3}
+                                className='InputMessage'
                                 placeholder="Write something ..."
                                 onChange={(event) => {
                                     ChatContext.setMessageSender(event.target.value);
