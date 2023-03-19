@@ -6,7 +6,6 @@ import UserChat from '../../CommonComponents/Chat/UsersChat'
 import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
 import Message from '../../CommonComponents/Chat/MessagesBloc';
 import ListFriend from '../../CommonComponents/Chat/ListFriends';
-import Loading from '../../CommonComponents/Loading';
 
 
 interface dataUser {
@@ -65,7 +64,7 @@ const Index = (User: dataUser) => {
                                 <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
                             </div>
                             <span className='Line mt-4'></span>
-                            <ListFriend email={User.Datas.email} />
+                            <ListFriend />
                         </div>
                     </section>
                     <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>

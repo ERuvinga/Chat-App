@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import Friends from '../FriendMessages';
 import Loading from "../../Loading";
 
-interface OwenUser {
-    email: String,
-}
-
-const ListFriend = (OwenrUser: OwenUser) => {
+const ListFriend = () => {
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
     const [LoadinPage, setLoadingPage] = useState(true);
 
