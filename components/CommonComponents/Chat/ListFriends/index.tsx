@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import Friends from '../FriendMessages';
 import Loading from "../../Loading";
 
-interface OwenUser {
-    email: String,
-}
-
-const ListFriend = (OwenrUser: OwenUser) => {
+const ListFriend = () => {
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
     const [LoadinPage, setLoadingPage] = useState(true);
 
@@ -38,13 +34,13 @@ const ListFriend = (OwenrUser: OwenUser) => {
     }
 
     return (
-        <span>
+        <div className=" ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
-                    (value.email != OwenrUser.email) ? <Friends name={value.email} _idUser={value._id} indexUser={index} picture={value.picture} contentMessage="Salut à vous!" checked={false} noReadMessage={2} key={index} /> : null
+                    <Friends name={value.email} _idUser={value._id} indexUser={index} picture={value.picture} contentMessage="Salut à vous!" checked={false} noReadMessage={2} key={index} />
                 )
             }
-        </span>
+        </div>
     )
 
 };

@@ -22,33 +22,29 @@ const index = (datas: friendDesciption) => {
                 </p>
                 {datas.me ?
                     <>
-                        <div className=' flex flex-col w-[90%] mx-auto space-y-6 '>
-                            <div className='flex justify-center items-center space-x-2'>
+                        <div className='flex flex-col items-center w-[90%] mx-auto space-y-6 '>
+                            <div className='flex  justify-center items-center space-x-2'>
                                 <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
                                 <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
                             </div>
-                            <div className=''>
-                                <span className=' flex justify-center items-center space-y-2'>
-                                    <FontAwesomeIcon className='ViewFriends' icon={faUserPlus} />
-                                    <span className=' text-center text-[#8186A0] text-[.9em]'>View Friends</span>
-                                </span>
-                                <span className=' flex justify-center items-baseline'>
-                                    <FontAwesomeIcon className='addFavorite' icon={faUserEdit} />
-                                    <span className=' text-center text-[#8186A0] text-[.9em]'>View Uprofile</span>
+                            <div className=' w-[95%] flex justify-around'>
+                                <span className=' viewProfilButon flex justify-center items-center text-[.78em] '>
+                                    <FontAwesomeIcon icon={faUserEdit} />
+                                    <span className=' text-center '>View Uprofile</span>
                                 </span>
                             </div>
                         </div>
                     </>
                     :
-                    <div className=' w-[90%] flex flex-col space-y-3'>
+                    <div className=' w-[90%] flex flex-col items-center space-y-5'>
                         <div className='flex justify-center items-center space-x-2'>
                             <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
                             <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
                         </div>
                         <div className=" chatAndCall flex justify-around items-center">
-                            <span className=' flex flex-col'>
+                            <span className=' text-[.8em] flex flex-col'>
                                 <FontAwesomeIcon className='btn_chat' icon={faMessage} />
-                                <span className=' text-center text-[#8186A0] text-[.8em] mt-1'>Chat</span>
+                                <span className=' text-center text-[#8186A0] mt-1'>Chat</span>
                             </span>
                             <div className='line'>
                             </div>
@@ -57,14 +53,14 @@ const index = (datas: friendDesciption) => {
                                 <span className='text-center text-[#8186A0] text-[.8em] mt-1'>Call</span>
                             </span>
                         </div>
-                        <div className=' w-[90%] mx-auto space-y-2'>
-                            <span className=' flex justify-start items-baseline'>
-                                <FontAwesomeIcon className='ViewFriends' icon={faUserFriends} />
-                                <span className=' text-center text-[#8186A0] text-[.9em]'>View Friends</span>
+                        <div className=' w-[95%] flex justify-around space-x-1 text-[#8186A0]'>
+                            <span className='OtherBtns flex justify-around items-center text-[.78em] '>
+                                <FontAwesomeIcon className='text-' icon={faUserFriends} />
+                                <span className='ml-2 text-center'>View Friends</span>
                             </span>
-                            <span className=' flex justify-start items-baseline'>
-                                <FontAwesomeIcon className='addFavorite' icon={faHeartCirclePlus} />
-                                <span className=' text-center text-[#8186A0] text-[.9em]'>Add to favorite</span>
+                            <span className='OtherBtns flex justify-around items-center text-[.78em] '>
+                                <FontAwesomeIcon className='' icon={faHeartCirclePlus} />
+                                <span className='ml-2 text-center '>Add to favorite</span>
                             </span>
                         </div>
                     </div>

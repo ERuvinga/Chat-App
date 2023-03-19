@@ -18,13 +18,40 @@ let ChatContxt: object | any;
 
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
-
     return (
         <div className='flex flex-row justify-between Container-user items-center my-6'
             onClick={() => {
-                ChatContxt.setTooglePage(false);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
+                ChatContxt.setLoadingMessage(true);
+
+                if (ChatContxt.InputMessage !== null) { // if available
+                    ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment
+                }
+
+                //check conversation _id
+                fetch(`${process.env.API_LINK}/api/conversations`, {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-type': 'application/json;charset=UTF-8',
+                        "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                    },
+
+                    body: JSON.stringify({ _idOtherUser: datas._idUser })
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            response.json()
+                                .then(conversation => {
+                                    ChatContxt.set_idConversation(conversation._idConv);
+                                    ChatContxt.setLoadingMessage(false);
+                                    ChatContxt.setMessageContent(conversation.messages);
+                                    console.log(conversation);
+                                })
+                        }
+                    })
+                    .catch((error) => console.log(error))
             }
             } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between items-center' : 'ContainerMessage flex justify-between items-center'}>
@@ -35,10 +62,16 @@ const Index = (datas: NewMessages) => {
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32 AM</span>
-                    {datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} /> : <span className={(datas.noReadMessage < 10) ? 'numberMessages' : ''}>{(datas.noReadMessage > 9) ? <FontAwesomeIcon className=' text-[.85em] text-[#5843E4]' icon={faPlusCircle} /> : datas.noReadMessage}</span>}
+                    {
+                        datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
+                            :
+                            <span className={(datas.noReadMessage < 10) ? 'numberMessages' : ''}>
+                                {(datas.noReadMessage > 9) ? <FontAwesomeIcon className=' text-[.85em] text-[#5843E4]' icon={faPlusCircle} />
+                                    : datas.noReadMessage}
+                            </span>}
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

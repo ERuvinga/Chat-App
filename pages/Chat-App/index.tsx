@@ -36,14 +36,14 @@ const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
 const IndexWithAuth = () => {
     const [statePage, setStatePage] = useState(true);
-    const [datasOfUser, setDatasOfUser] = useState({});
+    const [datasOfUser, setDatasOfUser] = useState({ userId: '' });
 
     useEffect(() => {
         WithAuth(localStorage.getItem('Token'), setStatePage, setDatasOfUser);
     }, []);
 
     if (!statePage) { // withAuth is a function check if user is login
-        return (<ChatProvider><ChatApp Datas={datasOfUser} /></ChatProvider>)
+        return (<ChatProvider><ChatApp Datas={datasOfUser} _id={datasOfUser.userId} /></ChatProvider>)
     }
     return <Loading />;
 };

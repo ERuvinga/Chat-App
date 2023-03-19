@@ -13,47 +13,157 @@
     border: #979797 solid 1px;
 }
 
-.NowUserchat {
-    font-weight: bolder;
-}
-
-.Chat-Body {
-    height: 76vh;
-}
-
-
 .Chat-Footer {
     height: 12vh;
     border-top: solid 1px #E2E3E9;
 }
 
-.InputMessage {
-    display: block;
-    width: 70%;
-    padding: 5px 10px;
-    font-size: 0.8em;
-    color: #979797;
-    border: 1px solid #979797;
-    border-radius: 18px;
+/* design a textArea */
+textarea {
+    border: none;
+    text-align: justify;
+    border-radius: 20px;
 }
 
+textarea:focus {
+    outline: solid 1px #E2E3E9;
+}
 
+textarea::-webkit-scrollbar {
+    background-color: #F9F9FC;
+    width: 5px;
+    border-radius: 10px;
+}
 
+textarea::-webkit-scrollbar-thumb {
+    background-color: #E2E3E9;
+    border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-button {
+    background-color: #E2E3E9;
+    height: 5px;
+    border-radius: 10px;
+}
+
+.InputMessage {
+    resize: none;
+    width: 50%;
+    padding: 5px 10px;
+    font-size: 0.75em;
+    color: #8186A0;
+    height: fit-content;
+}
+
+/*boutons*/
 .iconeBtns {
-    color: #979797;
-    font-size: 1.3em;
+    color: #8186A0;
+    font-size: .9em;
     transition: all .5s;
+    box-shadow: 0 0 5px #E2E3E9;
+    border-radius: 50%;
 }
 
 .iconeBtns:hover {
-    color: #5843E4;
+    background-color: #5843E4;
+    color: #F9F9FC;
     transform: scale(1.04);
 }
 
 .sendMessagebtn {
+    color: #8186A0;
+    font-size: .9em;
+    transition: all .6s;
+
+    box-shadow: 0 0 5px #E2E3E9;
+    border-radius: 50%;
+}
+
+.sendMessagebtn:hover {
+    color: #F9F9FC;
+    background-color: #5843E4;
+    transform: scale(1.1);
+}
+
+
+/* scrolling list Friends */
+
+.ListFriendContainer {
+    overflow-y: auto;
+    max-width: 98%;
+    min-height: 50vh;
+    max-height: 75vh;
+}
+
+.ListFriendContainer::-webkit-scrollbar {
+    width: 4px;
+    background-color: #F9F9FC;
+}
+
+.ListFriendContainer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #E2E3E9;
+}
+
+.ListFriendContainer::-webkit-scrollbar-button {
+    height: 5px;
+    border-radius: 10px;
+    background-color: #8186A0;
+}
+
+.Line {
+    width: 98%;
+    margin: auto;
+    border-top: #E2E3E9 solid 1px;
+}
+
+/*Designed any messages */
+.containerMessage {
+    scrollbar-width: thin;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0px;
+}
+
+.containerMessage::-webkit-scrollbar {
+    width: 4px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.containerMessage::-webkit-scrollbar-thumb {
+    background-color: #E2E3E9;
+    border-radius: 10px;
+}
+
+.containerMessage::-webkit-scrollbar-button {
+    height: 5px;
+    border-radius: 10px;
+    background-color: #8186A0;
+}
+
+.otherUser {
+    border-radius: 10px 10px 10px 0;
+    background-color: #F9F9FC;
+    box-shadow: 0px 0px 3px #E2E3E9;
+    color: #8186A0;
+    padding: 5px 10px;
+
+    text-align: justify;
+    width: max-content;
+    max-width: 40%;
+}
+
+.OwnerUser {
+    width: max-content;
+    max-width: 40%;
+    /*Text*/
+    text-align: justify;
+    padding: 5px 10px;
     color: #fff;
     background-color: #5843E4;
-    padding: 8px;
-    font-size: 1.2em;
-    border-radius: 50%;
+    border-radius: 10px 10px 0px 10px;
+    margin: 0 10px;
 }

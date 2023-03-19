@@ -15,11 +15,38 @@ const Index = (datas: dataIcone) => {
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
-            <FontAwesomeIcon className={datas.full ? 'sendMessagebtn' : 'iconeBtns'}
+            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn' : 'p-2 iconeBtns'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-                    console.log(ChatContext.messaContent);
-                    console.log(datas._idOtherUser);
+                    const dataOfMessage = {
+                        messages: {
+                            message: ChatContext.messageSender,
+                            type: 'text',
+                            hour: Date.now()
+                        }
+                    }
+
+
+                    if (ChatContext.messageSender !== '') {
+                        ChatContext.InputMessage.value = ''; // delete content in texteare
+                        console.log(ChatContext.messageSender)
+
+                        fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
+                            method: "PUT",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-type': 'application/json; charset=UTF-8',
+                                "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                            },
+
+                            body: JSON.stringify({ dataOfMessage })
+                        })
+                            .then((response) => {
+                                console.log(response);
+                            })
+                            .catch((error) => console.log(error))
+                    }
+
                 } : () => null} />
         </div>
     );

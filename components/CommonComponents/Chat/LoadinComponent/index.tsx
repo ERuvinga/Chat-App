@@ -1,7 +1,7 @@
 import React from "react";
 
-const index = () => {
+const loadingComponent = () => {
     return <div className=" loadingComponent "></div>
 }
 
-export default index
+export default loadingComponent
