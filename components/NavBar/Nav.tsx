@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHome, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
-const DataLinks =[
+const DataLinks = [
     {
         content: 'Home',
         picture: faHome,
-        link : '/'
+        link: '/'
     },
 
     {
@@ -20,19 +20,19 @@ const DataLinks =[
 const Nav = () => {
     return (
         <nav className='border-b container mx-auto flex flex-row px-10 py-2 mt-4 items-center justify-between'>
-            <img alt='logo' src='/favicon.png' className='logo '/> 
+            <img alt='logo' src='/favicon.png' className='logo' />
             <div className='iconeNavBar'>
-                {DataLinks.map((datas, index)=> 
-                    <Link 
-                        href={datas.link}  
+                {DataLinks.map((datas, index) =>
+                    <Link
+                        href={datas.link}
                         key={index}>
-                        {      
-                            <FontAwesomeIcon className='icones' icon={datas.picture}/>
-                         }
+                        {
+                            <FontAwesomeIcon className='icones text-[#5843E4]' icon={datas.picture} />
+                        }
                     </Link>)}
-            </div> 
+            </div>
         </nav>
-            );
+    );
 };
 
 export default Nav;
