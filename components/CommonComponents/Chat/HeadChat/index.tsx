@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { faBell, faClose, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { contextChat } from '../../../Context/ChatContext';
 
 interface UserDatas {
     picture: string,
     name: string,
-
 }
-const index = (datas: UserDatas) => {
+
+let ChatContext: any;
+const Index = (datas: UserDatas) => {
+    ChatContext = useContext(contextChat);
+
     return (
         < div className=' w-[100%] flex items-center justify-between'>
             <div className=' ml-2 flex justify-start items-center py-2'>
@@ -15,7 +19,10 @@ const index = (datas: UserDatas) => {
                 <span className='font-bold text-2 text-[#5843E4]'>{datas.name}</span>
             </div>
             <div className='flex mr-2 text-[#8186A0] text-[1em]  space-x-4'>
-                <FontAwesomeIcon icon={faClose} />
+                <FontAwesomeIcon icon={faClose} onClick={() => {
+                    // ChatContext.setSelectedUser(null);
+                    ChatContext.setTooglePage(true);
+                }} />
                 <FontAwesomeIcon icon={faHeart} />
                 <FontAwesomeIcon icon={faBell} />
             </div>
@@ -23,4 +30,4 @@ const index = (datas: UserDatas) => {
     );
 };
 
-export default index;
+export default Index;
