@@ -55,11 +55,11 @@ const index = (datas: friendDesciption) => {
                         </div>
                         <div className=' w-[95%] flex justify-around space-x-1 text-[#8186A0]'>
                             <span className='OtherBtns flex justify-around items-center text-[.78em] '>
-                                <FontAwesomeIcon className='text-' icon={faUserFriends} />
+                                <FontAwesomeIcon icon={faUserFriends} />
                                 <span className='ml-2 text-center'>View Friends</span>
                             </span>
                             <span className='OtherBtns flex justify-around items-center text-[.78em] '>
-                                <FontAwesomeIcon className='' icon={faHeartCirclePlus} />
+                                <FontAwesomeIcon icon={faHeartCirclePlus} />
                                 <span className='ml-2 text-center '>Add to favorite</span>
                             </span>
                         </div>
