@@ -19,12 +19,13 @@ const Index = (datas: UserDatas) => {
                 <span className='font-bold text-2 text-[#5843E4]'>{datas.name}</span>
             </div>
             <div className='flex mr-2 text-[#8186A0] text-[1em]  space-x-4'>
-                <FontAwesomeIcon icon={faClose} onClick={() => {
-                    // ChatContext.setSelectedUser(null);
+                <FontAwesomeIcon className="ChatHeadBtns" icon={faClose} onClick={() => {
+                    ChatContext.setSelectedUser(null);
+                    ChatContext.set_idOtherUser(0);
                     ChatContext.setTooglePage(true);
                 }} />
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faBell} />
+                <FontAwesomeIcon className='ChatHeadBtns' icon={faHeart} />
+                <FontAwesomeIcon className='ChatHeadBtns' icon={faBell} />
             </div>
         </div>
     );

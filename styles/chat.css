@@ -9,14 +9,6 @@
     margin: auto;
 }
 
-
-
-.Editprofil {
-    margin: auto;
-    color: #8186A0;
-}
-
-
 .imgUser {
     display: block;
     width: 60px;
@@ -82,6 +74,15 @@
     cursor: pointer;
 }
 
+/*Bouton on HeadChat*/
+.ChatHeadBtns {
+    transition: all .4s ease-in-out;
+}
+
+.ChatHeadBtns:hover {
+    transform: scale(1.05);
+    color: #5843E4;
+}
 
 
 /*News Messages*/
