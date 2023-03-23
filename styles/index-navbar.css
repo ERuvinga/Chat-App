@@ -40,7 +40,7 @@
 
 .icones {
     transition: opacity 0.5s, transform 0.5s;
-    opacity: .6;
+    opacity: 1;
 }
 
 .icones:hover {

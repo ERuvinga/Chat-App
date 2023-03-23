@@ -5,41 +5,46 @@
     margin-bottom: 15px;
 }
 
+
 .LabelField {
-    color: #2F2E41;
-    font-size: 0.85em;
+    color: #8186A0;
+    font-size: 0.75em;
     margin: 5px 10px;
 }
 
 .InputField {
     padding: 8px 5px;
-    font-size: 0.8em;
-    color: #2F2E41;
+    font-size: 0.7em;
+    color: #8186A0;
     width: 100%;
-    border: .5px solid #979797;
+    border: .5px solid #8186A0;
     border-radius: 10px;
 }
 
+.InputField:focus {
+    outline: none;
+}
 
 
 .ButtonSubmit {
     display: block;
     font-size: 1em;
     font-weight: bold;
-    color: #F9F9FC;
-    background-color: #2F2E41;
+    color: #E2E3E9;
+    background-color: #8186A0;
     opacity: .7;
     padding: 8px 0;
 
     margin: auto;
     margin-top: 25px;
 
-    border: 1px solid #979797;
     border-radius: 6px;
     transition: all 0.5s;
 }
 
 .falseDisble {
+    color: #F9F9FC;
+    background-color: #5843E4;
     opacity: 1;
 }
 

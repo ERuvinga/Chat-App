@@ -26,9 +26,9 @@ const Register = () => {
                     <InputText type="password" name="confirm passWord" fieldContent="confirm-passWord" idField={2} addLabel={true} page="Register" />
                     <Button type='button' name='btn' fieldContent='Register' />
 
-                    <p className=" text-center mt-12 mx-auto w-[90%]">
-                        Have you an account?{"      "}
-                        <span className="hover:opacity-[0.8] font-bold text-underline">
+                    <p className=" flex justify-center items-center space-x-3 text-center my-10 mx-auto w-[99%] text-[.8em] text-[#8186A0]">
+                        <span>Have you an account?</span>
+                        <span className="hover:opacity-[0.8] font-bold text-underline text-[#5843E4]">
                             <Link href={"/Login"}>Please Login</Link>
                         </span>
                     </p>

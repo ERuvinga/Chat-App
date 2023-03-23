@@ -10,10 +10,10 @@ export default function Home() {
       <div className='containerG'>
         <Nav />
         <section className="flex flex-col space-y-5 md:space-y-10 justify-center ">
-          <h1 className="max-w-full mx-1 text-2xl font-bold text-center md:text-5xl md:my-10 ">
+          <h1 className="max-w-full mx-1 text-2xl font-bold text-center md:text-5xl md:my-10 text-[#5843E4]">
             Welcome to Chat-App
           </h1>
-          <p className="max-w-full mx-1 text-center color-text ">
+          <p className="max-w-full mx-1 text-center color-text text-[#8186A0]">
             Please login to your account or create new account to continue
           </p>
           <div className="flex flex-col space-y-3 md:space-y-6 items-center">

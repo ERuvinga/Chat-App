@@ -19,14 +19,23 @@
 }
 
 /* design a textArea */
+.InputMessage {
+    resize: none;
+    width: 50%;
+    padding: 7px 10px;
+    font-size: 0.75em;
+    color: #8186A0;
+}
+
 textarea {
-    border: none;
+    border-bottom: solid 1px #E2E3E9;
     text-align: justify;
-    border-radius: 20px;
 }
 
 textarea:focus {
+    border: none;
     outline: solid 1px #E2E3E9;
+    border-radius: 20px;
 }
 
 textarea::-webkit-scrollbar {
@@ -46,14 +55,6 @@ textarea::-webkit-scrollbar-button {
     border-radius: 10px;
 }
 
-.InputMessage {
-    resize: none;
-    width: 50%;
-    padding: 5px 10px;
-    font-size: 0.75em;
-    color: #8186A0;
-    height: fit-content;
-}
 
 /*boutons*/
 .iconeBtns {

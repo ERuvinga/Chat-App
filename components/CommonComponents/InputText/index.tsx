@@ -216,6 +216,18 @@ export const sendRegisterData = (e: any) => {
                                 console.info(datas.message);
                             })
                     }
+
+                    else {
+                        dataOfContext.setLaoding(false); // if error, rerender a login form
+                        user.json()
+                            .then(messageError => {
+                                ErrorData.setData({
+                                    stateError: true,
+                                    MessageError: messageError.message
+                                })
+                            })
+
+                    }
                 })
 
                 .catch(error => {
