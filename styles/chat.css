@@ -82,6 +82,7 @@
 .ChatHeadBtns:hover {
     transform: scale(1.23);
     color: #5843E4;
+    cursor: pointer;
 }
 
 

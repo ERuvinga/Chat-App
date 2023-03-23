@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faUserFriends, faHeartCirclePlus, faPhone, faCircle, faUserEdit, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMessage, faUserFriends, faHeartCirclePlus, faPhone, faCircle, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 interface friendDesciption {
