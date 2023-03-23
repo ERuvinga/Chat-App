@@ -20,8 +20,8 @@ const Index = (datas: UserDatas) => {
             </div>
             <div className='flex mr-2 text-[#8186A0] text-[1em]  space-x-4'>
                 <FontAwesomeIcon className="ChatHeadBtns" icon={faClose} onClick={() => {
-                    ChatContext.setSelectedUser(null);
                     ChatContext.set_idOtherUser(0);
+                    ChatContext.setSelectedUser(null);
                     ChatContext.setTooglePage(true);
                 }} />
                 <FontAwesomeIcon className='ChatHeadBtns' icon={faHeart} />
