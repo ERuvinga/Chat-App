@@ -12,8 +12,8 @@ const MessageComponent = (datas: contentMessage) => {
 
     return (
         (ChatContext._idOwnerUser === datas.SenderId) ?
-            <div className="border flex items-end space-x-1">
-                <img src="profile.png" alt="imageUser" className="imageMessage " />
+            <div className="flex items-end space-x-1">
+                <img src="profile.png" alt="imageUser" className="imageMessage" />
                 <span className='otherUser text-[.74em]'>{datas.messageContent}</span>
             </div>
             :
