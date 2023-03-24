@@ -159,6 +159,10 @@
     border-radius: 50%;
 }
 
+.imageMessage {
+    width: 15px;
+    height: 15px;
+}
 
 /*Friend descriptions*/
 
