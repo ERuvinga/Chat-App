@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { contextChat } from "../../../Context/ChatContext";
 
 interface contentMessage {
@@ -9,17 +9,18 @@ let ChatContext: any;
 
 const MessageComponent = (datas: contentMessage) => {
     ChatContext = useContext(contextChat);
+    const [toogleUser, setToogleUser] = useState(true);
 
     return (
         (ChatContext._idOwnerUser !== datas.SenderId) ?
-            <div className="border BlocMessage flex items-end space-x-1">
-                <img src="profile.png" alt="imageUser" className="imageMessage" />
+            <div className="BlocMessage flex items-end space-x-1">
+                <img src="profile.png" alt="imageUser" className={toogleUser ? "imageMessage" : "hidden"} />
                 <span className='otherUser text-[.74em]'>{datas.messageContent}</span>
             </div>
             :
-            <div className="border BlocMessage mr-2 flex items-end space-x-1 self-end ">
+            <div className="BlocMessage mr-2 flex items-end space-x-1 self-end ">
                 <span className=" OwnerUser text-[.74em] ">{datas.messageContent}</span>
-                <img src="profile.png" alt="imageUser" className="imageMessage" />
+                <img src="profile.png" alt="imageUser" className={toogleUser ? "imageMessage" : "hidden"} />
             </div>
     )
 }
