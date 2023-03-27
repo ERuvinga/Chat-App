@@ -21,9 +21,9 @@ const Index = (datas: NewMessages) => {
     return (
         <div className='flex flex-row justify-between Container-user items-center my-6'
             onClick={() => {
+                ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
-                ChatContxt.setLoadingMessage(true);
 
                 if (ChatContxt.InputMessage !== null) { // if available
                     ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment

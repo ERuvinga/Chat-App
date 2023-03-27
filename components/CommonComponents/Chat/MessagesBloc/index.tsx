@@ -15,7 +15,8 @@ let ChatContext: any;
 
 const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
-    const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '' }]);
+    const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '', LastMsgInConver: false }]);
+    let lastSender = [''];
 
     useEffect(() => {
         setMessagesDatas(ChatContext.messageContent);
@@ -40,7 +41,9 @@ const Message = (datasOfUser: datas) => {
                                         :
                                         <div className='containerMessage flex flex-col space-y-4'>
                                             {
-                                                messagesDatas.map((value, index) => <MessageComponent messageContent={value.message} SenderId={value.senderId} key={index} />)
+                                                messagesDatas.map((value, index) => (
+                                                    <MessageComponent messageContent={value.message} SenderId={value.senderId} lastMesgInConver={value.LastMsgInConver} key={index} />)
+                                                )
                                             }
                                         </div>
                                     )
