@@ -31,7 +31,7 @@ const Index = (datas: dataIcone) => {
                         ChatContext.InputMessage.value = ''; // delete content in texteare
                         console.log(ChatContext.messageSender);
 
-                        fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
+                        fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
                             headers: {
                                 'Accept': 'application/json',
@@ -39,7 +39,7 @@ const Index = (datas: dataIcone) => {
                                 "Autorization": `Bearer ${localStorage.getItem('Token')}`
                             },
 
-                            body: JSON.stringify({ dataOfMessage: dataOfMessage, LasMsfInConver: false, length: ChatContext.messageContent.length })
+                            body: JSON.stringify({ dataOfMessage: dataOfMessage, LasUserInConver: false, length: ChatContext.messageContent.length })
                         })
                             .then((response) => {
                                 console.log(response);
