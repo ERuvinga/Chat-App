@@ -39,7 +39,7 @@ const Index = (datas: dataIcone) => {
                                 "Autorization": `Bearer ${localStorage.getItem('Token')}`
                             },
 
-                            body: JSON.stringify({ dataOfMessage: dataOfMessage, LasMsfInConver: false })
+                            body: JSON.stringify({ dataOfMessage: dataOfMessage, LasMsfInConver: false, length: ChatContext.messageContent.length })
                         })
                             .then((response) => {
                                 console.log(response);
