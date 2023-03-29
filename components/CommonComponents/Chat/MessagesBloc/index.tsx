@@ -39,7 +39,7 @@ const Message = (datasOfUser: datas) => {
                                             <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
                                         </div>
                                         :
-                                        <div className='containerMessage flex flex-col space-y-4'>
+                                        <div className='containerMessage flex flex-col space-y-[5px]'>
                                             {
                                                 messagesDatas.map((value, index) => (
                                                     <MessageComponent messageContent={value.message} SenderId={value.senderId} lastMesgInConver={value.LastMsgInConver} key={index} />)
