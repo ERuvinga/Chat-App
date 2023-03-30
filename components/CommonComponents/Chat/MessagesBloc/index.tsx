@@ -16,7 +16,6 @@ let ChatContext: any;
 const Message = (datasOfUser: datas) => {
     ChatContext = useContext(contextChat);
     const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '', LastMsgInConver: false }]);
-    let lastSender = [''];
 
     useEffect(() => {
         setMessagesDatas(ChatContext.messageContent);

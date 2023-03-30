@@ -13,7 +13,6 @@ let UserContext: any;
 const MessageComponent = (datas: contentMessage) => {
     ChatContext = useContext(contextChat);
     UserContext = useContext(UsersChatContext);
-    console.log()
 
     return (
         (ChatContext._idOwnerUser !== datas.SenderId) ?
