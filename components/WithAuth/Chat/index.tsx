@@ -71,7 +71,7 @@ const Index = (User: dataUser) => {
                         </div>
                     </section>
                     <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
-                        <Message OtherUser={''} />
+                        <Message />
                     </section>
 
                     <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>

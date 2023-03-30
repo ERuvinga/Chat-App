@@ -4,17 +4,17 @@ import BtnMessages from '../../../CommonComponents/Chat/SendMessageBtn'
 import MessageComponent from '../MessageCompoonents';
 import LoadingComponent from '../LoadinComponent';
 import { contextChat } from '../../../Context/ChatContext';
+import { UsersChatContext } from '../../../Context/UserContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
-interface datas {
-    OtherUser: any
-}
 
 let ChatContext: any;
+let UserContext: any;
 
-const Message = (datasOfUser: datas) => {
+const Message = () => {
     ChatContext = useContext(contextChat);
+    UserContext = useContext(UsersChatContext);
     const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '', LastMsgInConver: false }]);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Message = (datasOfUser: datas) => {
                 !ChatContext.tooglePage ?
                     <>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                            <HeadChat name={datasOfUser.OtherUser.email} picture={datasOfUser.OtherUser.picture} />
+                            <HeadChat name={UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
                         </div>
                         <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center'>
                             {
@@ -62,7 +62,7 @@ const Message = (datasOfUser: datas) => {
                                     ChatContext.setMessageSender(event.target.value);
                                     ChatContext.setInputMessage(event.target); //save a Input element
                                 }} />
-                            <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? datasOfUser.OtherUser._id : null} />
+                            <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
                         </div>
                     </>
                     :
