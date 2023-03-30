@@ -10,6 +10,7 @@ let ChatContext: any;
 
 const MessageComponent = (datas: contentMessage) => {
     ChatContext = useContext(contextChat);
+    console.log(ChatContext);
     return (
         (ChatContext._idOwnerUser !== datas.SenderId) ?
             <div className="border BlocMessage flex items-end space-x-1">

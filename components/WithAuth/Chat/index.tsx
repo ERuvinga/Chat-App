@@ -20,7 +20,7 @@ const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
     const [chatWithUser, setChatWithUser] = useState(null);
     ContexChat = useContext(contextChat);
-
+    console.log(user)
 
     useEffect(() => {
         // saving OwnerUser _id
