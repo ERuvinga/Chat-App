@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { contextChat } from '../../Context/ChatContext';
+import { UsersChatContext } from '../../Context/UserContext'
 
 import Head from '../../../components/CommonComponents/Head';
 import UserChat from '../../CommonComponents/Chat/UsersChat'
@@ -14,17 +15,21 @@ interface dataUser {
 }
 
 let ContexChat: any;
+let ContextUser: any;
 let otherUser: { name: '', email: '', picture: '' };
 
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
     const [chatWithUser, setChatWithUser] = useState(null);
     ContexChat = useContext(contextChat);
-    console.log(user)
+    ContextUser = useContext(UsersChatContext);
+
 
     useEffect(() => {
-        // saving OwnerUser _id
-        ContexChat.set_idOwnerUser(User._id)
+        // save Owenr User
+        ContextUser.setOwnerUser(User.Datas);
+        ContexChat.set_idOwnerUser(User._id);
+
 
         if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
@@ -40,6 +45,8 @@ const Index = (User: dataUser) => {
                             .then(dataOtherUser => {
                                 otherUser = dataOtherUser.datas;
                                 setChatWithUser(dataOtherUser.datas);
+
+                                ContextUser.setOtherUser(dataOtherUser.datas)
                                 ContexChat.setTooglePage(false);
                             })
                     }
@@ -49,8 +56,8 @@ const Index = (User: dataUser) => {
                 }
                 );
         }
-    }, [ContexChat.selectedUser]);
 
+    }, [ContexChat.selectedUser]);
 
     return (
         <>
