@@ -16,11 +16,9 @@ interface dataUser {
 
 let ContexChat: any;
 let ContextUser: any;
-let otherUser: { name: '', email: '', picture: '' };
 
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
-    const [chatWithUser, setChatWithUser] = useState(null);
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
 
@@ -43,9 +41,6 @@ const Index = (User: dataUser) => {
                     if (dataUser.ok) {
                         dataUser.json()
                             .then(dataOtherUser => {
-                                otherUser = dataOtherUser.datas;
-                                setChatWithUser(dataOtherUser.datas);
-
                                 ContextUser.setOtherUser(dataOtherUser.datas)
                                 ContexChat.setTooglePage(false);
                             })
@@ -58,6 +53,7 @@ const Index = (User: dataUser) => {
         }
 
     }, [ContexChat.selectedUser]);
+
 
     return (
         <>
@@ -75,7 +71,7 @@ const Index = (User: dataUser) => {
                         </div>
                     </section>
                     <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
-                        <Message OtherUser={chatWithUser} />
+                        <Message OtherUser={''} />
                     </section>
 
                     <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
@@ -84,7 +80,7 @@ const Index = (User: dataUser) => {
                                 ContexChat.tooglePage ?
                                     <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
                                     :
-                                    <DesciptionFriend me={ContexChat.tooglePage} name={otherUser.name} function={otherUser.email} picture={otherUser.picture} />
+                                    <DesciptionFriend me={ContexChat.tooglePage} name={ContextUser.OtherUser.name} function={ContextUser.OtherUser.email} picture={ContextUser.OtherUser.picture} />
                             }
                         </section>
                     </aside>
