@@ -90,6 +90,10 @@ textarea::-webkit-scrollbar-button {
 /* scrolling list Friends */
 
 .ListFriendContainer {
+    scrollbar-width: thin;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
     max-width: 98%;
     min-height: 50vh;

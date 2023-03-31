@@ -3,12 +3,16 @@ import HeadChat from '../HeadChat'
 import BtnMessages from '../../../CommonComponents/Chat/SendMessageBtn'
 import MessageComponent from '../MessageCompoonents';
 import LoadingComponent from '../LoadinComponent';
+
+//import Context of App
 import { contextChat } from '../../../Context/ChatContext';
 import { UsersChatContext } from '../../../Context/UserContext';
 
+//incones
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
 
+//variables for Context
 let ChatContext: any;
 let UserContext: any;
 
@@ -38,7 +42,7 @@ const Message = () => {
                                             <FontAwesomeIcon className='text-[#8186A0] text-4xl' icon={faMessage} />
                                         </div>
                                         :
-                                        <div className='containerMessage flex flex-col space-y-[5px]'>
+                                        <div className=' containerMessage flex flex-col space-y-[5px]'>
                                             {
                                                 messagesDatas.map((value, index) => (
                                                     <MessageComponent messageContent={value.message} SenderId={value.senderId} lastMesgInConver={value.LastMsgInConver} key={index} />)
