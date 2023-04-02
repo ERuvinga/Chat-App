@@ -1,11 +1,27 @@
 // list of users of message,
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Friends from '../FriendMessages';
 import Loading from "../../Loading";
 
+//context
+import { UsersChatContext } from "../../../Context/UserContext";
+let userContext: any;
+const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
+    return 'No Message ...'
+}
 const ListFriend = () => {
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
+
+    userContext = useContext(UsersChatContext);
     const [LoadinPage, setLoadingPage] = useState(true);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
+    const [LastMsg, setLastMsg] = useState([{
+        members: [],
+        messages: {
+            content: '',
+            type: ''
+        },
+        Hours: '',
+    }]);
 
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/user`, {
@@ -20,6 +36,7 @@ const ListFriend = () => {
                     datafetching.json()
                         .then(Users => {
                             setDataUser(Users.users);
+                            setLastMsg(Users.lastMesg);
                             setLoadingPage(false);
                         })
                 }
@@ -37,7 +54,15 @@ const ListFriend = () => {
         <div className=" ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
-                    <Friends name={value.email} _idUser={value._id} indexUser={index} picture={value.picture} contentMessage="Salut à vous!" checked={false} noReadMessage={2} key={index} />
+                    <Friends
+                        key={index}
+                        name={value.email}
+                        _idUser={value._id}
+                        indexUser={index}
+                        picture={value.picture}
+                        checked={false}
+                        contentMessage={getLastMsgConversat(value._id, LastMsg)}
+                        noReadMessage={2} />
                 )
             }
         </div>

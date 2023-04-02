@@ -6,7 +6,7 @@ import { contextChat } from '../../../Context/ChatContext';
 interface NewMessages {
     name: string,
     picture: string,
-    contentMessage: string,
+    contentMessage: any,
     checked: boolean,
     noReadMessage: number,
     //
