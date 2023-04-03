@@ -7,7 +7,7 @@ import Loading from "../../Loading";
 import { UsersChatContext } from "../../../Context/UserContext";
 let userContext: any;
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
-    return 'No Message ...'
+    return 'No Message ... Enter'
 }
 const ListFriend = () => {
 

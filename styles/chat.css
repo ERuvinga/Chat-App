@@ -133,11 +133,11 @@
 
 
 .messages {
-    width: 95%;
-    max-height: 35px;
-    overflow: hidden;
-    font-size: .67em;
+    width: 50%;
+    height: 16px;
+    font-size: .65em;
     color: #8186A0;
+    overflow: hidden;
 }
 
 .Date {
