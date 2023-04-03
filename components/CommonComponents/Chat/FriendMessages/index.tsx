@@ -45,9 +45,9 @@ const Index = (datas: NewMessages) => {
                             response.json()
                                 .then(conversation => {
                                     ChatContxt.set_idConversation(conversation._idConv);
-                                    ChatContxt.setLoadingMessage(false);
                                     ChatContxt.setMessageContent(conversation.messages);
                                     console.log(conversation);
+                                    ChatContxt.setLoadingMessage(false);
                                 })
                         }
                     })
@@ -58,7 +58,7 @@ const Index = (datas: NewMessages) => {
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' imgUserMessage ' alt='user' />
                 <p className='MessageContent flex flex-col justify-center'>
                     <span className='UsersendMessage'>{datas.name}</span>
-                    <span className=' messages'>{datas.contentMessage}</span>
+                    <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32 AM</span>

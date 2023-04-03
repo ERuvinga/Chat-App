@@ -7,9 +7,19 @@ import Loading from "../../Loading";
 import { UsersChatContext } from "../../../Context/UserContext";
 let userContext: any;
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
-    return 'No Message ... Enter'
+    let message = '';
+    let i;
+    for (i = 0; i < tabLastMesg.length; i++) {
+        if ((idUser === tabLastMesg[i].members[0]) || (idUser === tabLastMesg[i].members[1])) {
+            message = tabLastMesg[i].messages.content;
+            break;
+        }
+    }
+
+    return message;
 }
 const ListFriend = () => {
+
 
     userContext = useContext(UsersChatContext);
     const [LoadinPage, setLoadingPage] = useState(true);
