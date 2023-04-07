@@ -6,6 +6,7 @@ import Loading from "../../Loading";
 //context
 import { UsersChatContext } from "../../../Context/UserContext";
 let userContext: any;
+
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
     let i;
@@ -19,7 +20,6 @@ const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     return message;
 }
 const ListFriend = () => {
-
 
     userContext = useContext(UsersChatContext);
     const [LoadinPage, setLoadingPage] = useState(true);
