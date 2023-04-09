@@ -1,11 +1,40 @@
 // list of users of message,
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Friends from '../FriendMessages';
 import Loading from "../../Loading";
 
+//context
+import { UsersChatContext } from "../../../Context/UserContext";
+let userContext: any;
+
+const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
+    let message = '';
+    let i;
+    for (i = 0; i < tabLastMesg.length; i++) {
+        if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
+            if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
+                message = tabLastMesg[i].messages.content; // if conrespond return content message
+                break;
+            }
+        }
+    }
+
+    return message;
+}
 const ListFriend = () => {
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
+
+    userContext = useContext(UsersChatContext);
     const [LoadinPage, setLoadingPage] = useState(true);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
+    const [LastMsg, setLastMsg] = useState([{
+        members: [],
+        messages: {
+            content: '',
+            type: ''
+        },
+        Hours: '',
+        noReadMesgs: 0
+    }]);
 
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/user`, {
@@ -20,6 +49,7 @@ const ListFriend = () => {
                     datafetching.json()
                         .then(Users => {
                             setDataUser(Users.users);
+                            setLastMsg(Users.lastMesg);
                             setLoadingPage(false);
                         })
                 }
@@ -37,7 +67,15 @@ const ListFriend = () => {
         <div className=" ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
-                    <Friends name={value.email} _idUser={value._id} indexUser={index} picture={value.picture} contentMessage="Salut à vous!" checked={false} noReadMessage={2} key={index} />
+                    <Friends
+                        key={index}
+                        name={value.email}
+                        _idUser={value._id}
+                        indexUser={index}
+                        picture={value.picture}
+                        checked={false}
+                        contentMessage={getLastMsgConversat(value._id, LastMsg)}
+                        noReadMessage={LastMsg[index].noReadMesgs} />
                 )
             }
         </div>

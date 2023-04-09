@@ -90,6 +90,10 @@ textarea::-webkit-scrollbar-button {
 /* scrolling list Friends */
 
 .ListFriendContainer {
+    scrollbar-width: thin;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
     max-width: 98%;
     min-height: 50vh;
@@ -145,26 +149,31 @@ textarea::-webkit-scrollbar-button {
     background-color: #8186A0;
 }
 
+.BlocMessage {
+    width: max-content;
+    max-width: 40%;
+}
+
 .otherUser {
-    border-radius: 10px 10px 10px 0;
+    max-width: 90%;
+
+    border-radius: 7px 7px 7px 0;
     background-color: #F9F9FC;
     box-shadow: 0px 0px 3px #E2E3E9;
     color: #8186A0;
     padding: 5px 10px;
 
     text-align: justify;
-    width: max-content;
-    max-width: 40%;
 }
 
 .OwnerUser {
-    width: max-content;
-    max-width: 40%;
+    max-width: 90%;
+
     /*Text*/
     text-align: justify;
     padding: 5px 10px;
     color: #fff;
     background-color: #5843E4;
-    border-radius: 10px 10px 0px 10px;
-    margin: 0 10px;
+    border-radius: 7px 7px 0px 7px;
+    box-shadow: 0px 0px 3px #E2E3E9;
 }

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { contextChat } from '../../../Context/ChatContext';
+import { UsersChatContext } from '../../../Context/UserContext';
 
 interface dataIcone {
     icone: any
@@ -9,9 +10,11 @@ interface dataIcone {
 }
 
 let ChatContext: any;
+let userContext: any;
 
 const Index = (datas: dataIcone) => {
     ChatContext = useContext(contextChat);
+    userContext = useContext(UsersChatContext);
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
@@ -29,9 +32,9 @@ const Index = (datas: dataIcone) => {
 
                     if (ChatContext.messageSender !== '') {
                         ChatContext.InputMessage.value = ''; // delete content in texteare
-                        console.log(ChatContext.messageSender)
+                        console.log(ChatContext.messageSender);
 
-                        fetch(`${process.env.API_LINK}/api/conversations/newConversation/${ChatContext._idConversation}`, { // add new message in database with conversation
+                        fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
                             headers: {
                                 'Accept': 'application/json',
@@ -39,7 +42,7 @@ const Index = (datas: dataIcone) => {
                                 "Autorization": `Bearer ${localStorage.getItem('Token')}`
                             },
 
-                            body: JSON.stringify({ dataOfMessage })
+                            body: JSON.stringify({ dataOfMessage: dataOfMessage, lengthConver: ChatContext.messageContent.length, _idOtherUser: userContext.OtherUser._id })
                         })
                             .then((response) => {
                                 console.log(response);

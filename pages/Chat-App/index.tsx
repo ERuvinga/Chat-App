@@ -3,6 +3,7 @@ import Router from "next/router";
 import ChatApp from '../../components/WithAuth/Chat'
 import Loading from "../../components/CommonComponents/Loading";
 import ChatProvider from '../../components/Context/ChatContext'
+import UserProvider from '../../components/Context/UserContext'
 
 const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
@@ -43,7 +44,12 @@ const IndexWithAuth = () => {
     }, []);
 
     if (!statePage) { // withAuth is a function check if user is login
-        return (<ChatProvider><ChatApp Datas={datasOfUser} _id={datasOfUser.userId} /></ChatProvider>)
+        return (
+            <ChatProvider>
+                <UserProvider>
+                    <ChatApp Datas={datasOfUser} _id={datasOfUser.userId} />
+                </UserProvider>
+            </ChatProvider>)
     }
     return <Loading />;
 };

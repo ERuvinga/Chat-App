@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPlusCircle, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { contextChat } from '../../../Context/ChatContext';
 
 interface NewMessages {
     name: string,
     picture: string,
-    contentMessage: string,
+    contentMessage: any,
     checked: boolean,
     noReadMessage: number,
     //
     _idUser: any
     indexUser: number
+    values?: any
 }
 
 let ChatContxt: object | any;
@@ -21,9 +22,9 @@ const Index = (datas: NewMessages) => {
     return (
         <div className='flex flex-row justify-between Container-user items-center my-6'
             onClick={() => {
+                ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
-                ChatContxt.setLoadingMessage(true);
 
                 if (ChatContxt.InputMessage !== null) { // if available
                     ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment
@@ -45,9 +46,9 @@ const Index = (datas: NewMessages) => {
                             response.json()
                                 .then(conversation => {
                                     ChatContxt.set_idConversation(conversation._idConv);
-                                    ChatContxt.setLoadingMessage(false);
                                     ChatContxt.setMessageContent(conversation.messages);
                                     console.log(conversation);
+                                    ChatContxt.setLoadingMessage(false);
                                 })
                         }
                     })
@@ -58,7 +59,7 @@ const Index = (datas: NewMessages) => {
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' imgUserMessage ' alt='user' />
                 <p className='MessageContent flex flex-col justify-center'>
                     <span className='UsersendMessage'>{datas.name}</span>
-                    <span className=' messages'>{datas.contentMessage}</span>
+                    <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32 AM</span>

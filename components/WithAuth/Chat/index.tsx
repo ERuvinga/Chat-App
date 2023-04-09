@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { contextChat } from '../../Context/ChatContext';
+import { UsersChatContext } from '../../Context/UserContext'
 
 import Head from '../../../components/CommonComponents/Head';
 import UserChat from '../../CommonComponents/Chat/UsersChat'
@@ -14,17 +15,19 @@ interface dataUser {
 }
 
 let ContexChat: any;
-let otherUser: { name: '', email: '', picture: '' };
+let ContextUser: any;
 
 const Index = (User: dataUser) => {
     const [user, setUser] = useState(User.Datas);
-    const [chatWithUser, setChatWithUser] = useState(null);
     ContexChat = useContext(contextChat);
+    ContextUser = useContext(UsersChatContext);
 
 
     useEffect(() => {
-        // saving OwnerUser _id
-        ContexChat.set_idOwnerUser(User._id)
+        // save Owenr User
+        ContextUser.setOwnerUser(User.Datas);
+        ContexChat.set_idOwnerUser(User._id);
+
 
         if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
@@ -38,8 +41,7 @@ const Index = (User: dataUser) => {
                     if (dataUser.ok) {
                         dataUser.json()
                             .then(dataOtherUser => {
-                                otherUser = dataOtherUser.datas;
-                                setChatWithUser(dataOtherUser.datas);
+                                ContextUser.setOtherUser(dataOtherUser.datas)
                                 ContexChat.setTooglePage(false);
                             })
                     }
@@ -49,6 +51,7 @@ const Index = (User: dataUser) => {
                 }
                 );
         }
+
     }, [ContexChat.selectedUser]);
 
 
@@ -68,7 +71,7 @@ const Index = (User: dataUser) => {
                         </div>
                     </section>
                     <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
-                        <Message OtherUser={chatWithUser} />
+                        <Message />
                     </section>
 
                     <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
@@ -77,7 +80,7 @@ const Index = (User: dataUser) => {
                                 ContexChat.tooglePage ?
                                     <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
                                     :
-                                    <DesciptionFriend me={ContexChat.tooglePage} name={otherUser.name} function={otherUser.email} picture={otherUser.picture} />
+                                    <DesciptionFriend me={ContexChat.tooglePage} name={ContextUser.OtherUser.name} function={ContextUser.OtherUser.email} picture={ContextUser.OtherUser.picture} />
                             }
                         </section>
                     </aside>
