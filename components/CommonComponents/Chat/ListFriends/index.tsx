@@ -11,9 +11,11 @@ const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
     let i;
     for (i = 0; i < tabLastMesg.length; i++) {
-        if ((idUser === tabLastMesg[i].members[0]) || (idUser === tabLastMesg[i].members[1])) {
-            message = tabLastMesg[i].messages.content;
-            break;
+        if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
+            if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
+                message = tabLastMesg[i].messages.content; // if conrespond return content message
+                break;
+            }
         }
     }
 
@@ -72,7 +74,7 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={false}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={2} />
+                        noReadMessage={3} />
                 )
             }
         </div>
