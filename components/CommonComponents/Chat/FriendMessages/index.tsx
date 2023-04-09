@@ -12,6 +12,7 @@ interface NewMessages {
     //
     _idUser: any
     indexUser: number
+    values?: any
 }
 
 let ChatContxt: object | any;

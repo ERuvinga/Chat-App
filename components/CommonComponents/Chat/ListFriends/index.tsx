@@ -25,7 +25,7 @@ const ListFriend = () => {
 
     userContext = useContext(UsersChatContext);
     const [LoadinPage, setLoadingPage] = useState(true);
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
     const [LastMsg, setLastMsg] = useState([{
         members: [],
         messages: {
@@ -33,6 +33,7 @@ const ListFriend = () => {
             type: ''
         },
         Hours: '',
+        noReadMesgs: 0
     }]);
 
     useEffect(() => {
@@ -74,7 +75,7 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={false}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={3} />
+                        noReadMessage={LastMsg[index].noReadMesgs} />
                 )
             }
         </div>
