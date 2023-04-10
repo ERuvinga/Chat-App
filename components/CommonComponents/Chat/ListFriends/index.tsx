@@ -21,6 +21,22 @@ const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
 
     return message;
 }
+
+const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of the no read message of User
+    let numberOfMsd = 0;
+    let i;
+    for (i = 0; i < tabLastMesg.length; i++) {
+        if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
+            if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
+                numberOfMsd = tabLastMesg[i].noReadMesgs; // if conrespond return number of noRead messages
+                break;
+            }
+        }
+    }
+
+    return numberOfMsd;
+}
+
 const ListFriend = () => {
 
     userContext = useContext(UsersChatContext);
@@ -75,7 +91,7 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={false}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={LastMsg[index].noReadMesgs} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
                 )
             }
         </div>
