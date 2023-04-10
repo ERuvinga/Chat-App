@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { io } from 'socket.io-client' // add socket api
+
 import { contextChat } from '../../Context/ChatContext';
 import { UsersChatContext } from '../../Context/UserContext'
 
@@ -8,20 +10,25 @@ import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
 import Message from '../../CommonComponents/Chat/MessagesBloc';
 import ListFriend from '../../CommonComponents/Chat/ListFriends';
 
-
 interface dataUser {
     Datas: any,
     _id: String
 }
-
+const LinkApi = 'http://127.0.0.1:4002'; // link socket server
 let ContexChat: any;
 let ContextUser: any;
-
+//
 const Index = (User: dataUser) => {
+
     const [user, setUser] = useState(User.Datas);
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
 
+    //socketIo useEffect
+    useEffect(() => {
+        const socket = io(LinkApi);
+        console.log(socket);
+    }, []);
 
     useEffect(() => {
         // save Owenr User
