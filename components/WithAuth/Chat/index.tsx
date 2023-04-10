@@ -3,6 +3,7 @@ import { io } from 'socket.io-client' // add socket api
 
 import { contextChat } from '../../Context/ChatContext';
 import { UsersChatContext } from '../../Context/UserContext'
+import { socketIoContext } from '../../Context/socket';
 
 import Head from '../../../components/CommonComponents/Head';
 import UserChat from '../../CommonComponents/Chat/UsersChat'
@@ -15,19 +16,22 @@ interface dataUser {
     _id: String
 }
 const LinkApi = 'http://127.0.0.1:4002'; // link socket server
+
 let ContexChat: any;
 let ContextUser: any;
-//
+let ContextSocket: any;
+
 const Index = (User: dataUser) => {
 
     const [user, setUser] = useState(User.Datas);
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
+    ContextSocket = useContext(socketIoContext);
 
     //socketIo useEffect
     useEffect(() => {
-        const socket = io(LinkApi);
-        console.log(socket);
+        const socket = io(LinkApi); // connect to server 
+        ContextSocket.setIo(socket);
     }, []);
 
     useEffect(() => {

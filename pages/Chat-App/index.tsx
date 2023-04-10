@@ -4,6 +4,7 @@ import ChatApp from '../../components/WithAuth/Chat'
 import Loading from "../../components/CommonComponents/Loading";
 import ChatProvider from '../../components/Context/ChatContext'
 import UserProvider from '../../components/Context/UserContext'
+import SocketProvider from '../../components/Context/socket'
 
 const WithAuth = (Localtoken: any, setPage: any, setData: any) => {
 
@@ -47,7 +48,9 @@ const IndexWithAuth = () => {
         return (
             <ChatProvider>
                 <UserProvider>
-                    <ChatApp Datas={datasOfUser} _id={datasOfUser.userId} />
+                    <SocketProvider>
+                        <ChatApp Datas={datasOfUser} _id={datasOfUser.userId} />
+                    </SocketProvider>
                 </UserProvider>
             </ChatProvider>)
     }
