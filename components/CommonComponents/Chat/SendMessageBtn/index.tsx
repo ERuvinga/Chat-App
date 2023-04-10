@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// contexts
 import { contextChat } from '../../../Context/ChatContext';
 import { UsersChatContext } from '../../../Context/UserContext';
+import { socketIoContext } from '../../../Context/socket';
 
 interface dataIcone {
     icone: any
@@ -11,10 +14,12 @@ interface dataIcone {
 
 let ChatContext: any;
 let userContext: any;
+let ioContext: any;
 
 const Index = (datas: dataIcone) => {
     ChatContext = useContext(contextChat);
     userContext = useContext(UsersChatContext);
+    ioContext = useContext(socketIoContext);
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
@@ -33,6 +38,9 @@ const Index = (datas: dataIcone) => {
                     if (ChatContext.messageSender !== '') {
                         ChatContext.InputMessage.value = ''; // delete content in texteare
                         console.log(ChatContext.messageSender);
+
+                        // context Event 
+                        ioContext.io.emit('New_Message', `New_Message_${userContext.OtherUser._id}`); //Notification server New Message
 
                         fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
