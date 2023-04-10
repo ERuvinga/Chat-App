@@ -89,7 +89,7 @@ const ListFriend = () => {
                         _idUser={value._id}
                         indexUser={index}
                         picture={value.picture}
-                        checked={false}
+                        checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
                         noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
                 )
