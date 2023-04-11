@@ -46,13 +46,14 @@ const IndexWithAuth = () => {
 
     if (!statePage) { // withAuth is a function check if user is login
         return (
-            <ChatProvider>
-                <UserProvider>
-                    <SocketProvider>
+            <SocketProvider>
+                <ChatProvider>
+                    <UserProvider>
                         <ChatApp Datas={datasOfUser} _id={datasOfUser.userId} />
-                    </SocketProvider>
-                </UserProvider>
-            </ChatProvider>)
+                    </UserProvider>
+                </ChatProvider>
+            </SocketProvider>
+        )
     }
     return <Loading />;
 };

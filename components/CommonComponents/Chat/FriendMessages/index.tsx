@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
+//contexts
 import { contextChat } from '../../../Context/ChatContext';
+import { socketIoContext } from '../../../Context/socket';
 
 interface NewMessages {
     name: string,
@@ -16,9 +19,12 @@ interface NewMessages {
 }
 
 let ChatContxt: object | any;
+let ioContext: any;
 
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
+    ioContext = useContext(socketIoContext);
+
     return (
         <div className='flex flex-row justify-between Container-user items-center my-6'
             onClick={() => {

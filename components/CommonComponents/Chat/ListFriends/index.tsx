@@ -5,7 +5,10 @@ import Loading from "../../Loading";
 
 //context
 import { UsersChatContext } from "../../../Context/UserContext";
+import { socketIoContext } from "../../../Context/socket";
+
 let userContext: any;
+let ioContext: any;
 
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
@@ -38,8 +41,10 @@ const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of t
 }
 
 const ListFriend = () => {
-
+    //contexts
     userContext = useContext(UsersChatContext);
+    ioContext = useContext(socketIoContext);
+    //states
     const [LoadinPage, setLoadingPage] = useState(true);
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
     const [LastMsg, setLastMsg] = useState([{
@@ -74,6 +79,11 @@ const ListFriend = () => {
                 console.log(error);
             });
     }, []);
+
+    useEffect(() => {
+        // console.log(ioContext.io);
+        //ioContext.io.on('message', () => console.log("event"))
+    }, [])
 
     if (LoadinPage) {
         return <Loading />

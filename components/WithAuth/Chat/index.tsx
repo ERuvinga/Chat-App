@@ -27,18 +27,12 @@ const Index = (User: dataUser) => {
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
     ContextSocket = useContext(socketIoContext);
-
-    //socketIo useEffect
-    useEffect(() => {
-        const socket = io(LinkApi); // connect to server 
-        ContextSocket.setIo(socket);
-    }, []);
+    //ContextSocket.setIo(io(LinkApi)); // connect to server 
 
     useEffect(() => {
         // save Owenr User
         ContextUser.setOwnerUser(User.Datas);
         ContexChat.set_idOwnerUser(User._id);
-
 
         if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {

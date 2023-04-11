@@ -14,12 +14,12 @@ interface dataIcone {
 
 let ChatContext: any;
 let userContext: any;
-let ioContext: any;
+let IoContext: any;
 
 const Index = (datas: dataIcone) => {
     ChatContext = useContext(contextChat);
     userContext = useContext(UsersChatContext);
-    ioContext = useContext(socketIoContext);
+    IoContext = useContext(socketIoContext);
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
@@ -40,7 +40,6 @@ const Index = (datas: dataIcone) => {
                         console.log(ChatContext.messageSender);
 
                         // context Event 
-                        ioContext.io.emit('New_Message', `New_Message_${userContext.OtherUser._id}`); //Notification server New Message
 
                         fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
@@ -53,6 +52,7 @@ const Index = (datas: dataIcone) => {
                             body: JSON.stringify({ dataOfMessage: dataOfMessage, lengthConver: ChatContext.messageContent.length, _idOtherUser: userContext.OtherUser._id })
                         })
                             .then((response) => {
+                                IoContext.socketIo.emit('New_Message', `New_Message_${userContext.OtherUser._id}`); //Notification server New Message
                                 console.log(response);
                             })
                             .catch((error) => console.log(error))
