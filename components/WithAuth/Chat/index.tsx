@@ -27,7 +27,6 @@ const Index = (User: dataUser) => {
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
     ContextSocket = useContext(socketIoContext);
-    //ContextSocket.setIo(io(LinkApi)); // connect to server 
 
     useEffect(() => {
         // save Owenr User
@@ -59,6 +58,10 @@ const Index = (User: dataUser) => {
 
     }, [ContexChat.selectedUser]);
 
+    useEffect(() => {
+        ContextSocket.setIo(io(LinkApi)); // connect to server 
+
+    }, [])
 
     return (
         <>
