@@ -53,7 +53,6 @@ const Index = (datas: dataIcone) => {
                         })
                             .then((response) => {
                                 IoContext.socketIo.emit('New_Message', `New_Message_${userContext.OtherUser._id}`); //Notification server New Message
-                                console.log(response);
                             })
                             .catch((error) => console.log(error))
                     }

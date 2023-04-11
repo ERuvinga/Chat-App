@@ -68,7 +68,7 @@ const Index = (datas: NewMessages) => {
                     <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date'>18.32 AM</span>
+                    <span className='Date'>18.32</span>
                     {
                         datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
                             :

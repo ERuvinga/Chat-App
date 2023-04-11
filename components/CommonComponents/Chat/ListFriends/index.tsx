@@ -8,7 +8,7 @@ import { UsersChatContext } from "../../../Context/UserContext";
 import { socketIoContext } from "../../../Context/socket";
 
 let userContext: any;
-let ioContext: any;
+let SocketContext: any;
 
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
@@ -43,7 +43,7 @@ const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of t
 const ListFriend = () => {
     //contexts
     userContext = useContext(UsersChatContext);
-    ioContext = useContext(socketIoContext);
+    SocketContext = useContext(socketIoContext);
     //states
     const [LoadinPage, setLoadingPage] = useState(true);
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
@@ -58,32 +58,57 @@ const ListFriend = () => {
     }]);
 
     useEffect(() => {
-        fetch(`${process.env.API_LINK}/api/user`, {
-            headers: {
-                "Accept": 'application/json',
-                "Content-type": 'application/json; charset=UTF-8',
-                "Autorization": `Bearer ${localStorage.getItem('Token')}`
-            }
-        })
-            .then(datafetching => {
-                if (datafetching.ok) {
-                    datafetching.json()
-                        .then(Users => {
-                            setDataUser(Users.users);
-                            setLastMsg(Users.lastMesg);
-                            setLoadingPage(false);
-                        })
+
+        if (SocketContext.socketIo != null) {
+            SocketContext.socketIo.on('message', () => {
+                fetch(`${process.env.API_LINK}/api/user`, {
+                    headers: {
+                        "Accept": 'application/json',
+                        "Content-type": 'application/json; charset=UTF-8',
+                        "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                    }
+                })
+                    .then(datafetching => {
+                        if (datafetching.ok) {
+                            datafetching.json()
+                                .then(Users => {
+                                    setDataUser(Users.users);
+                                    setLastMsg(Users.lastMesg);
+                                    setLoadingPage(false);
+                                })
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            });
+        }
+
+        else {
+            fetch(`${process.env.API_LINK}/api/user`, {
+                headers: {
+                    "Accept": 'application/json',
+                    "Content-type": 'application/json; charset=UTF-8',
+                    "Autorization": `Bearer ${localStorage.getItem('Token')}`
                 }
             })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
+                .then(datafetching => {
+                    if (datafetching.ok) {
+                        datafetching.json()
+                            .then(Users => {
+                                setDataUser(Users.users);
+                                setLastMsg(Users.lastMesg);
+                                setLoadingPage(false);
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [SocketContext.socketIo]);
 
-    useEffect(() => {
-        // console.log(ioContext.io);
-        //ioContext.io.on('message', () => console.log("event"))
-    }, [])
+
 
     if (LoadinPage) {
         return <Loading />
