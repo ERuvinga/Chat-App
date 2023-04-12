@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// contexts
 import { contextChat } from '../../../Context/ChatContext';
 import { UsersChatContext } from '../../../Context/UserContext';
+import { socketIoContext } from '../../../Context/socket';
 
 interface dataIcone {
     icone: any
@@ -11,10 +14,12 @@ interface dataIcone {
 
 let ChatContext: any;
 let userContext: any;
+let IoContext: any;
 
 const Index = (datas: dataIcone) => {
     ChatContext = useContext(contextChat);
     userContext = useContext(UsersChatContext);
+    IoContext = useContext(socketIoContext);
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
@@ -29,10 +34,11 @@ const Index = (datas: dataIcone) => {
                         }
                     }
 
-
                     if (ChatContext.messageSender !== '') {
                         ChatContext.InputMessage.value = ''; // delete content in texteare
                         console.log(ChatContext.messageSender);
+
+                        // context Event 
 
                         fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
@@ -44,8 +50,9 @@ const Index = (datas: dataIcone) => {
 
                             body: JSON.stringify({ dataOfMessage: dataOfMessage, lengthConver: ChatContext.messageContent.length, _idOtherUser: userContext.OtherUser._id })
                         })
-                            .then((response) => {
-                                console.log(response);
+                            .then(() => {
+                                IoContext.socketIo.emit('New_Message', { Other: userContext.OtherUser._id, Owner: userContext.OtherUser.userId }); //Notification server New Message
+                                ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                             })
                             .catch((error) => console.log(error))
                     }

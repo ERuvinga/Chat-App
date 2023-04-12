@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { io } from 'socket.io-client' // add socket api
+
 import { contextChat } from '../../Context/ChatContext';
 import { UsersChatContext } from '../../Context/UserContext'
+import { socketIoContext } from '../../Context/socket';
 
 import Head from '../../../components/CommonComponents/Head';
 import UserChat from '../../CommonComponents/Chat/UsersChat'
@@ -8,26 +11,27 @@ import DesciptionFriend from '../../CommonComponents/Chat/DescriptionUser'
 import Message from '../../CommonComponents/Chat/MessagesBloc';
 import ListFriend from '../../CommonComponents/Chat/ListFriends';
 
-
 interface dataUser {
     Datas: any,
     _id: String
 }
+const LinkApi = 'http://127.0.0.1:4002'; // link socket server
 
 let ContexChat: any;
 let ContextUser: any;
+let ContextSocket: any;
 
 const Index = (User: dataUser) => {
+
     const [user, setUser] = useState(User.Datas);
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
-
+    ContextSocket = useContext(socketIoContext);
 
     useEffect(() => {
         // save Owenr User
         ContextUser.setOwnerUser(User.Datas);
         ContexChat.set_idOwnerUser(User._id);
-
 
         if (ContexChat._idOtherUser !== 0) {
             fetch(`${process.env.API_LINK}/api/user/${ContexChat._idOtherUser}`, {
@@ -54,6 +58,10 @@ const Index = (User: dataUser) => {
 
     }, [ContexChat.selectedUser]);
 
+    useEffect(() => {
+        ContextSocket.setIo(io(LinkApi)); // connect to server 
+
+    }, [])
 
     return (
         <>

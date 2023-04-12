@@ -1,7 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
+//contexts
 import { contextChat } from '../../../Context/ChatContext';
+import { socketIoContext } from '../../../Context/socket';
 
 interface NewMessages {
     name: string,
@@ -10,21 +13,27 @@ interface NewMessages {
     checked: boolean,
     noReadMessage: number,
     //
-    _idUser: any
-    indexUser: number
-    values?: any
+    _idUser: any,
+    indexUser: number,
+    values?: any,
+    reloadState: any
+    setReloadState: any
 }
 
 let ChatContxt: object | any;
+let ioContext: any;
 
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
+    ioContext = useContext(socketIoContext);
+
     return (
         <div className='flex flex-row justify-between Container-user items-center my-6'
             onClick={() => {
                 ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
+                datas.setReloadState(1 - datas.reloadState) //update data
 
                 if (ChatContxt.InputMessage !== null) { // if available
                     ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment
@@ -47,7 +56,6 @@ const Index = (datas: NewMessages) => {
                                 .then(conversation => {
                                     ChatContxt.set_idConversation(conversation._idConv);
                                     ChatContxt.setMessageContent(conversation.messages);
-                                    console.log(conversation);
                                     ChatContxt.setLoadingMessage(false);
                                 })
                         }
@@ -62,7 +70,7 @@ const Index = (datas: NewMessages) => {
                     <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date'>18.32 AM</span>
+                    <span className='Date'>18.32</span>
                     {
                         datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
                             :

@@ -5,7 +5,12 @@ import Loading from "../../Loading";
 
 //context
 import { UsersChatContext } from "../../../Context/UserContext";
+import { socketIoContext } from "../../../Context/socket";
+import { contextChat } from "../../../Context/ChatContext";
+
 let userContext: any;
+let ChatContext: any;
+let SocketContext: any;
 
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
@@ -21,9 +26,29 @@ const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
 
     return message;
 }
-const ListFriend = () => {
 
+const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of the no read message of User
+    let numberOfMsd = 0;
+    let i;
+    for (i = 0; i < tabLastMesg.length; i++) {
+        if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
+            if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
+                numberOfMsd = tabLastMesg[i].noReadMesgs; // if conrespond return number of noRead messages
+                break;
+            }
+        }
+    }
+
+    return numberOfMsd;
+}
+
+const ListFriend = () => {
+    //contexts
     userContext = useContext(UsersChatContext);
+    SocketContext = useContext(socketIoContext);
+    ChatContext = useContext(contextChat);
+    //states
+    const [reload, setReload] = useState(1)
     const [LoadinPage, setLoadingPage] = useState(true);
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
     const [LastMsg, setLastMsg] = useState([{
@@ -57,7 +82,89 @@ const ListFriend = () => {
             .catch(error => {
                 console.log(error);
             });
-    }, []);
+    }, [reload]);
+
+    useEffect(() => {
+
+        if (ChatContext._idConversation !== null) {
+            fetch(`${process.env.API_LINK}/api/conversations`, {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json;charset=UTF-8',
+                    "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                },
+
+                body: JSON.stringify({ _idOtherUser: userContext.OtherUser._id })
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        response.json()
+                            .then(conversation => {
+                                ChatContext.setMessageContent(conversation.messages);
+                            })
+                    }
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [ChatContext.msgBlocReload]);
+
+    useEffect(() => {
+
+        if (SocketContext.socketIo != null) {
+            SocketContext.socketIo.on('New_Message', (idUser: String) => {
+                if (idUser === userContext.OwnerUser.userId || userContext.OtherUser._id) {
+                    fetch(`${process.env.API_LINK}/api/user`, {
+                        headers: {
+                            "Accept": 'application/json',
+                            "Content-type": 'application/json; charset=UTF-8',
+                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                        }
+                    })
+                        .then(datafetching => {
+                            if (datafetching.ok) {
+                                datafetching.json()
+                                    .then(Users => {
+                                        setDataUser(Users.users);
+                                        setLastMsg(Users.lastMesg);
+                                        setLoadingPage(false);
+                                    })
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
+            });
+
+            SocketContext.socketIo.on('New_Message', (idUser: String) => {
+                if (idUser === userContext.OwnerUser.userId) {
+                    console.log("is me");
+                    fetch(`${process.env.API_LINK}/api/conversations`, {
+                        method: "POST",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-type': 'application/json;charset=UTF-8',
+                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                        },
+
+                        body: JSON.stringify({ _idOtherUser: userContext.OtherUser._id })
+                    })
+                        .then((response) => {
+                            if (response.ok) {
+                                response.json()
+                                    .then(conversation => {
+                                        ChatContext.setMessageContent(conversation.messages);
+                                    })
+                            }
+                        })
+                        .catch((error) => console.log(error));
+                }
+            });
+        }
+    }, [SocketContext.socketIo]);
+
+
 
     if (LoadinPage) {
         return <Loading />
@@ -73,9 +180,12 @@ const ListFriend = () => {
                         _idUser={value._id}
                         indexUser={index}
                         picture={value.picture}
-                        checked={false}
+                        checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={LastMsg[index].noReadMesgs} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)}
+                        //reloadState ListFriend
+                        setReloadState={setReload}
+                        reloadState={reload} />
                 )
             }
         </div>

@@ -7,7 +7,8 @@ const ChatProviderContext = ({ children }) => {
     const [loadingMessages, setLoadingMessage] = useState(true); //state of loading messages in database
     const [messageSender, setMessageSender] = useState(''); // state content all messages in one conversation
     const [messageContent, setMessageContent] = useState([]); // state content all messages in one conversation
-    const [_idConversation, set_idConversation] = useState(0); // state save a id of one Conversation
+    const [msgBlocReload, setMsgBlocReload] = useState(0); // state reload message
+    const [_idConversation, set_idConversation] = useState(null); // state save a id of one Conversation
     //page
     const [tooglePage, setTooglePage] = useState(true); // state of pages
     const [InputMessage, setInputMessage] = useState(null); // state content a texteare Element
@@ -26,6 +27,7 @@ const ChatProviderContext = ({ children }) => {
             _idConversation, set_idConversation,
             messageSender, setMessageSender,
             messageContent, setMessageContent,
+            msgBlocReload, setMsgBlocReload,
             loadingMessages, setLoadingMessage
 
         }}>{children}</contextChat.Provider>
