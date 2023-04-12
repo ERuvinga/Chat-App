@@ -15,7 +15,10 @@ interface dataUser {
     Datas: any,
     _id: String
 }
-const LinkApi = 'http://127.0.0.1:4002'; // link socket server
+
+// link socket server
+const LinkApi = 'http://127.0.0.1:4002'; 
+const RemoteLinkApi = 'https://chatapp-wq8r.onrender.com'
 
 let ContexChat: any;
 let ContextUser: any;
@@ -59,7 +62,7 @@ const Index = (User: dataUser) => {
     }, [ContexChat.selectedUser]);
 
     useEffect(() => {
-        ContextSocket.setIo(io(LinkApi)); // connect to server 
+        ContextSocket.setIo(io(RemoteLinkApi )); // connect to server 
 
     }, [])
 
