@@ -45,6 +45,7 @@ const ListFriend = () => {
     userContext = useContext(UsersChatContext);
     SocketContext = useContext(socketIoContext);
     //states
+    const [reload, setReload] = useState(1)
     const [LoadinPage, setLoadingPage] = useState(true);
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
     const [LastMsg, setLastMsg] = useState([{
@@ -56,6 +57,30 @@ const ListFriend = () => {
         Hours: '',
         noReadMesgs: 0
     }]);
+
+    useEffect(() => {
+        fetch(`${process.env.API_LINK}/api/user`, {
+            headers: {
+                "Accept": 'application/json',
+                "Content-type": 'application/json; charset=UTF-8',
+                "Autorization": `Bearer ${localStorage.getItem('Token')}`
+            }
+        })
+            .then(datafetching => {
+                if (datafetching.ok) {
+                    datafetching.json()
+                        .then(Users => {
+                            setDataUser(Users.users);
+                            setLastMsg(Users.lastMesg);
+                            setLoadingPage(false);
+                        })
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }, [reload]);
 
     useEffect(() => {
 
@@ -87,29 +112,6 @@ const ListFriend = () => {
             });
 
         }
-
-        else {
-            fetch(`${process.env.API_LINK}/api/user`, {
-                headers: {
-                    "Accept": 'application/json',
-                    "Content-type": 'application/json; charset=UTF-8',
-                    "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                }
-            })
-                .then(datafetching => {
-                    if (datafetching.ok) {
-                        datafetching.json()
-                            .then(Users => {
-                                setDataUser(Users.users);
-                                setLastMsg(Users.lastMesg);
-                                setLoadingPage(false);
-                            })
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
     }, [SocketContext.socketIo]);
 
 
@@ -130,7 +132,10 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)}
+                        //reloadState ListFriend
+                        setReloadState={setReload}
+                        reloadState={reload} />
                 )
             }
         </div>
