@@ -151,11 +151,10 @@ textarea::-webkit-scrollbar-button {
 
 .BlocMessage {
     width: max-content;
-    max-width: 40%;
 }
 
 .otherUser {
-    max-width: 90%;
+    max-width: 85%;
 
     border-radius: 7px 7px 7px 0;
     background-color: #F9F9FC;
@@ -167,7 +166,7 @@ textarea::-webkit-scrollbar-button {
 }
 
 .OwnerUser {
-    max-width: 90%;
+    max-width: 85%;
 
     /*Text*/
     text-align: justify;
