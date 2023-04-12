@@ -6,8 +6,10 @@ import Loading from "../../Loading";
 //context
 import { UsersChatContext } from "../../../Context/UserContext";
 import { socketIoContext } from "../../../Context/socket";
+import { contextChat } from "../../../Context/ChatContext";
 
 let userContext: any;
+let ChatContext: any;
 let SocketContext: any;
 
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
@@ -44,6 +46,7 @@ const ListFriend = () => {
     //contexts
     userContext = useContext(UsersChatContext);
     SocketContext = useContext(socketIoContext);
+    ChatContext = useContext(contextChat);
     //states
     const [reload, setReload] = useState(1)
     const [LoadinPage, setLoadingPage] = useState(true);
@@ -79,13 +82,37 @@ const ListFriend = () => {
             .catch(error => {
                 console.log(error);
             });
-
     }, [reload]);
 
     useEffect(() => {
 
+        if (ChatContext._idConversation !== null) {
+            fetch(`${process.env.API_LINK}/api/conversations`, {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json;charset=UTF-8',
+                    "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                },
+
+                body: JSON.stringify({ _idOtherUser: userContext.OtherUser._id })
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        response.json()
+                            .then(conversation => {
+                                ChatContext.setMessageContent(conversation.messages);
+                                console.log('reload Conversation');
+                            })
+                    }
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [ChatContext.msgBlocReload]);
+
+    useEffect(() => {
+
         if (SocketContext.socketIo != null) {
-            console.log(userContext.OwnerUser);
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
                 if (idUser === userContext.OwnerUser.userId) {
                     fetch(`${process.env.API_LINK}/api/user`, {
