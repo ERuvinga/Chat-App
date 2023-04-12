@@ -102,7 +102,6 @@ const ListFriend = () => {
                         response.json()
                             .then(conversation => {
                                 ChatContext.setMessageContent(conversation.messages);
-                                console.log('reload Conversation');
                             })
                     }
                 })
@@ -139,7 +138,28 @@ const ListFriend = () => {
             });
 
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
+                if (idUser === userContext.OwnerUser.userId) {
+                    console.log("is me");
+                    fetch(`${process.env.API_LINK}/api/conversations`, {
+                        method: "POST",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-type': 'application/json;charset=UTF-8',
+                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
+                        },
 
+                        body: JSON.stringify({ _idOtherUser: userContext.OtherUser._id })
+                    })
+                        .then((response) => {
+                            if (response.ok) {
+                                response.json()
+                                    .then(conversation => {
+                                        ChatContext.setMessageContent(conversation.messages);
+                                    })
+                            }
+                        })
+                        .catch((error) => console.log(error));
+                }
             });
         }
     }, [SocketContext.socketIo]);
