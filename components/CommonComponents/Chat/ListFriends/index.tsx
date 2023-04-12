@@ -114,7 +114,7 @@ const ListFriend = () => {
 
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OwnerUser.userId) {
+                if (idUser === userContext.OwnerUser.userId || userContext.OtherUser._id) {
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
                             "Accept": 'application/json',
@@ -138,6 +138,9 @@ const ListFriend = () => {
                 }
             });
 
+            SocketContext.socketIo.on('New_Message', (idUser: String) => {
+
+            });
         }
     }, [SocketContext.socketIo]);
 

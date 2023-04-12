@@ -33,7 +33,7 @@ const Index = (datas: NewMessages) => {
                 ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
-                datas.setReloadState(1 - datas.reloadState)
+                datas.setReloadState(1 - datas.reloadState) //update data
 
                 if (ChatContxt.InputMessage !== null) { // if available
                     ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment

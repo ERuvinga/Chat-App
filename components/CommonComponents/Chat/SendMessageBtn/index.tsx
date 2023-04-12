@@ -34,7 +34,6 @@ const Index = (datas: dataIcone) => {
                         }
                     }
 
-
                     if (ChatContext.messageSender !== '') {
                         ChatContext.InputMessage.value = ''; // delete content in texteare
                         console.log(ChatContext.messageSender);
@@ -51,8 +50,9 @@ const Index = (datas: dataIcone) => {
 
                             body: JSON.stringify({ dataOfMessage: dataOfMessage, lengthConver: ChatContext.messageContent.length, _idOtherUser: userContext.OtherUser._id })
                         })
-                            .then((response) => {
+                            .then(() => {
                                 IoContext.socketIo.emit('New_Message', { Other: userContext.OtherUser._id, Owner: userContext.OtherUser.userId }); //Notification server New Message
+                                ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                             })
                             .catch((error) => console.log(error))
                     }
