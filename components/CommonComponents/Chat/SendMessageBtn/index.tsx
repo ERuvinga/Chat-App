@@ -52,7 +52,7 @@ const Index = (datas: dataIcone) => {
                             body: JSON.stringify({ dataOfMessage: dataOfMessage, lengthConver: ChatContext.messageContent.length, _idOtherUser: userContext.OtherUser._id })
                         })
                             .then((response) => {
-                                IoContext.socketIo.emit('New_Message', `New_Message_${userContext.OtherUser._id}`); //Notification server New Message
+                                IoContext.socketIo.emit('New_Message', { Other: userContext.OtherUser._id, Owner: userContext.OtherUser.userId }); //Notification server New Message
                             })
                             .catch((error) => console.log(error))
                     }

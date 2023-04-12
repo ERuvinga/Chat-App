@@ -60,28 +60,32 @@ const ListFriend = () => {
     useEffect(() => {
 
         if (SocketContext.socketIo != null) {
-            SocketContext.socketIo.on('message', () => {
-                fetch(`${process.env.API_LINK}/api/user`, {
-                    headers: {
-                        "Accept": 'application/json',
-                        "Content-type": 'application/json; charset=UTF-8',
-                        "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                    }
-                })
-                    .then(datafetching => {
-                        if (datafetching.ok) {
-                            datafetching.json()
-                                .then(Users => {
-                                    setDataUser(Users.users);
-                                    setLastMsg(Users.lastMesg);
-                                    setLoadingPage(false);
-                                })
+            console.log(userContext.OwnerUser);
+            SocketContext.socketIo.on('New_Message', (idUser: String) => {
+                if (idUser === userContext.OwnerUser.userId) {
+                    fetch(`${process.env.API_LINK}/api/user`, {
+                        headers: {
+                            "Accept": 'application/json',
+                            "Content-type": 'application/json; charset=UTF-8',
+                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
                         }
                     })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                        .then(datafetching => {
+                            if (datafetching.ok) {
+                                datafetching.json()
+                                    .then(Users => {
+                                        setDataUser(Users.users);
+                                        setLastMsg(Users.lastMesg);
+                                        setLoadingPage(false);
+                                    })
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
             });
+
         }
 
         else {
