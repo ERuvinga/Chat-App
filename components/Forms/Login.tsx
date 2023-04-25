@@ -27,7 +27,7 @@ const Login = () => {
                     <Button name='btn' fieldContent='Login' />
 
                     <p className="flex justify-center items-center space-x-3 text-center my-10 mx-auto w-[99%] text-[.8em] text-[#8186A0]">
-                        <span>Connect to your account . Don`t have an account?</span>
+                        <span>Don`t have an account?</span>
                         <span className="hover:opacity-[0.8] font-bold text-underline text-[#5843E4]">
                             <Link href={"/Register"}>Register here</Link>
                         </span>
