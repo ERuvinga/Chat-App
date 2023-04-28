@@ -47,8 +47,8 @@ const ListFriend = () => {
     userContext = useContext(UsersChatContext);
     SocketContext = useContext(socketIoContext);
     ChatContext = useContext(contextChat);
+
     //states
-    const [reload, setReload] = useState(1)
     const [LoadinPage, setLoadingPage] = useState(true);
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
     const [LastMsg, setLastMsg] = useState([{
@@ -61,6 +61,7 @@ const ListFriend = () => {
         noReadMesgs: 0
     }]);
 
+    // Search data One time
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/user`, {
             headers: {
@@ -76,16 +77,17 @@ const ListFriend = () => {
                             setDataUser(Users.users);
                             setLastMsg(Users.lastMesg);
                             setLoadingPage(false);
+                            console.log("fetching data")
                         })
                 }
             })
             .catch(error => {
                 console.log(error);
             });
-    }, [reload]);
+    }, []);
 
+    //when Send Message Search it 
     useEffect(() => {
-
         if (ChatContext._idConversation !== null) {
             fetch(`${process.env.API_LINK}/api/conversations`, {
                 method: "POST",
@@ -140,25 +142,7 @@ const ListFriend = () => {
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
                 if (idUser === userContext.OwnerUser.userId) {
                     console.log("Socket search New message");
-                    fetch(`${process.env.API_LINK}/api/conversations`, {
-                        method: "POST",
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-type': 'application/json;charset=UTF-8',
-                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                        },
-
-                        body: JSON.stringify({ _idOtherUser: userContext.OtherUser._id })
-                    })
-                        .then((response) => {
-                            if (response.ok) {
-                                response.json()
-                                    .then(conversation => {
-                                        ChatContext.setMessageContent(conversation.messages);
-                                    })
-                            }
-                        })
-                        .catch((error) => console.log(error));
+                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload)
                 }
             });
         }
