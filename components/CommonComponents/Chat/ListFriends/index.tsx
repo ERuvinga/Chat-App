@@ -113,7 +113,8 @@ const ListFriend = () => {
 
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OwnerUser.userId || userContext.OtherUser._id) {
+                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) {
+                    console.log("is me");
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
                             "Accept": 'application/json',
@@ -127,7 +128,6 @@ const ListFriend = () => {
                                     .then(Users => {
                                         setDataUser(Users.users);
                                         setLastMsg(Users.lastMesg);
-                                        setLoadingPage(false);
                                     })
                             }
                         })
@@ -139,7 +139,7 @@ const ListFriend = () => {
 
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
                 if (idUser === userContext.OwnerUser.userId) {
-                    console.log("is me");
+                    console.log("Socket search New message");
                     fetch(`${process.env.API_LINK}/api/conversations`, {
                         method: "POST",
                         headers: {
@@ -182,10 +182,7 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={getNoReadMsgs(value._id, LastMsg)}
-                        //reloadState ListFriend
-                        setReloadState={setReload}
-                        reloadState={reload} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
                 )
             }
         </div>
