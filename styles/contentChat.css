@@ -58,11 +58,12 @@ textarea::-webkit-scrollbar-button {
 
 /*boutons*/
 .iconeBtns {
+    width: 40px;
     color: #8186A0;
     font-size: .9em;
-    transition: all .5s;
+    transition: all .6s;
     box-shadow: 0 0 5px #E2E3E9;
-    border-radius: 50%;
+    border-radius: 8px;
 }
 
 .iconeBtns:hover {
@@ -72,18 +73,20 @@ textarea::-webkit-scrollbar-button {
 }
 
 .sendMessagebtn {
+    width: 40px;
     color: #8186A0;
     font-size: .9em;
     transition: all .6s;
 
-    box-shadow: 0 0 5px #E2E3E9;
-    border-radius: 50%;
+    box-shadow: 0 0 3px #E2E3E9;
+    border-radius: 8px;
 }
 
 .sendMessagebtn:hover {
     color: #F9F9FC;
     background-color: #5843E4;
-    transform: scale(1.1);
+    transform: scale(1.05);
+    font-size: 1em;
 }
 
 
