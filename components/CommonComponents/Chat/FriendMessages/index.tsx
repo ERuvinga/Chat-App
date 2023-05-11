@@ -26,7 +26,7 @@ const Index = (datas: NewMessages) => {
     ioContext = useContext(socketIoContext);
 
     return (
-        <div className='flex flex-row justify-between Container-user items-center my-6'
+        <div className='flex flex-row w-auto TabletPoint:w-[95%] justify-between Container-user items-center my-6 border'
             onClick={() => {
                 ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
@@ -60,13 +60,13 @@ const Index = (datas: NewMessages) => {
                     .catch((error) => console.log(error))
             }
             } >
-            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between items-center' : 'ContainerMessage flex justify-between items-center'}>
-                <img src={datas.picture ? datas.picture : 'profile.png'} className=' imgUserMessage ' alt='user' />
+            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'border ContainerUserSelected flex flex-col TabletPoint:flex-row TabletPoint:justify-between TabletPoint:items-center' : 'ContainerMessage flex justify-between flex-col TabletPoint:flex-row items-center'}>
+                <img src={datas.picture ? datas.picture : 'profile.png'} className='border w-[25px] h-[25%] TabletPoint:w-[50px] TabletPoint:h-[50px] imgUserMessage ' alt='user' />
                 <p className='MessageContent flex flex-col justify-center'>
-                    <span className='UsersendMessage'>{datas.name}</span>
-                    <span className='messages'>{datas.contentMessage}</span>
+                    <span className='border text-[.55em] TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
+                    <span className='hidden TabletPoint:flex messages'>{datas.contentMessage}</span>
                 </p>
-                <div className=' w-1/6 flex flex-col justify-center items-center space-y-2 mx-auto'>
+                <div className='border hidden TabletPoint:flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32</span>
                     {
                         datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
