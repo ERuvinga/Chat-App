@@ -77,7 +77,6 @@ const ListFriend = () => {
                             setDataUser(Users.users);
                             setLastMsg(Users.lastMesg);
                             setLoadingPage(false);
-                            console.log("fetching data")
                         })
                 }
             })

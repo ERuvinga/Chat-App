@@ -62,8 +62,8 @@ const Index = (User: dataUser) => {
     }, [ContexChat.selectedUser]);
 
     useEffect(() => {
-        ContextSocket.setIo(io(LinkApi)); // connect to server 
-    }, [])
+        ContextSocket.setIo(io(LinkApi).emit('New_Connection', { user }));
+    }, []);
 
     return (
         <>
