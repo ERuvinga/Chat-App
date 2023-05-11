@@ -70,9 +70,9 @@ const Index = (User: dataUser) => {
             <Head />
             {
                 <div className='mx-auto  w-[100%] h-screen bg-[#F9F9FC] flex flex-col justify-between TabletPoint:flex-row '>
-                    <section className='border mx-auto w-[99%] sm:w-[80%] list-users TabletPoint:w-[30%] md_lg:w-[25%] TabletPoint:h-screen'>
+                    <section className=' mx-auto w-[99%] sm:w-[80%] list-users TabletPoint:w-[30%] md_lg:w-[25%] TabletPoint:h-screen'>
                         <div className='flex flex-col justify-center'>
-                            <div className='min-h-[10vh] relative '>
+                            <div className='min-h-[6vh] TabletPoint:min-h-[10vh] relative '>
                                 <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
                                 <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
                             </div>
