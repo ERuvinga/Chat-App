@@ -69,9 +69,9 @@ const Index = (User: dataUser) => {
         <>
             <Head />
             {
-                <div className=' mx-auto radius h-screen bg-[#F9F9FC] flex flex-col sm:flex-row justify-between '>
-                    <section className='w-[97%] list-users sm:w-[25%] h-screen'>
-                        <div className='flex flex-col  justify-center'>
+                <div className='mx-auto  w-[100%] h-screen bg-[#F9F9FC] flex flex-col justify-between TabletPoint:flex-row '>
+                    <section className='border mx-auto w-[99%] sm:w-[80%] list-users TabletPoint:w-[30%] md_lg:w-[25%] TabletPoint:h-screen'>
+                        <div className='flex flex-col justify-center'>
                             <div className='min-h-[10vh] relative '>
                                 <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
                                 <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
@@ -80,11 +80,11 @@ const Index = (User: dataUser) => {
                             <ListFriend />
                         </div>
                     </section>
-                    <section className='hidden sm:block w-[50%] h-screen chat-contents bg-[#fff] space-y-1'>
+                    <section className=' w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'>
                         <Message />
                     </section>
 
-                    <aside className='hidden w-[25%] md:flex justify-center items-center h-screen '>
+                    <aside className=' hidden  w-[25%] md_lg:flex justify-center items-center h-screen '>
                         <section className='w-[100%]' >
                             {
                                 ContexChat.tooglePage ?
