@@ -154,7 +154,7 @@ const ListFriend = () => {
     }
 
     return (
-        <div className="border flex TabletPoint:flex-col mx-auto ListFriendContainer">
+        <div className=" flex space-x-[5px] justify-start TabletPoint:justify-start TabletPoint:items-center TabletPoint:flex-col mx-auto w-[100%] TabletPoint:max-h-[77vh] ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
                     <Friends
