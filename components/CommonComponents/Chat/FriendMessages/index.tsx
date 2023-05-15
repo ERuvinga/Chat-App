@@ -62,8 +62,8 @@ const Index = (datas: NewMessages) => {
             } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex flex-col justify-center items-center space-y-[2px] TabletPoint:space-y-0 TabletPoint:flex-row TabletPoint:justify-center' : 'ContainerMessage flex flex-col justify-center items-center space-y-[2px] TabletPoint:space-y-0 TabletPoint:flex-row TabletPoint:justify-between'}>
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[35px] h-[35px] TabletPoint:w-[50px] TabletPoint:h-[50px] imgUserMessage ' alt='user' />
-                <p className='w-[100%] TabletPoint:w-[60%] TabletPoint:ml-[8px] flex flex-col justify-center'>
-                    <span className='s text-[.6em] w-[100%]  TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
+                <p className='w-[100%] flex flex-col items-center justify-center TabletPoint:items-start TabletPoint:w-[60%] TabletPoint:ml-[8px] '>
+                    <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
                     <span className='hidden TabletPoint:flex messages'>{datas.contentMessage}</span>
                 </p>
                 <div className=' hidden TabletPoint:flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
