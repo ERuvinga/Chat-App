@@ -47,8 +47,8 @@ const ListFriend = () => {
     userContext = useContext(UsersChatContext);
     SocketContext = useContext(socketIoContext);
     ChatContext = useContext(contextChat);
+
     //states
-    const [reload, setReload] = useState(1)
     const [LoadinPage, setLoadingPage] = useState(true);
     const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
     const [LastMsg, setLastMsg] = useState([{
@@ -61,6 +61,7 @@ const ListFriend = () => {
         noReadMesgs: 0
     }]);
 
+    // Search data One time
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/user`, {
             headers: {
@@ -82,10 +83,10 @@ const ListFriend = () => {
             .catch(error => {
                 console.log(error);
             });
-    }, [reload]);
+    }, []);
 
+    //when Send Message Search it 
     useEffect(() => {
-
         if (ChatContext._idConversation !== null) {
             fetch(`${process.env.API_LINK}/api/conversations`, {
                 method: "POST",
@@ -113,7 +114,8 @@ const ListFriend = () => {
 
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OwnerUser.userId || userContext.OtherUser._id) {
+                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) {
+                    console.log("is me");
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
                             "Accept": 'application/json',
@@ -127,7 +129,6 @@ const ListFriend = () => {
                                     .then(Users => {
                                         setDataUser(Users.users);
                                         setLastMsg(Users.lastMesg);
-                                        setLoadingPage(false);
                                     })
                             }
                         })
@@ -139,26 +140,8 @@ const ListFriend = () => {
 
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
                 if (idUser === userContext.OwnerUser.userId) {
-                    console.log("is me");
-                    fetch(`${process.env.API_LINK}/api/conversations`, {
-                        method: "POST",
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-type': 'application/json;charset=UTF-8',
-                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                        },
-
-                        body: JSON.stringify({ _idOtherUser: userContext.OtherUser._id })
-                    })
-                        .then((response) => {
-                            if (response.ok) {
-                                response.json()
-                                    .then(conversation => {
-                                        ChatContext.setMessageContent(conversation.messages);
-                                    })
-                            }
-                        })
-                        .catch((error) => console.log(error));
+                    console.log("Socket search New message");
+                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload)
                 }
             });
         }
@@ -171,7 +154,7 @@ const ListFriend = () => {
     }
 
     return (
-        <div className=" ListFriendContainer">
+        <div className="flex space-x-3 py-3 px-1 items-center justify-start TabletPoint:justify-start TabletPoint:space-x-0 TabletPoint:items-center TabletPoint:flex-col mx-auto w-[100%] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
                     <Friends
@@ -182,10 +165,7 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={getNoReadMsgs(value._id, LastMsg)}
-                        //reloadState ListFriend
-                        setReloadState={setReload}
-                        reloadState={reload} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
                 )
             }
         </div>
