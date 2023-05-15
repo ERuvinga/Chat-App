@@ -94,9 +94,7 @@ textarea::-webkit-scrollbar-button {
 
 .ListFriendContainer {
     scrollbar-width: thin;
-    padding: 5px;
     overflow: auto;
-    max-width: 98%;
 }
 
 .ListFriendContainer::-webkit-scrollbar {
