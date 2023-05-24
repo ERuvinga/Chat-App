@@ -71,7 +71,7 @@ const Index = (User: dataUser) => {
             {
                 <div className='mx-auto  w-[100%] h-screen bg-[#F9F9FC] flex flex-col justify-between TabletPoint:flex-row '>
                     <section className=' mx-auto w-[99%] sm:w-[80%] list-users TabletPoint:w-[30%] md_lg:w-[25%] TabletPoint:h-screen'>
-                        <div className='flex flex-col justify-center'>
+                        <div className={!ContexChat.tooglePage ? 'hidden TabletPoint:flex flex-col justify-center' : 'flex flex-col justify-center'}>
                             <div className=' min-h-[5vh] relative '>
                                 <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
                                 <div className='flex items-center justify-center mt-6'>

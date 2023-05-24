@@ -32,12 +32,6 @@ textarea {
     text-align: justify;
 }
 
-textarea:focus {
-    border: none;
-    outline: solid 1px #E2E3E9;
-    border-radius: 20px;
-}
-
 textarea::-webkit-scrollbar {
     background-color: #F9F9FC;
     width: 5px;

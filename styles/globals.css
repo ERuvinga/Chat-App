@@ -22,3 +22,15 @@ body {
 .border {
     border: solid black 1px;
 }
+
+/*Focused Fields*/
+.SearchUser:focus {
+    border: none;
+    outline: solid 1px #E2E3E9;
+}
+
+textarea:focus {
+    border: none;
+    outline: solid 1px #E2E3E9;
+    border-radius: 20px;
+}
