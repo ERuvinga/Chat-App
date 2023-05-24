@@ -154,7 +154,7 @@ const ListFriend = () => {
     }
 
     return (
-        <div className="flex space-x-3 py-3 px-1 items-center justify-start TabletPoint:justify-start TabletPoint:space-x-0 TabletPoint:items-center TabletPoint:flex-col mx-auto w-[100%] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
+        <div className="flex flex-col space-x-3 py-3 px-1 items-center justify-start mx-auto w-[100%] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
             {
                 dataUsers.map((value, index) =>
                     <Friends

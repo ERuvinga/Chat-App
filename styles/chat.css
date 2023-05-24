@@ -2,13 +2,6 @@
     border-radius: 15px;
 }
 
-/*In component UserChat*/
-
-.Container-user {
-    width: 90%;
-    margin: auto;
-}
-
 .imgUser {
     display: block;
     width: 60px;
@@ -88,9 +81,9 @@
 
 /*News Messages*/
 .ContainerMessage {
-    border-radius: 40px;
+    border-radius: 32px;
     width: 100%;
-    transition: transform .6s ease-in-out;
+    transition: all .4s ease-in-out;
 }
 
 
@@ -107,12 +100,12 @@
     cursor: pointer;
     background-color: #fff;
     transform: scale(1.015);
-    padding: 1px;
+    padding: 2px;
     box-shadow: .5px 0px 3px #E2E3E9;
     transition: all .4s ease-in-out;
 }
 
-.ContainerMessageSelected:hover {
+.ContainerUserSelected:hover {
     cursor: pointer;
 }
 
