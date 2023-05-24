@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { faBell, faClose, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faArrowLeft, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { contextChat } from '../../../Context/ChatContext';
 
@@ -19,7 +19,7 @@ const Index = (datas: UserDatas) => {
                 <span className='font-bold text-2 text-[#5843E4]'>{datas.name}</span>
             </div>
             <div className='flex mr-2 text-[#8186A0] text-[1em]  space-x-4'>
-                <FontAwesomeIcon className="ChatHeadBtns" icon={faClose} onClick={() => {
+                <FontAwesomeIcon className="ChatHeadBtns" icon={faArrowLeft} onClick={() => {
                     ChatContext.set_idOtherUser(0);
                     ChatContext.setSelectedUser(null);
                     ChatContext.setTooglePage(true);
