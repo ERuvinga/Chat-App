@@ -33,7 +33,7 @@ const Message = () => {
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
                             <HeadChat name={UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
                         </div>
-                        <div className=' w-[95%] h-[76vh] mx-auto flex justify-center items-center'>
+                        <div className=' w-[95%] min-h-[60vh] h-[66vh] TabletPoint:h-[76vh] mx-auto flex justify-center items-center'>
                             {
                                 ChatContext.loadingMessages ? <LoadingComponent /> :
                                     ((ChatContext.messageContent.length <= 0) ?
