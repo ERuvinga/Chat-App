@@ -29,7 +29,7 @@ const Message = () => {
         <>
             {
                 !ChatContext.tooglePage ?
-                    <>
+                    <div className=' w-[100%]'>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
                             <HeadChat name={UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
                         </div>
@@ -68,9 +68,9 @@ const Message = () => {
                                 }} />
                             <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
                         </div>
-                    </>
+                    </div>
                     :
-                    <>
+                    <div className=' w-[100%]'>
                         <div className=' w-[95%] mx-auto h-[86vh] flex justify-center items-center'>
                             <img src='home-illustration.svg' alt='Chat' className='w-[75%] h-[75%]' />
                         </div>
@@ -78,7 +78,7 @@ const Message = () => {
                             <p className='font-bold text-[#8186A0]'> Catch news from others with Chat-App ...</p>
                         </div>
 
-                    </>
+                    </div>
             }
         </>
     )

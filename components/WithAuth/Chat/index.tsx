@@ -72,15 +72,17 @@ const Index = (User: dataUser) => {
                 <div className='mx-auto  w-[100%] h-screen bg-[#F9F9FC] flex flex-col justify-between TabletPoint:flex-row '>
                     <section className=' mx-auto w-[99%] sm:w-[80%] list-users TabletPoint:w-[30%] md_lg:w-[25%] TabletPoint:h-screen'>
                         <div className='flex flex-col justify-center'>
-                            <div className='min-h-[6vh] TabletPoint:min-h-[10vh] relative '>
+                            <div className=' min-h-[5vh] relative '>
                                 <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
-                                <input name='searchUser ' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
+                                <div className='flex  items-center justify-center mt-6'>
+                                    <input name='searchUser' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
+                                </div>
                             </div>
                             <span className='Line mt-4'></span>
                             <ListFriend />
                         </div>
                     </section>
-                    <section className=' w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'>
+                    <section className='hidden w-[99%] sm:w-[80%] TabletPoint:flex TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'>
                         <Message />
                     </section>
 

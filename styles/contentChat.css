@@ -94,12 +94,11 @@ textarea::-webkit-scrollbar-button {
 
 .ListFriendContainer {
     scrollbar-width: thin;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .ListFriendContainer::-webkit-scrollbar {
     width: 4px;
-    height: 4px;
     background-color: #F9F9FC;
 }
 
@@ -110,7 +109,6 @@ textarea::-webkit-scrollbar-button {
 
 .ListFriendContainer::-webkit-scrollbar-button {
     height: 5px;
-    width: 5px;
     border-radius: 10px;
     background-color: #8186A0;
 }

@@ -26,7 +26,7 @@ const Index = (datas: NewMessages) => {
     ioContext = useContext(socketIoContext);
 
     return (
-        <div className=' flex flex-row h-[100%] w-[95%] justify-center items-center my-3'
+        <div className='flex flex-row h-[100%] w-[95%] justify-center items-center my-3'
             onClick={() => {
                 ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
