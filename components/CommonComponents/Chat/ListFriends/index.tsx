@@ -154,7 +154,7 @@ const ListFriend = () => {
     }
 
     return (
-        <div className="flex flex-col py-3 px-1 items-center justify-start mx-auto w-[100%] max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
+        <div className={!ChatContext.tooglePage ? 'hidden TabletPoint:flex flex-col py-3 px-1 items-center justify-start mx-auto w-[100%] max-h-[85vh] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer' : "flex flex-col py-3 px-1 items-center justify-start mx-auto w-[100%] max-h-[85vh] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer"}>
             {
                 dataUsers.map((value, index) =>
                     <Friends
