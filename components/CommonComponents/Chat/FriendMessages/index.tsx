@@ -26,14 +26,15 @@ const Index = (datas: NewMessages) => {
     ioContext = useContext(socketIoContext);
 
     return (
-        <div className=' flex flex-row w-[64px] h-[64px] TabletPoint:h-[100%] TabletPoint:w-[95%] TabletPoint:justify-center TabletPoint:items-center TabletPoint:my-3'
+        <div className='flex flex-row h-[100%] w-[95%] justify-center items-center my-3'
             onClick={() => {
                 ChatContxt.setLoadingMessage(true);
                 ChatContxt.setSelectedUser(datas.indexUser);
                 ChatContxt.set_idOtherUser(datas._idUser);
 
                 if (ChatContxt.InputMessage !== null) { // if available
-                    ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment
+                    ChatContxt.InputMessage.value = null // delete any content in  Input Elelment
+                    ChatContxt.messageSender = null; //delete content value of message wen change user
                 }
 
                 //check conversation _id
@@ -60,13 +61,13 @@ const Index = (datas: NewMessages) => {
                     .catch((error) => console.log(error))
             }
             } >
-            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex flex-col justify-center items-center space-y-[2px] TabletPoint:space-y-0 TabletPoint:flex-row TabletPoint:justify-center' : 'ContainerMessage flex flex-col justify-center items-center space-y-[2px] TabletPoint:space-y-0 TabletPoint:flex-row TabletPoint:justify-between'}>
-                <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[28px] h-[28px] TabletPoint:w-[50px] TabletPoint:h-[50px] imgUserMessage ' alt='user' />
-                <p className='w-[100%] flex flex-col items-center justify-center TabletPoint:items-start TabletPoint:w-[60%] TabletPoint:ml-[8px] '>
+            <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between' : 'ContainerMessage flex justify-between'}>
+                <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
+                <p className='w-[100%] flex flex-col justify-center items-start TabletPoint:w-[60%] ml-[8px] '>
                     <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
-                    <span className='hidden TabletPoint:flex messages'>{datas.contentMessage}</span>
+                    <span className='messages'>{datas.contentMessage}</span>
                 </p>
-                <div className=' hidden TabletPoint:flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
+                <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
                     <span className='Date'>18.32</span>
                     {
                         datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />

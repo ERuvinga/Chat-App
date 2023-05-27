@@ -16,14 +16,14 @@ const MessageComponent = (datas: contentMessage) => {
 
     return (
         (ChatContext._idOwnerUser !== datas.SenderId) ?
-            <div className=" BlocMessage md:max-w-[40%] flex items-end space-x-1">
+            <div className=" BlocMessage max-w-[75%] md:max-w-[40%] flex items-end space-x-1">
                 <div className="w-[17px] h-[17px]">
                     <img src={UserContext.OtherUser.picture ? UserContext.OtherUser.picture : 'profile.png'} alt="imageUser" className={datas.lastMesgInConver ? "imageMessage" : "hidden"} />
                 </div>
                 <span className='otherUser text-[.74em]'>{datas.messageContent}</span>
             </div>
             :
-            <div className=" BlocMessage md:max-w-[40%] mr-2 flex items-end justify-end space-x-1 self-end ">
+            <div className=" BlocMessage max-w-[75%] md:max-w-[40%] mr-2 flex items-end justify-end space-x-1 self-end ">
                 <span className=" OwnerUser text-[.74em] ">{datas.messageContent}</span>
                 <div className="w-[17px] h-[17px] ">
                     <img src={UserContext.OwnerUser.picture ? UserContext.OwnerUser.picture : 'profile.png'} alt="imageUser" className={datas.lastMesgInConver ? "imageMessage" : "hidden"} />

@@ -5,7 +5,7 @@ export const contextChat = createContext(null);
 const ChatProviderContext = ({ children }) => {
     //messages
     const [loadingMessages, setLoadingMessage] = useState(true); //state of loading messages in database
-    const [messageSender, setMessageSender] = useState(''); // state content all messages in one conversation
+    const [messageSender, setMessageSender] = useState(null); // state content all messages in one conversation
     const [messageContent, setMessageContent] = useState([]); // state content all messages in one conversation
     const [msgBlocReload, setMsgBlocReload] = useState(0); // state reload message
     const [_idConversation, set_idConversation] = useState(null); // state save a id of one Conversation
