@@ -26,16 +26,19 @@ const Index = (datas: dataIcone) => {
             <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn' : 'p-2 iconeBtns'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-                    const dataOfMessage = {
-                        messages: {
-                            message: ChatContext.messageSender,
-                            type: 'text',
-                            hour: Date.now()
-                        }
-                    }
+                    console.log(ChatContext.messageSender);
 
-                    if (ChatContext.messageSender !== '') {
-                        ChatContext.InputMessage.value = ''; // delete content in texteare
+                    if (ChatContext.messageSender != null && ChatContext.InputMessage.value != null) {
+                        const dataOfMessage = {
+                            messages: {
+                                message: ChatContext.messageSender,
+                                type: 'text',
+                                hour: Date.now()
+                            }
+                        }
+
+                        ChatContext.InputMessage.value = null; // delete content in texteare
+                        ChatContext.messageSender = null; // recycle content of message to send
                         console.log(ChatContext.messageSender);
 
                         // context Event 

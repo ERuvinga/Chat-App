@@ -33,7 +33,8 @@ const Index = (datas: NewMessages) => {
                 ChatContxt.set_idOtherUser(datas._idUser);
 
                 if (ChatContxt.InputMessage !== null) { // if available
-                    ChatContxt.InputMessage.value = '' // delete any content in  Input Elelment
+                    ChatContxt.InputMessage.value = null // delete any content in  Input Elelment
+                    ChatContxt.messageSender = null; //delete content value of message wen change user
                 }
 
                 //check conversation _id

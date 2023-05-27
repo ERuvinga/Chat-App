@@ -62,9 +62,10 @@ const Message = () => {
                                 rows={1}
                                 className='InputMessage'
                                 placeholder="write something ..."
-                                onChange={(event) => {
+                                onBlur={(event) => {
                                     ChatContext.setMessageSender(event.target.value);
                                     ChatContext.setInputMessage(event.target); //save a Input element
+                                    console.log("Value charged");
                                 }} />
                             <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
                         </div>
