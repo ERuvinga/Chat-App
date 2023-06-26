@@ -55,19 +55,24 @@ const Message = () => {
 
                         </div>
 
-                        <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
-                            <BtnMessages icone={faSmile} />
-                            <BtnMessages icone={faPaperclip} />
-                            <textarea name='message' id='ContentMessage'
-                                rows={1}
-                                className='InputMessage'
-                                placeholder="write something ..."
-                                onBlur={(event) => {
-                                    ChatContext.setMessageSender(event.target.value);
-                                    ChatContext.setInputMessage(event.target); //save a Input element
-                                    console.log("Value charged");
-                                }} />
-                            <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
+                        <div className='border w-[95%] mx-auto Chat-Footer flex flex-col sm:flex-row justify-center items-center space-x-3'>
+                            <div className='flex justify-center items-center border'>
+                                <BtnMessages icone={faSmile} />
+                                <BtnMessages icone={faPaperclip} />
+                            </div>
+
+                            <div className='flex justify-center items-center border w-[70%]'>
+                                <textarea name='message' id='ContentMessage'
+                                    rows={1}
+                                    className='InputMessage mobile:w-[50%]'
+                                    placeholder="write something ..."
+                                    onBlur={(event) => {
+                                        ChatContext.setMessageSender(event.target.value);
+                                        ChatContext.setInputMessage(event.target); //save a Input element
+                                        console.log("Value charged");
+                                    }} />
+                                <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
+                            </div>
                         </div>
                     </div>
                     :

@@ -23,7 +23,7 @@ const Index = (datas: dataIcone) => {
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
-            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn' : 'p-2 iconeBtns'}
+            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn mobile:w-[40px]' : 'p-2 iconeBtns mobile:w-[40px]'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
                     console.log(ChatContext.messageSender);
