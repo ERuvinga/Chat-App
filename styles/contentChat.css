@@ -21,7 +21,6 @@
 /* design a textArea */
 .InputMessage {
     resize: none;
-    width: 50%;
     padding: 7px 10px;
     font-size: 0.75em;
     color: #8186A0;
@@ -52,7 +51,6 @@ textarea::-webkit-scrollbar-button {
 
 /*boutons*/
 .iconeBtns {
-    width: 40px;
     color: #8186A0;
     font-size: .9em;
     transition: all .6s;
@@ -67,7 +65,6 @@ textarea::-webkit-scrollbar-button {
 }
 
 .sendMessagebtn {
-    width: 40px;
     color: #8186A0;
     font-size: .9em;
     transition: all .6s;

@@ -14,7 +14,10 @@ module.exports = {
 
         'TabletPoint': '920px',
         // => @media (min-width: 320px) { ... }
-        'sm': '530px'
+        'sm': '530px',
+
+        'smallPoint': '280px',
+        // => @media (min-width: 280px) { ... }
       },
 
     },
