@@ -50,7 +50,7 @@ const ListFriend = () => {
 
     //states
     const [LoadinPage, setLoadingPage] = useState(true);
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0, name:'' }]);
     const [LastMsg, setLastMsg] = useState([{
         members: [],
         messages: {
@@ -159,7 +159,7 @@ const ListFriend = () => {
                 dataUsers.map((value, index) =>
                     <Friends
                         key={index}
-                        name={value.email}
+                        name={value.name !== ''? value.name : value.email}
                         _idUser={value._id}
                         indexUser={index}
                         picture={value.picture}
