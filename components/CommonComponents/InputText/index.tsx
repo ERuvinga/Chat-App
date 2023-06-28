@@ -93,8 +93,7 @@ const Index = (datas: textInput) => {
                             case 1:
                                 userDataLogin.password = event.target.value;
                                 break;
-                        }
-                        console.log(userDataLogin);
+                        };
                     }} /> :
 
                 <input
@@ -122,7 +121,6 @@ const Index = (datas: textInput) => {
                                 userDataRegister.confirmPassword = event.target.value;
                                 break;
                         };
-                        console.log(userDataRegister);
                     }} />
             }
         </div>
