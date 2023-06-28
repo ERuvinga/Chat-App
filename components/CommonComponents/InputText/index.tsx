@@ -231,7 +231,8 @@ export const sendRegisterData = (e: any) => {
                                 ErrorData.setData({
                                     stateError: true,
                                     MessageError: messageError.message
-                                })
+                                });
+                                resetDataofRegisterForm(); // delete datas in fields compnents
                             })
 
                     }
