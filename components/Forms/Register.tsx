@@ -22,8 +22,10 @@ const Register = () => {
                     <ErrorLog />
                     <LoginRegistertitle title='Register' url='./profile.png' />
                     <InputText type="input" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Register" />
-                    <InputText type="password" name="passWord" fieldContent="passWord" idField={1} addLabel={true} page="Register" />
-                    <InputText type="password" name="confirm passWord" fieldContent="confirm-passWord" idField={2} addLabel={true} page="Register" />
+                    <InputText type="input" name="firstName" fieldContent="firstName" idField={1} addLabel={true} page="Register" />
+                    <InputText type="input" name="lastName" fieldContent="lastName" idField={2} addLabel={true} page="Register" />
+                    <InputText type="password" name="passWord" fieldContent="passWord" idField={3} addLabel={true} page="Register" />
+                    <InputText type="password" name="confirm passWord" fieldContent="confirm-passWord" idField={4} addLabel={true} page="Register" />
                     <Button type='button' name='btn' fieldContent='Register' />
 
                     <p className=" flex justify-center items-center space-x-3 text-center my-10 mx-auto w-[99%] text-[.8em] text-[#8186A0]">
