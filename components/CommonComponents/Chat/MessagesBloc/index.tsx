@@ -20,6 +20,7 @@ const Message = () => {
     ChatContext = useContext(contextChat);
     UserContext = useContext(UsersChatContext);
     const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '', LastMsgInConver: false }]);
+    const [messageSender, setMessageSender] = useState('');
 
     useEffect(() => {
         setMessagesDatas(ChatContext.messageContent);
@@ -55,26 +56,21 @@ const Message = () => {
 
                         </div>
 
-                        <div className='border w-[95%] mx-auto Chat-Footer flex flex-col sm:flex-row justify-center items-center space-x-3'>
-                            <div className='flex justify-center items-center border'>
-                                <BtnMessages icone={faSmile} />
+                        <div className='w-[100%] sm:w-[95%] md:w-[80%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
                                 <BtnMessages icone={faPaperclip} />
-                            </div>
 
-                            <div className='flex justify-center items-center border w-[70%]'>
                                 <textarea name='message' id='ContentMessage'
                                     rows={1}
-                                    className='InputMessage mobile:w-[50%]'
+                                    className='InputMessage w-[80%]'
                                     placeholder="write something ..."
                                     onBlur={(event) => {
-                                        ChatContext.setMessageSender(event.target.value);
+                                        setMessageSender(event.target.value);
                                         ChatContext.setInputMessage(event.target); //save a Input element
                                         console.log("Value charged");
                                     }} />
-                                <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
+                                <BtnMessages icone={faPaperPlane} full={true} msg={{content:messageSender, method:setMessageSender}} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
                             </div>
                         </div>
-                    </div>
                     :
                     <div className=' w-[100%]'>
                         <div className=' w-[95%] mx-auto h-[86vh] flex justify-center items-center'>

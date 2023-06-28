@@ -9,7 +9,8 @@ import { socketIoContext } from '../../../Context/socket';
 interface dataIcone {
     icone: any
     _idOtherUser?: any,
-    full?: boolean
+    full?: boolean,
+    msg?:any
 }
 
 let ChatContext: any;
@@ -23,10 +24,10 @@ const Index = (datas: dataIcone) => {
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
-            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn mobile:w-[40px]' : 'p-2 iconeBtns mobile:w-[40px]'}
+            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn sm:w-[40px]' : 'p-2 iconeBtns sm:w-[40px]'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-                    console.log(ChatContext.messageSender);
+                    console.log(datas.msg.messageSender);
 
                     if (ChatContext.messageSender != null && ChatContext.InputMessage.value != null) {
                         const dataOfMessage = {
