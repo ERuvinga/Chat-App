@@ -10,7 +10,7 @@ import { UsersChatContext } from '../../../Context/UserContext';
 
 //incones
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
 
 //variables for Context
 let ChatContext: any;
