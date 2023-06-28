@@ -10,7 +10,6 @@ interface dataIcone {
     icone: any
     _idOtherUser?: any,
     full?: boolean,
-    msg?:any
 }
 
 let ChatContext: any;
@@ -23,27 +22,22 @@ const Index = (datas: dataIcone) => {
     IoContext = useContext(socketIoContext);
 
     return (
-        <div className={datas.full ? '' : 'flex justify-center items-center'}>
+        <div className={datas.full ? '' : 'flex justify-center items-center disabled'}>
             <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn sm:w-[40px]' : 'p-2 iconeBtns sm:w-[40px]'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-                    console.log(datas.msg.messageSender);
 
-                    if (ChatContext.messageSender != null && ChatContext.InputMessage.value != null) {
+                    if (ChatContext.InputMessage.value != null && ChatContext.InputMessage.value != '') {
                         const dataOfMessage = {
                             messages: {
-                                message: ChatContext.messageSender,
+                                message: ChatContext.InputMessage.value,
                                 type: 'text',
                                 hour: Date.now()
                             }
-                        }
-
+                        };
                         ChatContext.InputMessage.value = null; // delete content in texteare
-                        ChatContext.messageSender = null; // recycle content of message to send
-                        console.log(ChatContext.messageSender);
 
                         // context Event 
-
                         fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
                             headers: {

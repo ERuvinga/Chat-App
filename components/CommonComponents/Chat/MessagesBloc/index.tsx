@@ -20,7 +20,6 @@ const Message = () => {
     ChatContext = useContext(contextChat);
     UserContext = useContext(UsersChatContext);
     const [messagesDatas, setMessagesDatas] = useState([{ message: '', senderId: '', LastMsgInConver: false }]);
-    const [messageSender, setMessageSender] = useState('');
 
     useEffect(() => {
         setMessagesDatas(ChatContext.messageContent);
@@ -52,11 +51,8 @@ const Message = () => {
                                         </div>
                                     )
                             }
-
-
                         </div>
-
-                        <div className='w-[100%] sm:w-[95%] md:w-[80%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
+                            <div className='w-[95%] md:w-[80%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
                                 <BtnMessages icone={faPaperclip} />
 
                                 <textarea name='message' id='ContentMessage'
@@ -64,11 +60,9 @@ const Message = () => {
                                     className='InputMessage w-[80%]'
                                     placeholder="write something ..."
                                     onBlur={(event) => {
-                                        setMessageSender(event.target.value);
                                         ChatContext.setInputMessage(event.target); //save a Input element
-                                        console.log("Value charged");
                                     }} />
-                                <BtnMessages icone={faPaperPlane} full={true} msg={{content:messageSender, method:setMessageSender}} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
+                                <BtnMessages icone={faPaperPlane} full={true}_idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
                             </div>
                         </div>
                     :
