@@ -22,7 +22,7 @@ const Index = (datas: dataIcone) => {
     IoContext = useContext(socketIoContext);
 
     return (
-        <div className={datas.full ? '' : 'flex justify-center items-center disabled'}>
+        <div className={datas.full ? '' : 'flex justify-center items-center'}>
             <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn sm:w-[40px]' : 'p-2 iconeBtns sm:w-[40px]'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
