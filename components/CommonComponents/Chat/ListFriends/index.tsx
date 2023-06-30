@@ -114,7 +114,7 @@ const ListFriend = () => {
 
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) {
+                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) { //limit a event to 2 users 
                     console.log("is me");
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
@@ -138,11 +138,14 @@ const ListFriend = () => {
                 }
             });
 
-            SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OwnerUser.userId) {
-                    console.log("Socket search New message");
-                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload)
-                }
+            SocketContext.socketIo.on('user_Connected', (newUser: any) => { // connected event of user
+                    console.log("New User Connected : ");
+                    console.log(newUser);
+            });
+
+            SocketContext.socketIo.on('user_disconnected', (logoutUser: any) =>{ // disconnect event of user
+                console.log(" User disconnected : ");
+                console.log(logoutUser);
             });
         }
     }, [SocketContext.socketIo]);
