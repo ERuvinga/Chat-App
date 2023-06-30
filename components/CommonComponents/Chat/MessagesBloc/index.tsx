@@ -31,7 +31,7 @@ const Message = () => {
                 !ChatContext.tooglePage ?
                     <div className=' w-[100%]'>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                            <HeadChat name={UserContext.OtherUser.name !== '' ?UserContext.OtherUser.name : UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
+                            <HeadChat name={UserContext.OtherUser.name !== '' ? UserContext.OtherUser.name : UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
                         </div>
                         <div className=' w-[95%] h-[78vh] TabletPoint:h-[76vh] mx-auto flex justify-center items-center'>
                             {

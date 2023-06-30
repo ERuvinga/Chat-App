@@ -50,7 +50,7 @@ const Index = (datas: dataIcone) => {
                         })
                             .then(() => {
                                 IoContext.socketIo.emit('New_Message', { Other: userContext.OtherUser._id, Owner: userContext.OtherUser.userId }); //Notification server New Message
-                                ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
+                                ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload); // refresh list of message in messageBloc component
                             })
                             .catch((error) => console.log(error))
                     }

@@ -155,7 +155,6 @@ export const sendLoginData = (e: any) => {
                 if (user.ok) {
                     user.json()
                         .then(datas => { // if user ok, redierct this on index page of chat
-                            console.info(datas.message);
                             // adding a token and user id in localstorage data
                             localStorage.setItem('Token', datas.token);
 
@@ -218,7 +217,6 @@ export const sendRegisterData = (e: any) => {
                         user.json()
                             .then(datas => {
                                 router.push("/Login"); // whene create a new user succed you are redirect to Login page
-                                console.info(datas.message);
                             })
                     }
 
