@@ -138,6 +138,18 @@ const ListFriend = () => {
                 }
             });
 
+            // principal events : newMessage, Connection, disconnection
+            SocketContext.socketIo.on('New_Message', (users:any) => { // connected event of user
+
+                if(users.other === userContext.OwnerUser.userId){
+                    // if other user is owner in this display
+                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
+                }
+                console.log("New message of : ");
+                console.log(users.userSender);
+        });
+
+
             SocketContext.socketIo.on('user_Connected', (newUser: any) => { // connected event of user
                     console.log("New User Connected : ");
                     console.log(newUser);
