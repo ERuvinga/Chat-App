@@ -17,7 +17,7 @@ const Register = () => {
 
     else {
         return (
-            <form onSubmit={(e) => { e.preventDefault }} className=" container mx-auto flex flex-col items-center justify-center">
+            <form onSubmit={(e) => { e.preventDefault }} className=" mt-[30px] container mx-auto flex flex-col items-center justify-center">
                 <div className=' w-[95%] md:w-[60%] lg:w-[40%] '>
                     <ErrorLog />
                     <LoginRegistertitle title='Register' url='./profile.png' />
