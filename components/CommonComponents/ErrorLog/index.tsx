@@ -6,9 +6,18 @@ import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 const ErrorLog = () => {
     let errorDatas: any;
     errorDatas = useContext(ContextUser);
+    if(errorDatas.data.stateError){ // no display error message after some secondes
+        setTimeout(()=>{
+            errorDatas.setData(
+                { 
+                    stateError: false, 
+                    MessageError: errorDatas.data.MessageError
+                });
+        }, 5000)
+    }
 
     return( 
-        <div className={(errorDatas.data.stateError) ? "ErrorLog flex space-x-1": " hidden"}>
+        <div className={(errorDatas.data.stateError) ? "ErrorLog flex space-x-1": " hiddenErrorLog flex space-x-1"}>
             <FontAwesomeIcon icon={faCircleInfo} className="text-[#8186A0]"/>
             <span className= "ErrorMsg text-[#E2E3E9] " > 
                 # {errorDatas.data.MessageError}
