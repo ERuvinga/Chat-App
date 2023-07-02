@@ -25,14 +25,14 @@
     }
 
     to {
-        margin: 0 6%;
+        margin: 0 7%;
         text-align: center;
     }
-
 }
+
 .ErrorLog {
     animation: loadError 1s ease-in-out;
-    margin: 0 6%;
+    margin: 0 7%;
 }
 
 .ErrorMsg{
@@ -42,4 +42,9 @@
     margin: 10px ;
     border-radius: 10px;
     box-shadow: 0 0 5px 2px #E2E3E9;
+}
+
+.hiddenErrorLog{
+    transform: scale(0);
+    transition: all .3s ease-in-out;
 }
