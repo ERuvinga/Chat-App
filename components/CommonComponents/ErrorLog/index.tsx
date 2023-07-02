@@ -17,7 +17,7 @@ const ErrorLog = () => {
     }
 
     return( 
-        <div className={(errorDatas.data.stateError) ? "ErrorLog flex space-x-1": " hiddenErrorLog flex space-x-1"}>
+        <div className={(errorDatas.data.stateError) ? "ErrorLog flex space-x-1": " hiddenErrorLog"}>
             <FontAwesomeIcon icon={faCircleInfo} className="text-[#8186A0]"/>
             <span className= "ErrorMsg text-[#E2E3E9] " > 
                 # {errorDatas.data.MessageError}
