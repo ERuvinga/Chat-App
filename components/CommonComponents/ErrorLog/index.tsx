@@ -13,7 +13,7 @@ const ErrorLog = () => {
                     stateError: false, 
                     MessageError: errorDatas.data.MessageError
                 });
-        }, 5000)
+        }, 15000);
     }
 
     return( 
