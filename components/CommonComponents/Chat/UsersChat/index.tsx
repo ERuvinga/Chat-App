@@ -12,7 +12,7 @@ const index = (datas: user) => {
             <div className=' w-5/6 flex justify-start items-center'>
                 <img src={datas.picture ? datas.picture : 'profile.png'} className='imgUser' alt='user' />
                 <p className='Names'>
-                    <span className=' NameUser'>{datas.Name != '' ? datas.Name : '~'}</span>
+                    <span className=' NameUser'>{datas.Name !== '' ? datas.Name : '~'}</span>
                     <span className=' descriptionUser'>{datas.descriptions}</span>
                 </p>
             </div>

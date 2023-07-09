@@ -25,20 +25,26 @@
     }
 
     to {
-        margin: 0 5%;
+        margin: 0 7%;
         text-align: center;
     }
-
 }
 
 .ErrorLog {
-    background-color: #efefef;
-    font-size: smaller;
-    padding: 2px 20px;
-    margin: 3px 5%;
     animation: loadError 1s ease-in-out;
+    margin: 0 7%;
 }
 
-.HiddenErrorLog {
-    display: none;
+.ErrorMsg{
+    background-color: #5843E4;
+    font-size: smaller;
+    padding: 10px 20px;
+    margin: 10px ;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px #E2E3E9;
+}
+
+.hiddenErrorLog{
+    transform: scale(0);
+    transition: all .15s ease-in-out;
 }

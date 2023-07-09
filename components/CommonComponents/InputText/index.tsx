@@ -11,8 +11,6 @@ interface textInput {
     idField: number // value in field (email and password)
 }
 
-
-let emailOrPassword: number;
 let router: any;
 let ErrorData: any;
 let dataOfContext: any;
@@ -23,6 +21,8 @@ let userDataLogin = {
 }
 
 let userDataRegister = {
+    firstName: "",
+    lastName:"",
     email: "",
     password: "",
     confirmPassword: ""
@@ -32,6 +32,19 @@ const resetDataofLoginForm = () => {
     // initialise data send from login
     userDataLogin.email = '';
     userDataLogin.password = '';
+
+    // disabled button whene refresh a login and register components
+    dataOfContext.setDisablebtn(true);
+
+}
+
+const resetDataofRegisterForm = () => {
+    // initialise data send from login
+    userDataRegister.email = '';
+    userDataRegister.password = '';
+    userDataRegister.confirmPassword = '';
+    userDataRegister.firstName = '';
+    userDataRegister.lastName = '';
 
     // disabled button whene refresh a login and register components
     dataOfContext.setDisablebtn(true);
@@ -72,8 +85,7 @@ const Index = (datas: textInput) => {
                     id={datas.name}
                     className='InputField'
                     onChange={(event: any) => {
-                        emailOrPassword = datas.idField ? 1 : 0; // verify a field that generate this event 
-                        switch (emailOrPassword) {
+                        switch (datas.idField ) {// verify a field that generate this event 
                             case 0:
                                 userDataLogin.email = event.target.value;
                                 handleChange(event.target.value);
@@ -81,8 +93,7 @@ const Index = (datas: textInput) => {
                             case 1:
                                 userDataLogin.password = event.target.value;
                                 break;
-                        }
-
+                        };
                     }} /> :
 
                 <input
@@ -94,25 +105,19 @@ const Index = (datas: textInput) => {
 
                         switch (datas.idField) { // verify a field that generate this event 
                             case 0:
-                                emailOrPassword = 0;
-                                break;
-                            case 1:
-                                emailOrPassword = 1;
-                                break;
-                            case 2:
-                                emailOrPassword = 2;
-                                break;
-                        };
-
-                        switch (emailOrPassword) { // find and save value a available in field switched
-                            case 0:
                                 userDataRegister.email = event.target.value;
                                 handleChange(event.target.value);
                                 break;
                             case 1:
-                                userDataRegister.password = event.target.value;
+                                userDataRegister.firstName = event.target.value;
                                 break;
                             case 2:
+                                userDataRegister.lastName = event.target.value;
+                                break;
+                            case 3:
+                                userDataRegister.password = event.target.value;
+                                break;
+                            case 4:
                                 userDataRegister.confirmPassword = event.target.value;
                                 break;
                         };
@@ -150,7 +155,6 @@ export const sendLoginData = (e: any) => {
                 if (user.ok) {
                     user.json()
                         .then(datas => { // if user ok, redierct this on index page of chat
-                            console.info(datas.message);
                             // adding a token and user id in localstorage data
                             localStorage.setItem('Token', datas.token);
 
@@ -213,7 +217,6 @@ export const sendRegisterData = (e: any) => {
                         user.json()
                             .then(datas => {
                                 router.push("/Login"); // whene create a new user succed you are redirect to Login page
-                                console.info(datas.message);
                             })
                     }
 
@@ -224,7 +227,8 @@ export const sendRegisterData = (e: any) => {
                                 ErrorData.setData({
                                     stateError: true,
                                     MessageError: messageError.message
-                                })
+                                });
+                                resetDataofRegisterForm(); // delete datas in fields compnents
                             })
 
                     }

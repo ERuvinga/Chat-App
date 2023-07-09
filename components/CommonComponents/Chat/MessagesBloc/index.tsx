@@ -10,7 +10,7 @@ import { UsersChatContext } from '../../../Context/UserContext';
 
 //incones
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSmile, faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faPaperclip, faMessage } from '@fortawesome/free-solid-svg-icons';
 
 //variables for Context
 let ChatContext: any;
@@ -31,7 +31,7 @@ const Message = () => {
                 !ChatContext.tooglePage ?
                     <div className=' w-[100%]'>
                         <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                            <HeadChat name={UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
+                            <HeadChat name={UserContext.OtherUser.name !== '' ? UserContext.OtherUser.name : UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
                         </div>
                         <div className=' w-[95%] h-[78vh] TabletPoint:h-[76vh] mx-auto flex justify-center items-center'>
                             {
@@ -51,25 +51,20 @@ const Message = () => {
                                         </div>
                                     )
                             }
-
-
                         </div>
+                            <div className='w-[95%] md:w-[80%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
+                                <BtnMessages icone={faPaperclip} />
 
-                        <div className=' w-[95%] mx-auto Chat-Footer flex justify-center items-center space-x-3'>
-                            <BtnMessages icone={faSmile} />
-                            <BtnMessages icone={faPaperclip} />
-                            <textarea name='message' id='ContentMessage'
-                                rows={1}
-                                className='InputMessage'
-                                placeholder="write something ..."
-                                onBlur={(event) => {
-                                    ChatContext.setMessageSender(event.target.value);
-                                    ChatContext.setInputMessage(event.target); //save a Input element
-                                    console.log("Value charged");
-                                }} />
-                            <BtnMessages icone={faPaperPlane} full={true} _idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
+                                <textarea name='message' id='ContentMessage'
+                                    rows={1}
+                                    className='InputMessage w-[80%]'
+                                    placeholder="write something ..."
+                                    onBlur={(event) => {
+                                        ChatContext.setInputMessage(event.target); //save a Input element
+                                    }} />
+                                <BtnMessages icone={faPaperPlane} full={true}_idOtherUser={!ChatContext.tooglePage ? UserContext.OtherUser._id : null} />
+                            </div>
                         </div>
-                    </div>
                     :
                     <div className=' w-[100%]'>
                         <div className=' w-[95%] mx-auto h-[86vh] flex justify-center items-center'>

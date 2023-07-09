@@ -9,7 +9,7 @@ import { socketIoContext } from '../../../Context/socket';
 interface dataIcone {
     icone: any
     _idOtherUser?: any,
-    full?: boolean
+    full?: boolean,
 }
 
 let ChatContext: any;
@@ -23,26 +23,21 @@ const Index = (datas: dataIcone) => {
 
     return (
         <div className={datas.full ? '' : 'flex justify-center items-center'}>
-            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn' : 'p-2 iconeBtns'}
+            <FontAwesomeIcon className={datas.full ? 'p-2 sendMessagebtn sm:w-[40px]' : 'p-2 iconeBtns sm:w-[40px]'}
                 icon={datas.icone}
                 onClick={(datas.full && datas._idOtherUser != null) ? () => {
-                    console.log(ChatContext.messageSender);
 
-                    if (ChatContext.messageSender != null && ChatContext.InputMessage.value != null) {
+                    if (ChatContext.InputMessage.value != null && ChatContext.InputMessage.value != '') {
                         const dataOfMessage = {
                             messages: {
-                                message: ChatContext.messageSender,
+                                message: ChatContext.InputMessage.value,
                                 type: 'text',
                                 hour: Date.now()
                             }
-                        }
-
+                        };
                         ChatContext.InputMessage.value = null; // delete content in texteare
-                        ChatContext.messageSender = null; // recycle content of message to send
-                        console.log(ChatContext.messageSender);
 
                         // context Event 
-
                         fetch(`${process.env.API_LINK}/api/conversations/NewMessage/${ChatContext._idConversation}`, { // add new message in database with conversation
                             method: "PUT",
                             headers: {
@@ -54,8 +49,8 @@ const Index = (datas: dataIcone) => {
                             body: JSON.stringify({ dataOfMessage: dataOfMessage, lengthConver: ChatContext.messageContent.length, _idOtherUser: userContext.OtherUser._id })
                         })
                             .then(() => {
-                                IoContext.socketIo.emit('New_Message', { Other: userContext.OtherUser._id, Owner: userContext.OtherUser.userId }); //Notification server New Message
-                                ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
+                                IoContext.socketIo.emit('New_Message', { Other: userContext.OtherUser._id}); //Notification server New Message
+                                ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload); // refresh list of message in messageBloc component
                             })
                             .catch((error) => console.log(error))
                     }

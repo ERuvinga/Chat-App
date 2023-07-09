@@ -50,7 +50,7 @@ const ListFriend = () => {
 
     //states
     const [LoadinPage, setLoadingPage] = useState(true);
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0 }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0, name:'' }]);
     const [LastMsg, setLastMsg] = useState([{
         members: [],
         messages: {
@@ -114,7 +114,7 @@ const ListFriend = () => {
 
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) {
+                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) { //limit a event to 2 users 
                     console.log("is me");
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
@@ -138,11 +138,26 @@ const ListFriend = () => {
                 }
             });
 
-            SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OwnerUser.userId) {
-                    console.log("Socket search New message");
-                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload)
+            // principal events : newMessage, Connection, disconnection
+            SocketContext.socketIo.on('New_Message', (users:any) => { // connected event of user
+
+                if(users.other === userContext.OwnerUser.userId){
+                    // if other user is owner in this display
+                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                 }
+                console.log("New message of : ");
+                console.log(users.userSender);
+        });
+
+
+            SocketContext.socketIo.on('user_Connected', (newUser: any) => { // connected event of user
+                    console.log("New User Connected : ");
+                    console.log(newUser);
+            });
+
+            SocketContext.socketIo.on('user_disconnected', (logoutUser: any) =>{ // disconnect event of user
+                console.log(" User disconnected : ");
+                console.log(logoutUser);
             });
         }
     }, [SocketContext.socketIo]);
@@ -159,7 +174,7 @@ const ListFriend = () => {
                 dataUsers.map((value, index) =>
                     <Friends
                         key={index}
-                        name={value.email}
+                        name={value.name !== ''? value.name : value.email}
                         _idUser={value._id}
                         indexUser={index}
                         picture={value.picture}
