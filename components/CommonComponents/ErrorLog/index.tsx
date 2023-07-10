@@ -5,15 +5,17 @@ import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const ErrorLog = () => {
     let errorDatas: any;
+
     errorDatas = useContext(ContextUser);
-    if(errorDatas.data.stateError){ // no display error message after some secondes
+    if(errorDatas.data.stateError && errorDatas.data.validateError){ // no display error message after some secondes
         setTimeout(()=>{
             errorDatas.setData(
                 { 
                     stateError: false, 
-                    MessageError: errorDatas.data.MessageError
+                    MessageError: errorDatas.data.MessageError,
+                    validateError: false
                 });
-        }, 15000);
+        }, 12000);
     }
 
     return( 
