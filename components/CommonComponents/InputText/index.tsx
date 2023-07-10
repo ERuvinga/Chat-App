@@ -57,24 +57,27 @@ const Index = (datas: textInput) => {
     ErrorData = useContext(ContextUser);
     dataOfContext = useContext(ContextUser);
 
-
     const handleChange = (data: String) => {
         if (data.match(/@[a-zA-Z0-9]{5,}(.com$)/)) {
             dataOfContext.setDisablebtn(false);
             ErrorData.setData({
                 stateError: false,
-                MessageError: ''
+                MessageError: '',
+                validateError: false
             });
+            clearTimeout(ErrorData.idSetTimeOut); // clear a setTimout ID
         }
         else {
             dataOfContext.setDisablebtn(true);
-            ErrorData.setData({
-                stateError: true,
-                MessageError: 'Invalid email of User'
-            });
+            if(!ErrorData.data.validateError){
+                ErrorData.setData({
+                    stateError: true,
+                    MessageError: 'Invalid email of User',
+                    validateError: true
+                });                
+            };
         }
     }
-
     return (
         <div className='InputText w-[90%] '>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
@@ -136,7 +139,8 @@ export const sendLoginData = (e: any) => {
     if (userDataLogin.email === "" || userDataLogin.password === "") {
         ErrorData.setData({
             stateError: true,
-            MessageError: 'Invalid data of User'
+            MessageError: 'Invalid data of User',
+            validateError: true
         });
     }
 
@@ -168,7 +172,8 @@ export const sendLoginData = (e: any) => {
                             dataOfContext.setLaoding(false); // if error, rerender a login form
                             ErrorData.setData({
                                 stateError: true,
-                                MessageError: datas.message
+                                MessageError: datas.message,
+                                validateError: true
                             });
                         });
                 }
@@ -189,7 +194,8 @@ export const sendRegisterData = (e: any) => {
     if (userDataRegister.confirmPassword === "" || userDataRegister.email === "" || userDataRegister.password === "") {
         ErrorData.setData({
             stateError: true,
-            MessageError: 'Invalid datas of user'
+            MessageError: 'Invalid datas of user',
+            validateError: true
         })
     }
 
@@ -197,7 +203,8 @@ export const sendRegisterData = (e: any) => {
         if (userDataRegister.password !== userDataRegister.confirmPassword) {
             ErrorData.setData({
                 stateError: true,
-                MessageError: 'passWord/confirmPassword unwise'
+                MessageError: 'passWord/confirmPassword unwise',
+                validateError: true
             })
         }
 
@@ -226,7 +233,8 @@ export const sendRegisterData = (e: any) => {
                             .then(messageError => {
                                 ErrorData.setData({
                                     stateError: true,
-                                    MessageError: messageError.message
+                                    MessageError: messageError.message,
+                                    validateError: true
                                 });
                                 resetDataofRegisterForm(); // delete datas in fields compnents
                             })
