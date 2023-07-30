@@ -45,7 +45,6 @@ const Index = (datas: NewMessages) => {
                         'Content-type': 'application/json;charset=UTF-8',
                         "Autorization": `Bearer ${localStorage.getItem('Token')}`
                     },
-
                     body: JSON.stringify({ _idOtherUser: datas._idUser })
                 })
                     .then((response) => {

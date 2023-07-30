@@ -79,7 +79,7 @@ const Index = (datas: textInput) => {
         }
     }
     return (
-        <div className='InputText w-[90%] '>
+        <div className='InputText w-[90%]'>
             {datas.addLabel ? <label htmlFor={datas.name} className='LabelField'>{datas.fieldContent}</label> : null}
             {datas.page === "Login" ?
                 <input
