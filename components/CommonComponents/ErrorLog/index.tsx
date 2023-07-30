@@ -5,19 +5,17 @@ import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const ErrorLog = () => {
     let errorDatas: any;
-    let idDeadline : any;
 
     errorDatas = useContext(ContextUser);
     if(errorDatas.data.stateError && errorDatas.data.validateError){ 
         errorDatas.idSetTimeOut = setTimeout(()=>{
-                        errorDatas.setData(
+                    errorDatas.setData(
                                 { 
                                     stateError: false, 
                                     MessageError: errorDatas.data.MessageError,
                                     validateError: false
                                 });
                     }, 12000);  // no display error message after some secondes
-        console.log(errorDatas.idSetTimeOut);
     }
 
     return( 
