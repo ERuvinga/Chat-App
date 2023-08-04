@@ -34,7 +34,7 @@ const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of t
         if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
                 tabLastMesg[i].noReadMesgs.map((val:any)=>{
-                    if(val.user != userContext.OwnerUser.userId)
+                    if(val.user === userContext.OwnerUser.userId)
                     numberOfMsd = val.val; // if conrespond return number of noRead messages
                 }); 
                 break;
