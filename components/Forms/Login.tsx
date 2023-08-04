@@ -19,7 +19,7 @@ const Login = () => {
     else {
         return (
             < form method='post' onSubmit={e => e.preventDefault} className=" container mx-auto flex flex-col items-center justify-center" >
-                <div className=' w-[95%] md:w-[60%] lg:w-[40%]'>
+                <div className='w-[95%] md:w-[60%] lg:w-[40%]'>
                     <ErrorLog />
                     <LoginRegistertitle title='Login' url='./profile.png' />
                     <InputText type="email" name="mail" fieldContent="e-mail" idField={0} addLabel={true} page="Login" />

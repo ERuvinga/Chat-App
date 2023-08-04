@@ -33,7 +33,10 @@ const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of t
     for (i = 0; i < tabLastMesg.length; i++) {
         if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
-                numberOfMsd = tabLastMesg[i].noReadMesgs; // if conrespond return number of noRead messages
+                tabLastMesg[i].noReadMesgs.map((val:any)=>{
+                    if(val.user === userContext.OwnerUser.userId)
+                    numberOfMsd = val.val; // if conrespond return number of noRead messages
+                }); 
                 break;
             }
         }
@@ -58,7 +61,7 @@ const ListFriend = () => {
             type: ''
         },
         Hours: '',
-        noReadMesgs: 0
+        noReadMesgs:[],
     }]);
 
     // Search data One time
