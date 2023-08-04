@@ -17,8 +17,8 @@ interface dataUser {
 }
 
 // link socket server
-const RemoteLinkApi = 'http://127.0.0.1:4002';
-const LinkApi = 'https://chatapp-wq8r.onrender.com'
+const LinkApi = 'http://127.0.0.1:4002';
+const RemoteLinkApi = 'https://chatapp-wq8r.onrender.com'
 
 let ContexChat: any;
 let ContextUser: any;
