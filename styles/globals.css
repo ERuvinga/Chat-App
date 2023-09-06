@@ -13,6 +13,12 @@
     src: url('./fonts/Comfortaa_Regular.ttf');
 }
 
+@font-face {
+    font-family: 'comfoortaB';
+    src: url('./fonts/Comfortaa_Bold.ttf');
+}
+
+
 body {
     font-family: 'comfoorta', sans-serif;
     height: 100vh;
