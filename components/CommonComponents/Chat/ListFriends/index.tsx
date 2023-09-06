@@ -116,9 +116,10 @@ const ListFriend = () => {
     useEffect(() => {
 
         if (SocketContext.socketIo != null) {
-            SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) { //limit a event to 2 users 
-                    console.log("is me");
+            SocketContext.socketIo.on('New_Message', (idUser: any) => {
+                    console.log(idUser);
+                    console.log(userContext.OtherUser._id);
+                if (idUser.other === userContext.OtherUser._id || idUser.userSender.userId === userContext.OwnerUser.userId) { //limit a event to 2 users 
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
                             "Accept": 'application/json',
@@ -162,8 +163,8 @@ const ListFriend = () => {
                 console.log(" User disconnected : ");
                 console.log(logoutUser);
             });
-        }
-    }, [SocketContext.socketIo]);
+    }
+}, [SocketContext.socketIo]);
 
 
 
