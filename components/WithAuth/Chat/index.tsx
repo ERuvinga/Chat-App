@@ -55,14 +55,13 @@ const Index = (User: dataUser) => {
                 })
                 .catch(error => {
                     console.error(error);
-                }
-                );
+                });
         }
 
     }, [ContexChat.selectedUser]);
 
     useEffect(() => {
-        ContextSocket.setIo(io(RemoteLinkApi).emit('New_Connection', { user }));
+        ContextSocket.setIo(io(LinkApi).emit('New_Connection', { user }));
     }, []);
 
     return (
