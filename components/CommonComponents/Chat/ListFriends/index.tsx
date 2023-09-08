@@ -118,8 +118,8 @@ const ListFriend = () => {
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: any) => {
                     console.log(idUser);
-                    console.log(userContext.OtherUser._id);
-                if (idUser.other === userContext.OtherUser._id || idUser.userSender.userId === userContext.OwnerUser.userId) { //limit a event to 2 users 
+                if (idUser.other === userContext.OwnerUser.userId || idUser.owner === userContext.OwnerUser.userId) { //limit a event to 2 users 
+                    setLoadingPage(true);
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
                             "Accept": 'application/json',
@@ -149,8 +149,7 @@ const ListFriend = () => {
                     // if other user is owner in this display
                     ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                 }
-                console.log("New message of : ");
-                console.log(users.userSender);
+                console.log(users);
         });
 
 
