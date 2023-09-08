@@ -146,7 +146,7 @@ const ListFriend = () => {
 
                 if(users.other === userContext.OwnerUser.userId){
                     // if other user is owner in this display
-                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
+                    //ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                 }
                 console.log(users);
         });

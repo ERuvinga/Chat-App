@@ -57,9 +57,10 @@ const Index = (datas: NewMessages) => {
                                 })
                         }
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.log(error));
             }
-            } >
+
+        } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between' : 'ContainerMessage flex justify-between'}>
                 <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
                 <p className='w-[100%] flex flex-col justify-center items-start TabletPoint:w-[60%] ml-[8px] '>
