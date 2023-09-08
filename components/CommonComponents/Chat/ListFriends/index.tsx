@@ -119,7 +119,6 @@ const ListFriend = () => {
             SocketContext.socketIo.on('New_Message', (idUser: any) => {
                     console.log(idUser);
                 if (idUser.other === userContext.OwnerUser.userId || idUser.owner === userContext.OwnerUser.userId) { //limit a event to 2 users 
-                    setLoadingPage(true);
                     fetch(`${process.env.API_LINK}/api/user`, {
                         headers: {
                             "Accept": 'application/json',

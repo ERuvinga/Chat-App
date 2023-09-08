@@ -81,7 +81,7 @@ const Index = (User: dataUser) => {
                             <ListFriend />
                         </div>
                     </section>
-                    <section className={ContexChat.tooglePage ? 'hidden TabletPoint:flex w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1 ' : ' w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'}>
+                    <section className={ContexChat.tooglePage ? 'hidden TabletPoint:flex w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1 ' : 'w-[100%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'}>
                         <Message />
                     </section>
 
