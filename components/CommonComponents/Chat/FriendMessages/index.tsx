@@ -16,6 +16,7 @@ interface NewMessages {
     _idUser: any,
     indexUser: number,
     values?: any,
+    timeHour: number,
 }
 
 let ChatContxt: object | any;
@@ -24,7 +25,8 @@ let ioContext: any;
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
     ioContext = useContext(socketIoContext);
-
+    const timeOfLastMsg = new Date(datas.timeHour);
+    console.log(timeOfLastMsg.toLocaleTimeString());
     return (
         <div className='flex flex-row h-[100%] w-[95%] justify-center items-center my-3'
             onClick={() => {
@@ -68,7 +70,7 @@ const Index = (datas: NewMessages) => {
                     <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date'>18.32</span>
+                    <span className='Date'>{`${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`}</span>
                     {
                         datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
                             :

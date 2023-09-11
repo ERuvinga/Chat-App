@@ -14,8 +14,7 @@ let SocketContext: any;
 
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
-    let i;
-    for (i = 0; i < tabLastMesg.length; i++) {
+    for (let i = 0; i < tabLastMesg.length; i++) {
         if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
                 message = tabLastMesg[i].messages.content; // if conrespond return content message
@@ -27,10 +26,24 @@ const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     return message;
 }
 
+const getHourMsg = (idUser: any, tabLastMsg:any)=>{
+    let hour = 0;
+    for(let i = 0; i< tabLastMsg.length; i++){
+        if ((userContext.OwnerUser.userId === tabLastMsg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMsg[i].members[1])) { // search owenUser
+            if ((idUser === (tabLastMsg[i].members[0])) || (idUser === tabLastMsg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
+                hour = tabLastMsg[i].hour; // if conrespond return content hour
+            };
+            break;
+        };
+    };
+
+    return hour;
+}
+
+
 const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of the no read message of User
     let numberOfMsd = 0;
-    let i;
-    for (i = 0; i < tabLastMesg.length; i++) {
+    for (let i = 0; i < tabLastMesg.length; i++) {
         if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
                 tabLastMesg[i].noReadMesgs.map((val:any)=>{
@@ -60,7 +73,7 @@ const ListFriend = () => {
             content: '',
             type: ''
         },
-        Hours: '',
+        hour: 0,
         noReadMesgs:[],
     }]);
 
@@ -146,7 +159,7 @@ const ListFriend = () => {
 
                 if(users.other === userContext.OwnerUser.userId){
                     // if other user is owner in this display
-                    //ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
+                    ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                 }
                 console.log(users);
         });
@@ -182,7 +195,9 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)}
+                        timeHour ={getHourMsg(value._id,LastMsg)} 
+                    />
                 )
             }
         </div>
