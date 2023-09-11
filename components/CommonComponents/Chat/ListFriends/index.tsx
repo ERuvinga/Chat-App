@@ -183,6 +183,7 @@ const ListFriend = () => {
         return <Loading />
     }
 
+    console.log(dataUsers)
     return (
         <div className="flex flex-col py-3 px-1 items-center justify-start mx-auto w-[100%] max-h-[85vh] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
             {

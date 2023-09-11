@@ -25,8 +25,29 @@ let ioContext: any;
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
     ioContext = useContext(socketIoContext);
-    const timeOfLastMsg = new Date(datas.timeHour);
-    console.log(timeOfLastMsg.toLocaleTimeString());
+    
+
+    const displayTime = ()=>{
+        const timeNow = new Date(Date.now()); //save now time 
+        const timeOfLastMsg = new Date(datas.timeHour); // time of message
+        let dataToDispaly = '';
+
+        console.log(datas.timeHour);
+        if(!(timeNow.getDate() - timeOfLastMsg.getDate())){
+                dataToDispaly = `${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`;
+        }
+
+        else if((timeNow.getDate() - timeOfLastMsg.getDate()) > 0 && (timeNow.getDate() - timeOfLastMsg.getDate()) < 7){
+            dataToDispaly = `${timeNow.getDate() - timeOfLastMsg.getDate()} j`;
+        }
+
+        else{
+            dataToDispaly = `${timeOfLastMsg.toLocaleDateString()}`
+        }
+
+        return `${timeOfLastMsg.toLocaleDateString()}`; 
+    }
+
     return (
         <div className='flex flex-row h-[100%] w-[95%] justify-center items-center my-3'
             onClick={() => {
@@ -70,9 +91,9 @@ const Index = (datas: NewMessages) => {
                     <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date'>{`${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`}</span>
+                    <span className='Date '>{datas.timeHour? displayTime(): ' '}</span>
                     {
-                        datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
+                        datas.checked ? (datas.timeHour ? <FontAwesomeIcon className='MessageView' icon={faCheck} />: ' ')
                             :
                             <span className={(datas.noReadMessage < 10) ? 'numberMessages' : ''}>
                                 {(datas.noReadMessage > 9) ? <FontAwesomeIcon className=' text-[.85em] text-[#5843E4]' icon={faPlusCircle} />
