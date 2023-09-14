@@ -32,8 +32,8 @@ const getHourMsg = (idUser: any, tabLastMsg:any)=>{
         if ((userContext.OwnerUser.userId === tabLastMsg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMsg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMsg[i].members[0])) || (idUser === tabLastMsg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
                 hour = tabLastMsg[i].hour; // if conrespond return content hour
-            };
             break;
+            };
         };
     };
 
@@ -66,7 +66,7 @@ const ListFriend = () => {
 
     //states
     const [LoadinPage, setLoadingPage] = useState(true);
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0, name:'' }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null,  name:'' }]);
     const [LastMsg, setLastMsg] = useState([{
         members: [],
         messages: {
@@ -161,7 +161,7 @@ const ListFriend = () => {
                     // if other user is owner in this display
                     ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                 }
-                console.log(users);
+                console.log("New message");
         });
 
 
@@ -183,7 +183,7 @@ const ListFriend = () => {
         return <Loading />
     }
 
-    console.log(dataUsers)
+    //console.log(LastMsg)
     return (
         <div className="flex flex-col py-3 px-1 items-center justify-start mx-auto w-[100%] max-h-[85vh] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
             {

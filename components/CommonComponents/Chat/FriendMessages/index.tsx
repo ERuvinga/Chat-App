@@ -25,7 +25,6 @@ let ioContext: any;
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
     ioContext = useContext(socketIoContext);
-        console.log(datas.timeHour);
 
     const displayTime = ()=>{
         const timeNow = new Date(Date.now()); //save now time 

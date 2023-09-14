@@ -222,7 +222,7 @@ export const sendRegisterData = (e: any) => {
                 .then(user => {
                     if (user.ok) {
                         user.json()
-                            .then(datas => {
+                            .then(() => {
                                 router.push("/Login"); // whene create a new user succed you are redirect to Login page
                             })
                     }
