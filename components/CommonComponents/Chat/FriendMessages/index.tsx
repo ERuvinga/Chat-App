@@ -25,27 +25,26 @@ let ioContext: any;
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
     ioContext = useContext(socketIoContext);
-    
+        console.log(datas.timeHour);
 
     const displayTime = ()=>{
         const timeNow = new Date(Date.now()); //save now time 
         const timeOfLastMsg = new Date(datas.timeHour); // time of message
-        let dataToDispaly = '';
+        let dataToDisplay = '';
 
-        console.log(datas.timeHour);
         if(!(timeNow.getDate() - timeOfLastMsg.getDate())){
-                dataToDispaly = `${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`;
+                dataToDisplay = `${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`;
         }
 
         else if((timeNow.getDate() - timeOfLastMsg.getDate()) > 0 && (timeNow.getDate() - timeOfLastMsg.getDate()) < 7){
-            dataToDispaly = `${timeNow.getDate() - timeOfLastMsg.getDate()} j`;
+            dataToDisplay = `${timeNow.getDate() - timeOfLastMsg.getDate()}j`;
         }
 
         else{
-            dataToDispaly = `${timeOfLastMsg.toLocaleDateString()}`
+            dataToDisplay = `${timeOfLastMsg.toLocaleDateString()}`
         }
 
-        return `${timeOfLastMsg.toLocaleDateString()}`; 
+        return dataToDisplay; 
     }
 
     return (
@@ -91,7 +90,7 @@ const Index = (datas: NewMessages) => {
                     <span className='messages'>{datas.contentMessage}</span>
                 </p>
                 <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date '>{datas.timeHour? displayTime(): ' '}</span>
+                    <span className='Date '>{datas.timeHour ? displayTime(): ' '}</span>
                     {
                         datas.checked ? (datas.timeHour ? <FontAwesomeIcon className='MessageView' icon={faCheck} />: ' ')
                             :
