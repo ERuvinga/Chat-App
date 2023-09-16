@@ -66,7 +66,7 @@ const ListFriend = () => {
 
     //states
     const [LoadinPage, setLoadingPage] = useState(true);
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null,  name:'' }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null,  name:'' ,status:false}]);
     const [LastMsg, setLastMsg] = useState([{
         members: [],
         messages: {
@@ -79,7 +79,6 @@ const ListFriend = () => {
 
     // Search data Of users
     const reloadingUserDatas = () =>{
-        console.log("Reloading data of User");
         fetch(`${process.env.API_LINK}/api/user`, {
             headers: {
                 "Accept": 'application/json',
@@ -93,7 +92,6 @@ const ListFriend = () => {
                         .then(Users => {
                             setDataUser(Users.users);
                             setLastMsg(Users.lastMesg);
-                            console.log(Users.users);
                         })
                 }
             })
@@ -204,7 +202,8 @@ const ListFriend = () => {
                         checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
                         noReadMessage={getNoReadMsgs(value._id, LastMsg)}
-                        timeHour ={getHourMsg(value._id,LastMsg)} 
+                        timeHour ={getHourMsg(value._id,LastMsg)}
+                        online={value.status}
                     />
                 )
             }

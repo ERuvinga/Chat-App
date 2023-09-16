@@ -18,6 +18,7 @@ interface NewMessages {
     indexUser: number,
     values?: any,
     timeHour: number,
+    online: boolean
 }
 
 let ChatContxt: object | any;
@@ -26,7 +27,7 @@ let ioContext: any;
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
     ioContext = useContext(socketIoContext);
-
+    
     const displayTime = ()=>{
         const timeNow = new Date(Date.now()); //save now time 
         const timeOfLastMsg = new Date(datas.timeHour); // time of message
@@ -86,7 +87,9 @@ const Index = (datas: NewMessages) => {
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between' : 'ContainerMessage flex justify-between'}>
                 <div className='blocImgMsg'>
                      <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
-                     <Indicator/>
+                     { 
+                        datas.online && <Indicator/> // display Indicator inline if user are Online
+                    }
                 </div>
                 <p className='w-[100%] flex flex-col justify-center items-start TabletPoint:w-[60%] ml-[8px] '>
                     <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
