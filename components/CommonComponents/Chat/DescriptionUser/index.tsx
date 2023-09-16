@@ -14,7 +14,7 @@ const index = (datas: friendDesciption) => {
     return (
         <>
 
-            <div className=' flex flex-col justify-center Container-user items-center space-y-1'>
+            <div className='border flex flex-col justify-center Container-user items-center space-y-1'>
                 <img src={datas.picture != '' ? datas.picture : 'profile.png'} className='imgFriend' alt='user' />
                 <p className='descriptionFriends'>
                     <span className=' nameFriend'>{datas.name != '' ? datas.name : '~'}</span>
@@ -22,7 +22,7 @@ const index = (datas: friendDesciption) => {
                 </p>
                 {datas.me ?
                     <>
-                        <div className='flex flex-col items-center w-[90%] mx-auto space-y-6 '>
+                        <div className='border flex flex-col items-center w-[90%] mx-auto space-y-6 '>
                             <div className='flex  justify-center items-center space-x-2'>
                                 <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
                                 <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
