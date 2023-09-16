@@ -166,3 +166,13 @@ textarea::-webkit-scrollbar-button {
     border-radius: 15px 15px 0px 15px;
     box-shadow: 0px 0px 3px #E2E3E9;
 }
+
+
+/*Media Querry*/
+@media screen and (max-width:920px) {
+    .Chat-Header {
+        box-shadow: 0 0 6px 0 #E2E3E9;
+        padding: 0 15px;
+    }
+    
+}
