@@ -93,7 +93,6 @@ const ListFriend = () => {
                         .then(Users => {
                             setDataUser(Users.users);
                             setLastMsg(Users.lastMesg);
-                            setLoadingPage(false);
                             console.log(Users.users);
                         })
                 }

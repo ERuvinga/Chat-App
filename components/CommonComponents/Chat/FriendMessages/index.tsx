@@ -5,6 +5,7 @@ import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 //contexts
 import { contextChat } from '../../../Context/ChatContext';
 import { socketIoContext } from '../../../Context/socket';
+import Indicator from '../IndicatorOnline';
 
 interface NewMessages {
     name: string,
@@ -83,7 +84,10 @@ const Index = (datas: NewMessages) => {
 
         } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between' : 'ContainerMessage flex justify-between'}>
-                <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
+                <div className='blocImgMsg'>
+                     <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
+                     <Indicator/>
+                </div>
                 <p className='w-[100%] flex flex-col justify-center items-start TabletPoint:w-[60%] ml-[8px] '>
                     <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
                     <span className='messages'>{datas.contentMessage}</span>
