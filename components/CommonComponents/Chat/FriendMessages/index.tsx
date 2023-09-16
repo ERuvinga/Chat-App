@@ -86,12 +86,12 @@ const Index = (datas: NewMessages) => {
         } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between' : 'ContainerMessage flex justify-between'}>
                 <div className='blocImgMsg'>
-                     <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
+                     <img src={datas.picture ? datas.picture : 'profile.png'} className='w-[50px] h-[50px] imgUserMessage ' alt='user' />
                      { 
                         datas.online && <Indicator/> // display Indicator inline if user are Online
                     }
                 </div>
-                <p className='w-[100%] flex flex-col justify-center items-start TabletPoint:w-[60%] ml-[8px] '>
+                <p className='flex flex-col justify-center items-start w-[60%] ml-[8px] '>
                     <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
                     <span className='messages'>{datas.contentMessage}</span>
                 </p>
