@@ -77,7 +77,33 @@ const ListFriend = () => {
         noReadMesgs:[],
     }]);
 
-    // Search data One time
+    // Search data Of users
+    const reloadingUserDatas = () =>{
+        console.log("Reloading data of User");
+        fetch(`${process.env.API_LINK}/api/user`, {
+            headers: {
+                "Accept": 'application/json',
+                "Content-type": 'application/json; charset=UTF-8',
+                "Autorization": `Bearer ${localStorage.getItem('Token')}`
+            }
+        })
+            .then(datafetching => {
+                if (datafetching.ok) {
+                    datafetching.json()
+                        .then(Users => {
+                            setDataUser(Users.users);
+                            setLastMsg(Users.lastMesg);
+                            setLoadingPage(false);
+                            console.log(Users.users);
+                        })
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                return null;
+            });
+    };
+
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/user`, {
             headers: {
@@ -130,27 +156,8 @@ const ListFriend = () => {
 
         if (SocketContext.socketIo != null) {
             SocketContext.socketIo.on('New_Message', (idUser: any) => {
-                    console.log(idUser);
                 if (idUser.other === userContext.OwnerUser.userId || idUser.owner === userContext.OwnerUser.userId) { //limit a event to 2 users 
-                    fetch(`${process.env.API_LINK}/api/user`, {
-                        headers: {
-                            "Accept": 'application/json',
-                            "Content-type": 'application/json; charset=UTF-8',
-                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                        }
-                    })
-                        .then(datafetching => {
-                            if (datafetching.ok) {
-                                datafetching.json()
-                                    .then(Users => {
-                                        setDataUser(Users.users);
-                                        setLastMsg(Users.lastMesg);
-                                    })
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
+                    reloadingUserDatas(); // reloading DataOfUser
                 }
             });
 
@@ -166,11 +173,13 @@ const ListFriend = () => {
 
 
             SocketContext.socketIo.on('user_Connected', (newUser: any) => { // connected event of user
+                    reloadingUserDatas(); // reloading DataOfUser
                     console.log("New User Connected : ");
                     console.log(newUser);
             });
 
             SocketContext.socketIo.on('user_disconnected', (logoutUser: any) =>{ // disconnect event of user
+                reloadingUserDatas(); // reloading DataOfUser
                 console.log(" User disconnected : ");
                 console.log(logoutUser);
             });
@@ -183,7 +192,6 @@ const ListFriend = () => {
         return <Loading />
     }
 
-    //console.log(LastMsg)
     return (
         <div className="flex flex-col py-3 px-1 items-center justify-start mx-auto w-[100%] max-h-[85vh] TabletPoint:max-h-[77vh] TabletPoint:max-w-[98%] ListFriendContainer">
             {
