@@ -97,17 +97,37 @@
 .ContainerMessage:hover {
     cursor: pointer;
     background-color: #fff;
-    transform: scale(1.015);
     padding: 2px;
     box-shadow: .5px 0px 3px #E2E3E9;
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .ContainerUserSelected:hover {
     cursor: pointer;
 }
 
-.imgUserMessage {
+.blocImgMsg {
+    position: relative;
+    width: 55px;
+}
+
+.blocImgMsg .inlineIndicatorDown{
+    width: 18px;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.blocImgMsg .inlineIndicator{
+    width: 14px;
+    color: #00aa00;
+    position: absolute;
+    right: 2px;
+    bottom: 0;
+}
+
+.blocImgMsg .imgUserMessage {
     display: block;
     border-radius: 50%;
 }
