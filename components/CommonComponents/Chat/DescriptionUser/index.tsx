@@ -6,8 +6,10 @@ import { faMessage, faUserFriends, faHeartCirclePlus, faPhone, faCircle, faUserE
 interface friendDesciption {
     picture: string,
     name: string,
-    function: string
-    me: boolean
+    function: string,
+    me: boolean,
+    status?:boolean,
+    lastOnline?: number
 }
 
 const index = (datas: friendDesciption) => {

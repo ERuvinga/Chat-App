@@ -22,17 +22,13 @@ const Index = (datas: UserDatas) => {
     ChatContext = useContext(contextChat);
     SocketContext = useContext(socketIoContext);
     UsersContext = useContext(UsersChatContext);
-
+    // time
     const dataTime = new Date(datas.lastOnline);
-    console.log(UsersContext);
 
     useEffect(()=>{
-        console.log("Reloading data");
-
         SocketContext.socketIo.on('user_Connected', (newUser: any)=>{
             try{
                 if(newUser.userId === UsersContext.OtherUser._id){
-                    console.log("Correspondace data User");
                     ChatContext.setReloadStatusOtherUser(1 - ChatContext.ReloadStatusOtherUser); // updating ReloadStatusOtherUser to reloading data of user
                 }
             }
@@ -45,7 +41,6 @@ const Index = (datas: UserDatas) => {
         SocketContext.socketIo.on('user_disconnected', (logoutUser: any)=>{
             try{
                 if(logoutUser.userId === UsersContext.OtherUser._id){
-                    console.log("Correspondace data User");
                     ChatContext.setReloadStatusOtherUser(1 - ChatContext.ReloadStatusOtherUser); // updating ReloadStatusOtherUser to reloading data of user
                 }
             }

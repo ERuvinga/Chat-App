@@ -90,7 +90,7 @@ const Index = (User: dataUser) => {
                                 ContexChat.tooglePage ?
                                     <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
                                     :
-                                    <DesciptionFriend me={ContexChat.tooglePage} name={ContextUser.OtherUser.name} function={ContextUser.OtherUser.email} picture={ContextUser.OtherUser.picture} />
+                                    <DesciptionFriend me={ContexChat.tooglePage} name={ContextUser.OtherUser.name} function={ContextUser.OtherUser.email} picture={ContextUser.OtherUser.picture} status={ContextUser.OtherUser.status} lastOnline={ContextUser.OtherUser.lastOnline}/>
                             }
                         </section>
                     </aside>
