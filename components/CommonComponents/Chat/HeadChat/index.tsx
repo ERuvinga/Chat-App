@@ -24,29 +24,35 @@ const Index = (datas: UserDatas) => {
     UsersContext = useContext(UsersChatContext);
 
     const dataTime = new Date(datas.lastOnline);
-    console.log(ChatContext);
+    console.log(UsersContext);
 
     useEffect(()=>{
         console.log("Reloading data");
-        fetch(`${process.env.API_LINK}/api/user/${ChatContext._idOtherUser}`, {
-            headers: {
-                "Accept": 'application/json',
-                "Content-type": 'application/json; charset=UTF-8',
-                "Autorization": `Bearer ${localStorage.getItem('Token')}`
+
+        SocketContext.socketIo.on('user_Connected', (newUser: any)=>{
+            try{
+                if(newUser.userId === UsersContext.OtherUser._id){
+                    console.log("Correspondace data User");
+                    ChatContext.setReloadStatusOtherUser(1 - ChatContext.ReloadStatusOtherUser); // updating ReloadStatusOtherUser to reloading data of user
+                }
+            }
+            catch{
+                console.log("Error in App");
+            }
+
+        });
+
+        SocketContext.socketIo.on('user_disconnected', (logoutUser: any)=>{
+            try{
+                if(logoutUser.userId === UsersContext.OtherUser._id){
+                    console.log("Correspondace data User");
+                    ChatContext.setReloadStatusOtherUser(1 - ChatContext.ReloadStatusOtherUser); // updating ReloadStatusOtherUser to reloading data of user
+                }
+            }
+            catch{
+                console.log("Error in App");
             }
         })
-            .then(dataUser => {
-                if (dataUser.ok) {
-                    dataUser.json()
-                        .then(dataOtherUser => {
-                            UsersContext.setOtherUser(dataOtherUser.datas); // reload dataof any user whene disconnected
-                            console.log(dataOtherUser)
-                        })
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
     
     },[SocketContext.socketIo])
 
