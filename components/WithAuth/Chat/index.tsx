@@ -27,7 +27,6 @@ let ContextSocket: any;
 const Index = (User: dataUser) => {
 
     const [user, setUser] = useState(User.Datas);
-    const [ReloadStatusOtherUser, setReloadStatusOtherUser] = useState(0);
     ContexChat = useContext(contextChat);
     ContextUser = useContext(UsersChatContext);
     ContextSocket = useContext(socketIoContext);
@@ -59,7 +58,7 @@ const Index = (User: dataUser) => {
                 });
         }
 
-    }, [ContexChat.selectedUser]);
+    }, [ContexChat.selectedUser, ContexChat.ReloadStatusOtherUser]);
 
     useEffect(() => {
         ContextSocket.setIo(io(LinkApi).emit('New_Connection', { user }));
