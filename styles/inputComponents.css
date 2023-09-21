@@ -47,7 +47,9 @@
     background-color: #5843E4;
     opacity: 1;
 }
+@media screen and (min-width:540px) {
 
-.HoverBtn:hover {
-    transform: scale(1.01);
+    .HoverBtn:hover {
+        transform: scale(1.01);
+    }
 }

@@ -48,22 +48,11 @@
     box-shadow: 0px 0px 3px #E2E3E9;
 }
 
-.viewProfilButon:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-}
-
 .OtherBtns {
     padding: 5px 10px;
     box-shadow: 0px 0px 3px #E2E3E9;
     border-radius: 3px;
     transition: all .3s ease-in-out;
-}
-
-.OtherBtns:hover {
-    background-color: #5843E4;
-    color: #fff;
-    cursor: pointer;
 }
 
 /*News Messages*/
@@ -81,18 +70,6 @@
     background-color: #fff;
     box-shadow: #5843E4 .5px 0px 5px;
     transition: all .4s ease-in-out;
-}
-
-.ContainerMessage:hover {
-    cursor: pointer;
-    background-color: #fff;
-    padding: 3px;
-    box-shadow: .5px 0px 3px #E2E3E9;
-    transition: all .3s ease-in-out;
-}
-
-.ContainerUserSelected:hover {
-    cursor: pointer;
 }
 
 .blocImgMsg {
@@ -124,19 +101,20 @@
 .UsersendMessage {
     font-weight: bold;
     color: #5843E4;
+    font-size: .9em;
 }
 
 
 .messages {
-    width: 50%;
+    width: 98%;
     height: 16px;
-    font-size: .65em;
-    color: #8186A0;
-    overflow: hidden;
+
+    font-size: .8em;
+    color: #333;
 }
 
 .Date {
-    color: #979797;
+    color: #8186A0;
     font-size: .65em;
 }
 
@@ -185,6 +163,7 @@
 
 .functionFriend {
     font-size: .9em;
+    font-family: comfoortaB;
     color: #8186A0;
 }
 
@@ -207,6 +186,34 @@
 }
 
 /*Media Querry*/
-@media screen and (min-width:920px) {
+@media screen and (min-width:540px) {
     
+    .OtherBtns:hover {
+        background-color: #5843E4;
+        color: #fff;
+        cursor: pointer;
+    }
+  
+    .viewProfilButon:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+    }
+    
+    .ContainerMessage:hover {
+        cursor: pointer;
+        background-color: #fff;
+        padding: 3px;
+        box-shadow: .5px 0px 3px #E2E3E9;
+        transition: all .3s ease-in-out;
+    }
+
+    .ContainerUserSelected:hover {
+        cursor: pointer;
+    }
+
+    .messages {
+        font-family: comfoortaB;
+        font-size: .75em;
+    }
+
 }
