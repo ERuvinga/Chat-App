@@ -2,6 +2,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage, faUserFriends, faHeartCirclePlus, faPhone, faCircle, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
+// manager of DateTime
+import { DescriptionUserTime } from '../../../../lib/Date';
 
 interface friendDesciption {
     picture: string,
@@ -14,13 +16,6 @@ interface friendDesciption {
 
 const index = (datas: friendDesciption) => {
     const DateTimeNow = new Date(Date.now());
-    const LastOnlineTime = new Date(datas.lastOnline);
-
-    const displayLastTimeOnline = (Time: Date) =>{
-        const DateLstOnline: String = "15.5.7";
-
-        return DateLstOnline;
-    }
     return (
         <>
 
@@ -38,16 +33,16 @@ const index = (datas: friendDesciption) => {
                         </div>
                     </>
                     :
-                    <div className=' w-[90%]  flex flex-col items-center space-y-5'>
+                    <div className=' w-[90%] flex flex-col items-center space-y-5'>
                         <div>
                                 { datas.status ?
                                     <div className='flex OnlineClass space-x-1'>
                                         <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
-                                        <span className='text-center text-[#8186A0] text-[.7em]'>En ligne</span>
+                                        <span className='statusUser'>En ligne</span>
                                     </div> :
 
-                                    <div className='text-center text-[#8186A0] text-[.75em]'>
-                                        {displayLastTimeOnline(LastOnlineTime)}
+                                    <div className='statusUser'>
+                                        {DescriptionUserTime(datas.lastOnline)}
                                     </div>
                                     
                                 }

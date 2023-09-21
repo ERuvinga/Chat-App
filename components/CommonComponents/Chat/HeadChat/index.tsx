@@ -7,6 +7,9 @@ import { contextChat } from '../../../Context/ChatContext';
 import { socketIoContext } from '../../../Context/socket';
 import { UsersChatContext } from '../../../Context/UserContext';
 
+// date Functions 
+import { DescriptionUserTime } from '../../../../lib/Date';
+
 interface UserDatas {
     picture: string,
     name: string,
@@ -22,9 +25,7 @@ const Index = (datas: UserDatas) => {
     ChatContext = useContext(contextChat);
     SocketContext = useContext(socketIoContext);
     UsersContext = useContext(UsersChatContext);
-    // time
-    const dataTime = new Date(datas.lastOnline);
-
+    
     useEffect(()=>{
         SocketContext.socketIo.on('user_Connected', (newUser: any)=>{
             try{
@@ -68,14 +69,14 @@ const Index = (datas: UserDatas) => {
                     {
                         datas.status?
                             <>
-                                <div className='flex items-center space-x-2'>
+                                <div className='OnlineClass flex items-center space-x-2'>
                                     <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
                                     <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
                                 </div>            
                             </>:
                             <>
-                                <div className='flex items-center space-x-2'>
-                                    <span className=' text-center text-[#8186A0] text-[.7em]'>{dataTime.toLocaleDateString()}</span>
+                                <div className='containerOffLine'>
+                                    <span className='OfflineClass text-[#8186A0] text-[.7em]'>{DescriptionUserTime(datas.lastOnline)}</span>
                                 </div>            
                             </>            
                     }
