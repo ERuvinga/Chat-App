@@ -9,14 +9,22 @@ interface friendDesciption {
     function: string,
     me: boolean,
     status?:boolean,
-    lastOnline?: number
+    lastOnline?: any
 }
 
 const index = (datas: friendDesciption) => {
+    const DateTimeNow = new Date(Date.now());
+    const LastOnlineTime = new Date(datas.lastOnline);
+
+    const displayLastTimeOnline = (Time: Date) =>{
+        const DateLstOnline: String = "15.5.7";
+
+        return DateLstOnline;
+    }
     return (
         <>
 
-            <div className='border flex flex-col justify-center Container-user items-center space-y-1'>
+            <div className='flex flex-col justify-center Container-user items-center space-y-1'>
                 <img src={datas.picture != '' ? datas.picture : 'profile.png'} className='imgFriend' alt='user' />
                 <p className='descriptionFriends'>
                     <span className=' nameFriend'>{datas.name != '' ? datas.name : '~'}</span>
@@ -24,24 +32,25 @@ const index = (datas: friendDesciption) => {
                 </p>
                 {datas.me ?
                     <>
-                        <div className='border flex flex-col items-center w-[90%] mx-auto space-y-6 '>
-                            <div className='flex  justify-center items-center space-x-2'>
-                                <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
-                                <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
-                            </div>
+                        <div className='flex flex-col items-center w-[90%] mx-auto space-y-6 '>
                             <div className=' w-[95%] flex justify-around'>
-                                <span className=' viewProfilButon flex justify-center items-center text-[.78em] '>
-                                    <FontAwesomeIcon icon={faUserEdit} />
-                                    <span className=' text-center '>View Uprofile</span>
-                                </span>
                             </div>
                         </div>
                     </>
                     :
-                    <div className=' w-[90%] flex flex-col items-center space-y-5'>
-                        <div className='flex justify-center items-center space-x-2'>
-                            <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
-                            <span className=' text-center text-[#8186A0] text-[.7em]'>En ligne</span>
+                    <div className=' w-[90%]  flex flex-col items-center space-y-5'>
+                        <div>
+                                { datas.status ?
+                                    <div className='flex OnlineClass space-x-1'>
+                                        <FontAwesomeIcon className='w-[14px] text-[#00aa00]' icon={faCircle} />
+                                        <span className='text-center text-[#8186A0] text-[.7em]'>En ligne</span>
+                                    </div> :
+
+                                    <div className='text-center text-[#8186A0] text-[.75em]'>
+                                        {displayLastTimeOnline(LastOnlineTime)}
+                                    </div>
+                                    
+                                }
                         </div>
                         <div className=" chatAndCall flex justify-around items-center">
                             <span className=' text-[.8em] flex flex-col'>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Indicator = ()=>{
 
     return(
-        <div >
+        <div className="OnlineClass">
             <FontAwesomeIcon className='inlineIndicatorDown' icon={faCircle} />
             <FontAwesomeIcon className='inlineIndicator' icon={faCircle} />
         </div>
