@@ -66,18 +66,6 @@
     cursor: pointer;
 }
 
-/*Bouton on HeadChat*/
-.ChatHeadBtns {
-    transition: all .4s ease-in-out;
-}
-
-.ChatHeadBtns:hover {
-    transform: scale(1.23);
-    color: #5843E4;
-    cursor: pointer;
-}
-
-
 /*News Messages*/
 .ContainerMessage {
     border-radius: 32px;

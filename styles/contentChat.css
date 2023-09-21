@@ -13,6 +13,49 @@
     border: #979797 solid 1px;
 }
 
+/*Online Anymation*/
+@keyframes OnlineAnim {
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes OfflineAnim {
+    from{
+        opacity:0;
+        text-align: right;
+    }
+
+    to{
+        opacity: 1;
+        text-align: left;
+    }   
+}
+
+.OnlineClass{
+    animation: OnlineAnim .8s ease-in-out;
+}
+
+.OfflineClass{
+    animation: OfflineAnim 3s ease-in-out;
+}
+
+/*Bouton on HeadChat*/
+.ChatHeadBtns {
+    transition: all .4s ease-in-out;
+}
+
+.ChatHeadBtns:hover {
+    transform: scale(1.23);
+    color: #5843E4;
+    cursor: pointer;
+}
+
+
 .Chat-Footer {
     height: 12vh;
     border-top: solid 1px #E2E3E9;
@@ -88,20 +131,8 @@ textarea::-webkit-scrollbar-button {
     overflow-y: auto;
 }
 
-.ListFriendContainer::-webkit-scrollbar {
-    width: 4px;
-    background-color: #F9F9FC;
-}
-
-.ListFriendContainer::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #E2E3E9;
-}
-
-.ListFriendContainer::-webkit-scrollbar-button {
-    height: 5px;
-    border-radius: 10px;
-    background-color: #8186A0;
+.ListFriendContainer::-webkit-scrollbar-button, .ListFriendContainer::-webkit-scrollbar-thumb, .ListFriendContainer::-webkit-scrollbar  {
+    display: none;
 }
 
 .Line {
@@ -120,21 +151,8 @@ textarea::-webkit-scrollbar-button {
     padding: 10px 0px;
 }
 
-.containerMessage::-webkit-scrollbar {
-    width: 4px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.containerMessage::-webkit-scrollbar-thumb {
-    background-color: #E2E3E9;
-    border-radius: 10px;
-}
-
-.containerMessage::-webkit-scrollbar-button {
-    height: 5px;
-    border-radius: 10px;
-    background-color: #8186A0;
+.containerMessage::-webkit-scrollbar-thumb,.containerMessage::-webkit-scrollbar, .containerMessage::-webkit-scrollbar-button {
+    display: none;
 }
 
 .BlocMessage {
