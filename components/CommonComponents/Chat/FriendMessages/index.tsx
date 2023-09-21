@@ -92,11 +92,11 @@ const Index = (datas: NewMessages) => {
                     }
                 </div>
                 <p className='flex flex-col justify-center items-start w-[60%] ml-[8px] '>
-                    <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
-                    <span className='messages'>{datas.contentMessage}</span>
+                    <span className='w-[80%] truncate UsersendMessage'>{datas.name}</span>
+                    <span className='messages truncate'>{datas.contentMessage}</span>
                 </p>
                 <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date '>{datas.timeHour ? displayTime(): ' '}</span>
+                    <span className='Date'>{datas.timeHour ? displayTime(): ' '}</span>
                     {
                         datas.checked ? (datas.timeHour ? <FontAwesomeIcon className='MessageView' icon={faCheck} />: ' ')
                             :

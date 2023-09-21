@@ -105,7 +105,7 @@ const monthToString = (month: number) =>{
     return monthString;
 };
 
-const displayTime = (timeOfLastMsg:Date)=>{
+const LastMessageTime = (timeOfLastMsg:Date)=>{
     const timeNow = new Date(Date.now()); //save now time 
     let dataToDisplay = '';
 
@@ -130,13 +130,8 @@ const DescriptionUserTime = (LastOnline: number)=>{
     const OneWeekAfter = new Date(LastOnline + OneWeekMs); // save date of after One Week  
     let dataToDisplay = '';
 
-    console.log(OneWeekMs / OneDayMs);
-    console.log((Date.now()/OneDayMs) - (LastOnline/OneDayMs));
-    //console.log(new Date((LastOnline + OneWeekMs) - Date.now()));
-
-    if(timeNow.getMonth() === OneWeekAfter.getMonth()){
-        if((timeNow.getFullYear() === userLastOnlineTime.getFullYear()) && (timeNow.getDate() < OneWeekAfter.getDate())){
-            const numberDay = timeNow.getDate() - userLastOnlineTime.getDate();
+        if(timeNow.valueOf() < OneWeekAfter.valueOf()){
+            const numberDay : number = parseInt(((Date.now() - LastOnline)/OneDayMs).toString());
             switch(numberDay){
                 case 0:
                     dataToDisplay = `Aujourd'hui à ${userLastOnlineTime.getHours()}:${userLastOnlineTime.getMinutes()}`;
@@ -157,17 +152,10 @@ const DescriptionUserTime = (LastOnline: number)=>{
             dataToDisplay = `${userLastOnlineTime.getDate()} ${monthToString(userLastOnlineTime.getMonth())} ${userLastOnlineTime.getFullYear()} à ${userLastOnlineTime.getHours()}:${userLastOnlineTime.getMinutes()}`;
         }
 
-    }
-
-    else{
-
-    }
-
     return dataToDisplay;
-
 };
 
 export {
-    displayTime,
+    LastMessageTime,
     DescriptionUserTime,
 }
