@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { faBell, faHeart, faCircle, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faHeart, faCircle, faAngleLeft, faPhone, faVideoCamera } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //Context Datas
@@ -85,8 +85,8 @@ const Index = (datas: UserDatas) => {
             </div>
 
             <div className='flex mr-2 text-[#8186A0] text-[1em]  space-x-4'>
-                <FontAwesomeIcon className='ChatHeadBtns' icon={faHeart} />
-                <FontAwesomeIcon className='ChatHeadBtns' icon={faBell} />
+                <FontAwesomeIcon className='ChatHeadBtns' icon={faPhone} />
+                <FontAwesomeIcon className='ChatHeadBtns' icon={faVideoCamera} />
             </div>
         </div>
     );

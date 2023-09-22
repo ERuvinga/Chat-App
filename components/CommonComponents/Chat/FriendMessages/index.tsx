@@ -7,6 +7,9 @@ import { contextChat } from '../../../Context/ChatContext';
 import { socketIoContext } from '../../../Context/socket';
 import Indicator from '../IndicatorOnline';
 
+// Date manager
+import { LastMessageTime } from '../../../../lib/Date';
+
 interface NewMessages {
     name: string,
     picture: string,
@@ -27,26 +30,6 @@ let ioContext: any;
 const Index = (datas: NewMessages) => {
     ChatContxt = useContext(contextChat);
     ioContext = useContext(socketIoContext);
-    
-    const displayTime = ()=>{
-        const timeNow = new Date(Date.now()); //save now time 
-        const timeOfLastMsg = new Date(datas.timeHour); // time of message
-        let dataToDisplay = '';
-
-        if(!(timeNow.getDate() - timeOfLastMsg.getDate())){
-                dataToDisplay = `${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`;
-        }
-
-        else if((timeNow.getDate() - timeOfLastMsg.getDate()) > 0 && (timeNow.getDate() - timeOfLastMsg.getDate()) < 7){
-            dataToDisplay = `${timeNow.getDate() - timeOfLastMsg.getDate()}j`;
-        }
-
-        else{
-            dataToDisplay = `${timeOfLastMsg.toLocaleDateString()}`
-        }
-
-        return dataToDisplay; 
-    }
 
     return (
         <div className='flex flex-row h-[100%] w-[95%] justify-center items-center my-3'
@@ -91,12 +74,12 @@ const Index = (datas: NewMessages) => {
                         datas.online && <Indicator/> // display Indicator inline if user are Online
                     }
                 </div>
-                <p className='flex flex-col justify-center items-start w-[60%] ml-[8px] '>
+                <p className='flex flex-col justify-center items-start w-[54%] ml-[8px] '>
                     <span className='w-[80%] truncate UsersendMessage'>{datas.name}</span>
                     <span className='messages truncate'>{datas.contentMessage}</span>
                 </p>
-                <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date'>{datas.timeHour ? displayTime(): ' '}</span>
+                <div className='flex w-[26%] flex-col justify-center items-center space-y-2 mx-auto'>
+                    <span className='Date'>{datas.timeHour ? LastMessageTime(datas.timeHour): ' '}</span>
                     {
                         datas.checked ? (datas.timeHour ? <FontAwesomeIcon className='MessageView' icon={faCheck} />: ' ')
                             :

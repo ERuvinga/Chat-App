@@ -2,6 +2,7 @@
 
 .Chat-Header {
     height: 10vh;
+    min-height: 60px;
     border-bottom: solid 1px #E2E3E9;
 }
 
@@ -140,9 +141,7 @@ textarea::-webkit-scrollbar-button {
 
 /*Designed any messages */
 .containerMessage {
-    scrollbar-width: thin;
     overflow-y: auto;
-    overflow-x: hidden;
     width: 100%;
     height: 100%;
     padding: 10px 0px;

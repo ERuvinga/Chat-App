@@ -105,26 +105,35 @@ const monthToString = (month: number) =>{
     return monthString;
 };
 
-const LastMessageTime = (timeOfLastMsg:Date)=>{
+const LastMessageTime = (timeOfLastMsg:number)=>{
     const timeNow = new Date(Date.now()); //save now time 
-    let dataToDisplay = '';
+    const OneWeekAfter = new Date(timeOfLastMsg + OneWeekMs); // save date of after One Week 
+    const dateTimeOFLastMsg = new Date(timeOfLastMsg);
 
-    if(!(timeNow.getDate() - timeOfLastMsg.getDate())){
-            dataToDisplay = `${timeOfLastMsg.getHours()}:${timeOfLastMsg.getMinutes()}`;
-    }
-
-    else if((timeNow.getDate() - timeOfLastMsg.getDate()) > 0 && (timeNow.getDate() - timeOfLastMsg.getDate()) < 7){
-        dataToDisplay = `${timeNow.getDate() - timeOfLastMsg.getDate()}j`;
+    let dataToDisplay = ' ';
+    if(timeNow.valueOf() < OneWeekAfter.valueOf()){
+        const numberDay : number = parseInt(((Date.now() - timeOfLastMsg)/OneDayMs).toString());
+        switch(numberDay){
+            case 0:
+                dataToDisplay = `${dateTimeOFLastMsg.getHours()}:${dateTimeOFLastMsg.getMinutes()}`;
+                break;
+            case 1:
+                dataToDisplay = "Hier";
+                break;   
+            default :
+                dataToDisplay = `${DayToString(dateTimeOFLastMsg.getDay(),FormatDay.long)}`;
+                break;              
+        }     
     }
 
     else{
-        dataToDisplay = `${timeOfLastMsg.toLocaleDateString()}`
+        dataToDisplay = `${dateTimeOFLastMsg.getDate()} ${monthToString(dateTimeOFLastMsg.getMonth())} ${dateTimeOFLastMsg.getFullYear()}`;  
     }
 
     return dataToDisplay; 
 };
 
-const DescriptionUserTime = (LastOnline: number)=>{
+const DescriptionUserTime = (LastOnline: number)=> {
     const timeNow = new Date(Date.now()); //save now time
     const userLastOnlineTime = new Date(LastOnline);
     const OneWeekAfter = new Date(LastOnline + OneWeekMs); // save date of after One Week  
