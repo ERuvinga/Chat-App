@@ -25,11 +25,6 @@
     transition: all .4s ease-in-out;
 }
 
-.loginRegisterBtn:hover {
-    opacity: 0.8;
-    transform: scale(1.02);
-}
-
 .iconeNavBar {
     display: flex;
     justify-content: space-around;
@@ -40,11 +35,6 @@
 
 .icones {
     transition: opacity 0.5s, transform 0.5s;
-    opacity: 1;
-}
-
-.icones:hover {
-    transform: scale(1.2);
     opacity: 1;
 }
 
@@ -59,4 +49,18 @@
 
 .border-b {
     border-bottom: 0px 5px 5px #E2E3E9;
+}
+
+@media screen and (min-width:540px) {
+
+    .icones:hover {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+        
+    .loginRegisterBtn:hover {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+
 }

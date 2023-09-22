@@ -55,11 +55,10 @@ const Index = (User: dataUser) => {
                 })
                 .catch(error => {
                     console.error(error);
-                }
-                );
+                });
         }
 
-    }, [ContexChat.selectedUser]);
+    }, [ContexChat.selectedUser, ContexChat.ReloadStatusOtherUser]);
 
     useEffect(() => {
         ContextSocket.setIo(io(RemoteLinkApi).emit('New_Connection', { user }));
@@ -71,18 +70,17 @@ const Index = (User: dataUser) => {
             {
                 <div className='mx-auto  w-[100%] h-screen bg-[#F9F9FC] flex flex-col justify-between TabletPoint:flex-row '>
                     <section className=' mx-auto w-[99%] sm:w-[80%] list-users TabletPoint:w-[30%] md_lg:w-[25%] TabletPoint:h-screen'>
-                        <div className={!ContexChat.tooglePage ? 'hidden TabletPoint:flex flex-col justify-center' : 'flex flex-col justify-center'}>
+                        <div className={!ContexChat.tooglePage ? 'hidden TabletPoint:flex flex-col justify-center space-y-6' : 'flex flex-col justify-center space-y-6'}>
                             <div className=' min-h-[5vh] relative '>
                                 <UserChat Name={user.name} descriptions={user.email} picture={user.picture} />
                                 <div className='flex items-center justify-center mt-6'>
                                     <input name='searchUser' type='text' className='w-[80%] SearchUser' placeholder="Search user" />
                                 </div>
                             </div>
-                            <span className='Line my-2 '></span>
                             <ListFriend />
                         </div>
                     </section>
-                    <section className={ContexChat.tooglePage ? 'hidden TabletPoint:flex w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1 ' : ' w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'}>
+                    <section className={ContexChat.tooglePage ? 'hidden TabletPoint:flex w-[99%] sm:w-[80%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1 ' : 'w-[100%] TabletPoint:w-[70%] md_lg:w-[50%] mx-auto h-screen chat-contents bg-[#fff] space-y-1'}>
                         <Message />
                     </section>
 
@@ -92,7 +90,7 @@ const Index = (User: dataUser) => {
                                 ContexChat.tooglePage ?
                                     <DesciptionFriend me={ContexChat.tooglePage} name={user.name} function={user.email} picture={user.picture} />
                                     :
-                                    <DesciptionFriend me={ContexChat.tooglePage} name={ContextUser.OtherUser.name} function={ContextUser.OtherUser.email} picture={ContextUser.OtherUser.picture} />
+                                    <DesciptionFriend me={ContexChat.tooglePage} name={ContextUser.OtherUser.name} function={ContextUser.OtherUser.email} picture={ContextUser.OtherUser.picture} status={ContextUser.OtherUser.status} lastOnline={ContextUser.OtherUser.lastOnline}/>
                             }
                         </section>
                     </aside>

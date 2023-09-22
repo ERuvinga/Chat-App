@@ -23,15 +23,20 @@ const Message = () => {
 
     useEffect(() => {
         setMessagesDatas(ChatContext.messageContent);
-    }, [ChatContext.messageContent])
+    }, [ChatContext.messageContent]);
 
     return (
         <>
             {
                 !ChatContext.tooglePage ?
                     <div className=' w-[100%]'>
-                        <div className='w-[95%] mx-auto Chat-Header flex items-center'>
-                            <HeadChat name={UserContext.OtherUser.name !== '' ? UserContext.OtherUser.name : UserContext.OtherUser.email} picture={UserContext.OtherUser.picture} />
+                        <div className='w-[100%] TabletPoint:w-[90%] mx-auto Chat-Header flex items-center'>
+                            <HeadChat 
+                                name={UserContext.OtherUser.name !== '' ? UserContext.OtherUser.name : UserContext.OtherUser.email} 
+                                picture={UserContext.OtherUser.picture} 
+                                status ={UserContext.OtherUser.status}
+                                lastOnline={UserContext.OtherUser.lastOnline}    
+                            />
                         </div>
                         <div className=' w-[95%] h-[78vh] TabletPoint:h-[76vh] mx-auto flex justify-center items-center'>
                             {

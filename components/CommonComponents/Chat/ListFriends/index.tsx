@@ -14,8 +14,7 @@ let SocketContext: any;
 
 const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     let message = '';
-    let i;
-    for (i = 0; i < tabLastMesg.length; i++) {
+    for (let i = 0; i < tabLastMesg.length; i++) {
         if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
                 message = tabLastMesg[i].messages.content; // if conrespond return content message
@@ -27,10 +26,24 @@ const getLastMsgConversat = (idUser: any, tabLastMesg: any) => {
     return message;
 }
 
+const getHourMsg = (idUser: any, tabLastMsg:any)=>{
+    let hour = 0;
+    for(let i = 0; i< tabLastMsg.length; i++){
+        if ((userContext.OwnerUser.userId === tabLastMsg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMsg[i].members[1])) { // search owenUser
+            if ((idUser === (tabLastMsg[i].members[0])) || (idUser === tabLastMsg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
+                hour = tabLastMsg[i].hour; // if conrespond return content hour
+            break;
+            };
+        };
+    };
+
+    return hour;
+}
+
+
 const getNoReadMsgs = (idUser: any, tabLastMesg: any) => { // return number of the no read message of User
     let numberOfMsd = 0;
-    let i;
-    for (i = 0; i < tabLastMesg.length; i++) {
+    for (let i = 0; i < tabLastMesg.length; i++) {
         if ((userContext.OwnerUser.userId === tabLastMesg[i].members[0]) || (userContext.OwnerUser.userId === tabLastMesg[i].members[1])) { // search owenUser
             if ((idUser === (tabLastMesg[i].members[0])) || (idUser === tabLastMesg[i].members[1])) { // if ownerUser and Otheer user available in dataBase
                 tabLastMesg[i].noReadMesgs.map((val:any)=>{
@@ -53,18 +66,41 @@ const ListFriend = () => {
 
     //states
     const [LoadinPage, setLoadingPage] = useState(true);
-    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null, noReadMesgs: 0, name:'' }]);
+    const [dataUsers, setDataUser] = useState([{ email: '', picture: '', contentMessage: '', _id: null,  name:'' ,status:false}]);
     const [LastMsg, setLastMsg] = useState([{
         members: [],
         messages: {
             content: '',
             type: ''
         },
-        Hours: '',
+        hour: 0,
         noReadMesgs:[],
     }]);
 
-    // Search data One time
+    // Search data Of users
+    const reloadingUserDatas = () =>{
+        fetch(`${process.env.API_LINK}/api/user`, {
+            headers: {
+                "Accept": 'application/json',
+                "Content-type": 'application/json; charset=UTF-8',
+                "Autorization": `Bearer ${localStorage.getItem('Token')}`
+            }
+        })
+            .then(datafetching => {
+                if (datafetching.ok) {
+                    datafetching.json()
+                        .then(Users => {
+                            setDataUser(Users.users);
+                            setLastMsg(Users.lastMesg);
+                        })
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                return null;
+            });
+    };
+
     useEffect(() => {
         fetch(`${process.env.API_LINK}/api/user`, {
             headers: {
@@ -116,28 +152,9 @@ const ListFriend = () => {
     useEffect(() => {
 
         if (SocketContext.socketIo != null) {
-            SocketContext.socketIo.on('New_Message', (idUser: String) => {
-                if (idUser === userContext.OtherUser._id || idUser === userContext.OwnerUser.userId) { //limit a event to 2 users 
-                    console.log("is me");
-                    fetch(`${process.env.API_LINK}/api/user`, {
-                        headers: {
-                            "Accept": 'application/json',
-                            "Content-type": 'application/json; charset=UTF-8',
-                            "Autorization": `Bearer ${localStorage.getItem('Token')}`
-                        }
-                    })
-                        .then(datafetching => {
-                            if (datafetching.ok) {
-                                datafetching.json()
-                                    .then(Users => {
-                                        setDataUser(Users.users);
-                                        setLastMsg(Users.lastMesg);
-                                    })
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
+            SocketContext.socketIo.on('New_Message', (idUser: any) => {
+                if (idUser.other === userContext.OwnerUser.userId || idUser.owner === userContext.OwnerUser.userId) { //limit a event to 2 users 
+                    reloadingUserDatas(); // reloading DataOfUser
                 }
             });
 
@@ -148,22 +165,23 @@ const ListFriend = () => {
                     // if other user is owner in this display
                     ChatContext.setMsgBlocReload(1 - ChatContext.msgBlocReload);
                 }
-                console.log("New message of : ");
-                console.log(users.userSender);
+                console.log("New message");
         });
 
 
             SocketContext.socketIo.on('user_Connected', (newUser: any) => { // connected event of user
+                    reloadingUserDatas(); // reloading DataOfUser
                     console.log("New User Connected : ");
                     console.log(newUser);
             });
 
             SocketContext.socketIo.on('user_disconnected', (logoutUser: any) =>{ // disconnect event of user
+                reloadingUserDatas(); // reloading DataOfUser
                 console.log(" User disconnected : ");
                 console.log(logoutUser);
             });
-        }
-    }, [SocketContext.socketIo]);
+    }
+}, [SocketContext.socketIo]);
 
 
 
@@ -183,7 +201,10 @@ const ListFriend = () => {
                         picture={value.picture}
                         checked={getNoReadMsgs(value._id, LastMsg) ? false : true}
                         contentMessage={getLastMsgConversat(value._id, LastMsg)}
-                        noReadMessage={getNoReadMsgs(value._id, LastMsg)} />
+                        noReadMessage={getNoReadMsgs(value._id, LastMsg)}
+                        timeHour ={getHourMsg(value._id,LastMsg)}
+                        online={value.status}
+                    />
                 )
             }
         </div>

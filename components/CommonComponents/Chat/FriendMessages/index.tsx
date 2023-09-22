@@ -5,6 +5,10 @@ import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 //contexts
 import { contextChat } from '../../../Context/ChatContext';
 import { socketIoContext } from '../../../Context/socket';
+import Indicator from '../IndicatorOnline';
+
+// Date manager
+import { LastMessageTime } from '../../../../lib/Date';
 
 interface NewMessages {
     name: string,
@@ -16,6 +20,8 @@ interface NewMessages {
     _idUser: any,
     indexUser: number,
     values?: any,
+    timeHour: number,
+    online: boolean
 }
 
 let ChatContxt: object | any;
@@ -57,19 +63,25 @@ const Index = (datas: NewMessages) => {
                                 })
                         }
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.log(error));
             }
-            } >
+
+        } >
             <div className={(ChatContxt.selectedUser == datas.indexUser) ? 'ContainerUserSelected flex justify-between' : 'ContainerMessage flex justify-between'}>
-                <img src={datas.picture ? datas.picture : 'profile.png'} className=' w-[50px] h-[50px] imgUserMessage ' alt='user' />
-                <p className='w-[100%] flex flex-col justify-center items-start TabletPoint:w-[60%] ml-[8px] '>
-                    <span className=' text-[.6em] w-[80%] truncate TabletPoint:text-[.8em] UsersendMessage'>{datas.name}</span>
-                    <span className='messages'>{datas.contentMessage}</span>
+                <div className='blocImgMsg'>
+                     <img src={datas.picture ? datas.picture : 'profile.png'} className='w-[50px] h-[50px] imgUserMessage ' alt='user' />
+                     { 
+                        datas.online && <Indicator/> // display Indicator inline if user are Online
+                    }
+                </div>
+                <p className='flex flex-col justify-center items-start w-[54%] ml-[8px] '>
+                    <span className='w-[80%] truncate UsersendMessage'>{datas.name}</span>
+                    <span className='messages truncate'>{datas.contentMessage}</span>
                 </p>
-                <div className='flex w-1/6 flex-col justify-center items-center space-y-2 mx-auto'>
-                    <span className='Date'>18.32</span>
+                <div className='flex w-[26%] flex-col justify-center items-center space-y-2 mx-auto'>
+                    <span className='Date'>{datas.timeHour ? LastMessageTime(datas.timeHour): ' '}</span>
                     {
-                        datas.checked ? <FontAwesomeIcon className='MessageView' icon={faCheck} />
+                        datas.checked ? (datas.timeHour ? <FontAwesomeIcon className='MessageView' icon={faCheck} />: ' ')
                             :
                             <span className={(datas.noReadMessage < 10) ? 'numberMessages' : ''}>
                                 {(datas.noReadMessage > 9) ? <FontAwesomeIcon className=' text-[.85em] text-[#5843E4]' icon={faPlusCircle} />

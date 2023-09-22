@@ -2,6 +2,7 @@
 
 .Chat-Header {
     height: 10vh;
+    min-height: 60px;
     border-bottom: solid 1px #E2E3E9;
 }
 
@@ -11,6 +12,60 @@
     margin-right: 10px;
     border-radius: 50%;
     border: #979797 solid 1px;
+}
+
+/*Online Anymation*/
+@keyframes OnlineAnim {
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes OfflineAnim {
+    from{
+        opacity:0;
+        top: 0;
+        left: 30px;    }
+
+    to{
+        opacity: 1;
+        top: 0;
+        left:0;    }   
+}
+
+.containerOffLine{
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 120px;
+    height: 18px;
+}
+
+.OnlineClass{
+    animation: OnlineAnim .8s ease-in-out;
+}
+
+.OfflineClass{
+    position: absolute;
+    animation: OfflineAnim 1s ease-in-out;
+    top: 0;
+    left: 0;
+}
+
+.statusUser{
+    text-align: center;
+    color: #8186A0;
+    font-family: comfoortaB;
+    font-size: .75em;
+}
+
+/*Bouton on HeadChat*/
+.ChatHeadBtns {
+    transition: all .4s ease-in-out;
 }
 
 .Chat-Footer {
@@ -58,12 +113,6 @@ textarea::-webkit-scrollbar-button {
     border-radius: 8px;
 }
 
-.iconeBtns:hover {
-    background-color: #5843E4;
-    color: #F9F9FC;
-    transform: scale(1.04);
-}
-
 .sendMessagebtn {
     color: #8186A0;
     font-size: .9em;
@@ -73,14 +122,6 @@ textarea::-webkit-scrollbar-button {
     border-radius: 8px;
 }
 
-.sendMessagebtn:hover {
-    color: #F9F9FC;
-    background-color: #5843E4;
-    transform: scale(1.05);
-    font-size: 1em;
-}
-
-
 /* scrolling list Friends */
 
 .ListFriendContainer {
@@ -88,20 +129,8 @@ textarea::-webkit-scrollbar-button {
     overflow-y: auto;
 }
 
-.ListFriendContainer::-webkit-scrollbar {
-    width: 4px;
-    background-color: #F9F9FC;
-}
-
-.ListFriendContainer::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #E2E3E9;
-}
-
-.ListFriendContainer::-webkit-scrollbar-button {
-    height: 5px;
-    border-radius: 10px;
-    background-color: #8186A0;
+.ListFriendContainer::-webkit-scrollbar-button, .ListFriendContainer::-webkit-scrollbar-thumb, .ListFriendContainer::-webkit-scrollbar  {
+    display: none;
 }
 
 .Line {
@@ -112,29 +141,14 @@ textarea::-webkit-scrollbar-button {
 
 /*Designed any messages */
 .containerMessage {
-    scrollbar-width: thin;
     overflow-y: auto;
-    overflow-x: hidden;
     width: 100%;
     height: 100%;
     padding: 10px 0px;
 }
 
-.containerMessage::-webkit-scrollbar {
-    width: 4px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.containerMessage::-webkit-scrollbar-thumb {
-    background-color: #E2E3E9;
-    border-radius: 10px;
-}
-
-.containerMessage::-webkit-scrollbar-button {
-    height: 5px;
-    border-radius: 10px;
-    background-color: #8186A0;
+.containerMessage::-webkit-scrollbar-thumb,.containerMessage::-webkit-scrollbar, .containerMessage::-webkit-scrollbar-button {
+    display: none;
 }
 
 .BlocMessage {
@@ -142,25 +156,59 @@ textarea::-webkit-scrollbar-button {
 }
 
 .otherUser {
-    max-width: 85%;
+    max-width: 80%;
+    width: fit-content;
 
-    border-radius: 7px 7px 7px 0;
-    background-color: #F9F9FC;
+    border-radius: 15px 15px 15px 0;
+    background-color: #F9F9F9;
     box-shadow: 0px 0px 3px #E2E3E9;
-    color: #8186A0;
-    padding: 5px 10px;
+    color: #555;
+    padding:10px;
 
-    text-align: justify;
+    text-align: left;
+    font-family: comfoortaB;
 }
 
 .OwnerUser {
-    max-width: 85%;
+    max-width: 80%;
 
     /*Text*/
-    text-align: justify;
-    padding: 5px 10px;
+    text-align: left;
+    padding: 10px;
     color: #fff;
     background-color: #5843E4;
-    border-radius: 7px 7px 0px 7px;
+    border-radius: 15px 15px 0px 15px;
     box-shadow: 0px 0px 3px #E2E3E9;
+}
+
+
+/*Media Querry*/
+@media screen and (max-width:920px) {
+    .Chat-Header {
+        box-shadow: 0 0 6px 0 #E2E3E9;
+        padding: 0 15px;
+    }   
+}
+
+@media screen and (min-width: 540px) {
+        
+    .ChatHeadBtns:hover {
+        transform: scale(1.23);
+        color: #5843E4;
+        cursor: pointer;
+    }
+
+    .iconeBtns:hover {
+        background-color: #5843E4;
+        color: #F9F9FC;
+        transform: scale(1.04);
+    }
+
+    .sendMessagebtn:hover {
+        color: #F9F9FC;
+        background-color: #5843E4;
+        transform: scale(1.05);
+        font-size: 1em;
+    }
+
 }

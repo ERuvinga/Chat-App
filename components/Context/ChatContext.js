@@ -14,6 +14,7 @@ const ChatProviderContext = ({ children }) => {
     //Users
     const [_idOwnerUser, set_idOwnerUser] = useState();
     const [selectedUser, setSelectedUser] = useState(null); //state of user selected for conversation
+    const [ReloadStatusOtherUser, setReloadStatusOtherUser] = useState(0); // reloadingOther user data
     const [_idOtherUser, set_idOtherUser] = useState(0); //save a id of an other user
     return <contextChat.Provider
         value={{
@@ -26,8 +27,9 @@ const ChatProviderContext = ({ children }) => {
             _idConversation, set_idConversation,
             messageContent, setMessageContent,
             msgBlocReload, setMsgBlocReload,
-            loadingMessages, setLoadingMessage
-
+            loadingMessages, setLoadingMessage,
+            ReloadStatusOtherUser, setReloadStatusOtherUser
+            
         }}>{children}</contextChat.Provider>
 };
 
